@@ -1,0 +1,14 @@
+{
+  "name": "vitevuu",
+  "version": "1.0.2",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "./lib/types/index.d.ts",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "cross-env NODE_ENV=dev rollup -c -w"
+  },
+  "author": "bhabgs",
+  "license": "ISC",
+  "devDependencies": {}
+}

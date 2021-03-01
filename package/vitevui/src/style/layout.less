@@ -1,0 +1,32 @@
+.vite-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  &.vite-layout-hassider {
+    display: flex;
+    flex-direction: row;
+    background-color: @blue-3;
+  }
+
+  .vite-layout-main {
+    flex: 1;
+    background-color: @blue;
+  }
+  .vite-layout-sider {
+    width: 200px;
+  }
+}
+.vite-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  display: flex;
+  background-color: @blue-1;
+}
+
+.vite-layout-footer {
+  padding: 24px 50px;
+  font-size: 14px;
+  display: flex;
+  background-color: @blue-1;
+}
