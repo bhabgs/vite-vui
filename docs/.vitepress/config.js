@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-01 10:15:25
+ * @LastEditTime: 2021-03-01 12:07:47
  */
 module.exports = {
   head: [
@@ -26,6 +26,7 @@ module.exports = {
     ['script', { src: 'https://unpkg.com/gitalk/dist/gitalk.min.js' }],
   ],
   title: 'Vite vui',
+  base: '/vite-vui-docs/',
   themeConfig: {
     search: true,
     // 保存解析 Markdown 的元数据
