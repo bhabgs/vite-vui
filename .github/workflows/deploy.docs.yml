@@ -6,44 +6,53 @@ name: 部署文档
 on:
   # 当对分支main进行push操作的时候，这个工作流就被触发了
   push:
-    branches: [ push-docs ]
+    branches: [push-docs]
   pull_request:
-    branches: [ push-docs ]
+    branches: [push-docs]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # 工作流是由一个或多个的jobs构成的，在jobs里来说明要交给GitHub aciton执行的任务
 jobs:
-
-  
   # 这个jobs中的一个任务，名字叫build(随便怎么取)
   build:
-  
     # 用来指定这个任务在什么操作系统上跑(服务器是GitHub免费提供的)
-    runs-on: macOS-latest
-    
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [14.x]
 
     # 指出这个build任务的步骤
     steps:
-      - uses: actions/checkout@master
-      
+      - uses: actions/checkout@v1
+
       - name: 初始化node环境
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      
+
       - name: 安装yarn
         run: npm i -g yarn
-        
+
       - name: 安装依赖
         run: yarn
-      
-      - name: 开始推送文档
-        run: yarn docs:push
-      
+
+      - name: 打包文档
+        run: yarn docs:build
+
+      - name: 推送至 bhabgs.github.io/master
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          EXTERNAL_REPOSITORY: bhabgs/vite-vui-docs #可以新建一个mybells.github.io仓库发布到master
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: docs/.vitepress/dist
+        with:
+          emptyCommits: false
+      # - name: 开始推送文档
+      #   run: yarn docs:push
+
       - name: 部署通知
         run: echo 文档部署成功，请访问 https://bhabgs.github.io/vite-vui-docs/
