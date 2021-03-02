@@ -46,7 +46,6 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
-          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa.pub
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "bhabgs@aliyun.com"
