@@ -18,7 +18,7 @@ jobs:
   # 这个jobs中的一个任务，名字叫build(随便怎么取)
   build:
     # 用来指定这个任务在什么操作系统上跑(服务器是GitHub免费提供的)
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -26,7 +26,7 @@ jobs:
 
     # 指出这个build任务的步骤
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
 
       - name: 初始化node环境
         uses: actions/setup-node@v1
@@ -39,7 +39,10 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: Deploy bhabgs.github.io/master
+      - name: 打包文档
+        run: yarn docs:build
+
+      - name: 推送至 bhabgs.github.io/master
         uses: peaceiris/actions-gh-pages@v2
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_TOKEN }}
