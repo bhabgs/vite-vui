@@ -41,7 +41,7 @@ jobs:
 
       - name: 设置ssk
         env:
-          ACCESS_TOKEN: ${{ secrets.RSA }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         #  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           mkdir -p ~/.ssh/
