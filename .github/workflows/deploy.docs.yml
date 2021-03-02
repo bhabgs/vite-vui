@@ -39,20 +39,17 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: 打包文档
-        run: yarn docs:build
-
-      - name: 设置ssk
+      - name: Deploy bhabgs.github.io/master
+        uses: peaceiris/actions-gh-pages@v2
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        #  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: |
-          mkdir -p ~/.ssh/
-          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.email "bhabgs@aliyun.com"
-          git config --global user.name "bhabgs"
-      - run: yarn docs:push
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_TOKEN }}
+          EXTERNAL_REPOSITORY: bhabgs/bhabgs.github.io/vite-vui-docs/ #可以新建一个mybells.github.io仓库发布到master
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: docs/.vitepress/dist
+        with:
+          emptyCommits: false
+      # - name: 开始推送文档
+      #   run: yarn docs:push
+
       - name: 部署通知
         run: echo 文档部署成功，请访问 https://bhabgs.github.io/vite-vui-docs/
