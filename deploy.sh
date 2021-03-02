@@ -4,15 +4,13 @@
  # @Author: bhabgs
  # @Date: 2021-03-01 10:37:56
  # @LastEditors: bhabgs
- # @LastEditTime: 2021-03-02 13:11:40
+ # @LastEditTime: 2021-03-02 16:09:43
 ### 
 #!/usr/bin/env sh
 
 # abort on errors
 set -e
 
-# build
-npm run docs:build
 
 # navigate into the build output directory
 cd docs/.vitepress/dist
