@@ -40,9 +40,12 @@ jobs:
         run: yarn
 
       - name: 设置ssk
+        env:
+          ACCESS_TOKEN: ${{ secrets.RSA }}
+        #  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           mkdir -p ~/.ssh/
-          echo "$RSA" > ~/.ssh/id_rsa
+          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "bhabgs@aliyun.com"
