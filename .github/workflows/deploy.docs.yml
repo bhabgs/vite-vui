@@ -21,11 +21,11 @@ jobs:
   build:
   
     # 用来指定这个任务在什么操作系统上跑(服务器是GitHub免费提供的)
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     # 指出这个build任务的步骤
     steps:
