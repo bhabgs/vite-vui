@@ -41,12 +41,12 @@ jobs:
 
       - name: 设置ssk
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.DOCS_TOKEN }}
         #  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           mkdir -p ~/.ssh/
-          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa.pub
-          chmod 600 ~/.ssh/id_rsa.pub
+          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "bhabgs@aliyun.com"
           git config --global user.name "bhabgs"
