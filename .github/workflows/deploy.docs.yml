@@ -38,7 +38,7 @@ jobs:
 
       - name: 安装依赖
         run: yarn
-        
+
       - name: 打包文档
         run: yarn docs:build
 
@@ -46,15 +46,13 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         #  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
+      - run: |
           mkdir -p ~/.ssh/
           echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "bhabgs@aliyun.com"
           git config --global user.name "bhabgs"
-        run: yarn docs:push
-        
-
+      - run: yarn docs:push
       - name: 部署通知
         run: echo 文档部署成功，请访问 https://bhabgs.github.io/vite-vui-docs/
