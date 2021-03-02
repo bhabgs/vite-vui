@@ -26,12 +26,15 @@ jobs:
       
       - name: 初始化node环境
         uses: actions/setup-node@v1
+      
+      - name: 安装yarn
+        run: npm i -g yarn
         
       - name: 安装依赖
-        run: npm install
+        run: yarn
       
       - name: 开始推送文档
-        run: npm run docs:push
+        run: yarn docs:push
       
       - name: 部署通知
         run: echo 文档部署成功，请访问 https://bhabgs.github.io/vite-vui-docs/
