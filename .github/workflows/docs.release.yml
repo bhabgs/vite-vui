@@ -21,4 +21,4 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           body: |
-            Please refer to [CHANGELOG.md](https://github.com/bhabgs/vite-vui/blob/master/CHANGELOG.md) for details.
+            Please refer to [CHANGELOG.md](https://github.com/bhabgs/vite-vui/CHANGELOG.md) for details.
