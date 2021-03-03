@@ -7,15 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: aaa
-        uses: actions/checkout@v1
-
-      - name: 安装依赖
-        run: npm i @actions/core -D
+      - uses: actions/checkout@v1
 
       - name: Read package.json
-        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
-        id: package-json-endpoint
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: package-version
 
       - name: Show version number
-        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
+        run: echo "Version is ${{ steps.package-version.outputs.version }}"
