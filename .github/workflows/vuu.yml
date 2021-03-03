@@ -39,12 +39,12 @@ jobs:
 
       - name: publish 成功通知
         run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
-      
-      - name: github-release
-        - working-directory: 'package/vitevuu'
-        - run: npm i -g github-release-from-changelog
-        - run: npm run genlog
-        - run: github-release-from-changelog
-          env:
-            GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
 
+      - name: github-release
+        working-directory: 'package/vitevuu'
+        run: |
+          npm i -g github-release-from-changelog
+          npm run genlog
+          github-release-from-changelog
+        env:
+          GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
