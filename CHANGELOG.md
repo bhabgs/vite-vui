@@ -4,6 +4,7 @@
 ### Features
 
 * **xx:** aaaaas ([b6f94a8](https://github.com/bhabgs/vite-vui/commit/b6f94a84fbe021cfad69609b7ab8b2910b60036f))
+* **xxx): fix(merge:** 升级 ([37c9c0e](https://github.com/bhabgs/vite-vui/commit/37c9c0eccb8f75d18124b4e778f319c485972651))
 
 
 ### BREAKING CHANGES
@@ -12,11 +13,3 @@
 
 
 
-<!--
- * @abstract: JianJie
- * @version: 0.0.1
- * @Author: bhabgs
- * @Date: 2021-03-03 13:34:37
- * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-03 13:35:48
--->

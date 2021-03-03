@@ -1,6 +1,6 @@
 {
   "name": "vitevuu",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "lib/index.js",
   "types": "./lib/types/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=dev rollup -c -w",
     "commit": "git-cz",
-    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "author": "bhabgs",
   "license": "ISC",
