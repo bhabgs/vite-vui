@@ -1,0 +1,36 @@
+name: 发布ui
+
+on:
+  push:
+    branches: [deploy-vuu]
+jobs:
+  build:
+    name: 发布util工作流
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    # 指出这个build任务的步骤
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: 初始化node环境
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 安装yarn
+        run: npm i -g yarn
+
+      - name: 安装依赖
+        run: yarn
+
+      - name: 编译util
+        run: |
+          cd package/vitevuu
+          yarn build
+      - name: publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
