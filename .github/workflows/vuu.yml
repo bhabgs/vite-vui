@@ -2,7 +2,7 @@ name: 发布ui
 
 on:
   push:
-    branches: [deploy-vuu]
+    branches: [deploy-vuu-5]
 jobs:
   publish:
     name: 发布util工作流
