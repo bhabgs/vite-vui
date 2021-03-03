@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: aaa
         uses: actions/checkout@v1
+
+      - name: 安装依赖
         run: npm i @actions/core -D
 
       - name: Read package.json
