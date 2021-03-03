@@ -41,7 +41,7 @@ jobs:
         run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
       
       - name: github-release
-        working-directory: 'package/vitevuu'
+        - working-directory: 'package/vitevuu'
         - run: npm i -g github-release-from-changelog
         - run: npm run genlog
         - run: github-release-from-changelog
