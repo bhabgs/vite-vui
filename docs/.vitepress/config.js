@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-03 11:23:20
+ * @LastEditTime: 2021-03-03 16:55:24
  */
 module.exports = {
   head: [
@@ -16,7 +16,7 @@ module.exports = {
           'width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
       },
     ],
-    ['meta', { name: 'keywords', content: '足生的个人博客' }],
+    ['meta', { name: 'keywords', content: 'vite vui' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     // 引入 Gitalk
     [
