@@ -10,9 +10,9 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Read package.json
+        run: npm i @actions/core -D
         uses: dutscher/read-package-json-endpoint-actions@v1.33.7
         id: package-json-endpoint
-        run: npm i @actions/core -D
 
       - name: Show version number
         run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
