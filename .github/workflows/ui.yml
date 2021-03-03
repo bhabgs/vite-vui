@@ -2,10 +2,10 @@ name: 发布ui
 
 on:
   push:
-    branches: [deploy-vui]
+    branches: [deploy-vuu-5]
 jobs:
   publish:
-    name: 发布ui工作流
+    name: 发布util工作流
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
         run: yarn
 
       - name: 编译部署util
-        working-directory: 'package/vitevuu'
+        working-directory: 'package/vitevui'
         run: yarn build
 
       - name: publish
@@ -38,13 +38,13 @@ jobs:
         run: npm publish
 
       - name: publish 成功通知
-        run: echo npm vui 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/
-      
+        run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/
+
       - name: github-release
         working-directory: 'package/vitevui'
-        - run: npm i -g github-release-from-changelog
-        - run: npm run genlog
-        - run: github-release-from-changelog
-          env:
-            GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
-
+        run: |
+          npm i -g github-release-from-changelog
+          npm run genlog
+          github-release-from-changelog
+        env:
+          GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
