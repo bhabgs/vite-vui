@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-01 12:07:47
+ * @LastEditTime: 2021-03-03 11:23:20
  */
 module.exports = {
   head: [
@@ -36,6 +36,7 @@ module.exports = {
           text: 'vui',
           children: [
             { text: '介绍', link: '/' },
+            { text: '日志', link: '/components/log' },
             { text: 'Button', link: '/components/button/' },
           ],
         },
@@ -43,6 +44,7 @@ module.exports = {
           text: 'vuu',
           children: [
             { text: '介绍', link: '/vuu/' },
+            { text: '日志', link: '/vuu/log' },
             { text: '某个功能', link: '/vuu/any' },
           ],
         },

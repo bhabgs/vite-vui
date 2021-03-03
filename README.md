@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:25:14
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-24 12:09:58
+ * @LastEditTime: 2021-03-03 11:21:33
 -->
 
 # vue3.0 + typescript + tsx + vite
@@ -14,8 +14,8 @@
 
 ## vitevui
 
-- [文档](./package/vitevui/README.md)
+- [文档](https://bhabgs.github.io/vite-vui-docs/)
 
 ## util
 
-- [文档](./package/vitevuu/README.md)
+- [文档](https://bhabgs.github.io/vite-vui-docs/vuu/)

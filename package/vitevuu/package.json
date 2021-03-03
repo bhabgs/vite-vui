@@ -1,15 +1,22 @@
 {
   "name": "vitevuu",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "types": "./lib/types/index.d.ts",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/vuu/",
+  "repository": "https://github.com/bhabgs/vite-vui",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
-    "dev": "cross-env NODE_ENV=dev rollup -c -w"
+    "dev": "cross-env NODE_ENV=dev rollup -c -w",
+    "commit": "git-cz",
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "author": "bhabgs",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "commitizen": "^4.2.3"
+  }
 }
