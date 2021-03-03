@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - name: aaa
+        uses: actions/checkout@v1
+        run: npm i @actions/core -D
 
       - name: Read package.json
-        run: npm i @actions/core -D
         uses: dutscher/read-package-json-endpoint-actions@v1.33.7
         id: package-json-endpoint
 
