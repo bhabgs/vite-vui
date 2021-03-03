@@ -14,6 +14,7 @@
     "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
+  "repository": "bhabgs/vite-vui",
   "workspaces": [
     "package/*"
   ],
