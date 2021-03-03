@@ -12,7 +12,7 @@ jobs:
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
         with:
-          path: './package/vitevuu/package.json'
+          path: './package/vitevuu'
         id: package-version
 
       - name: Show version number
