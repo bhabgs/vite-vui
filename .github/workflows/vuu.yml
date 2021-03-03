@@ -27,31 +27,24 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: Read package.json
-        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
-        id: package-json-endpoint
+      - name: 编译部署util
+        working-directory: 'package/vitevuu'
+        run: yarn build
 
-      - name: Show version number
-        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
+      - name: publish
+        working-directory: 'package/vitevuu'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: npm publish
 
-      # - name: 编译部署util
-      #   working-directory: 'package/vitevuu'
-      #   run: yarn build
+      - name: publish 成功通知
+        run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
 
-      # - name: publish
-      #   working-directory: 'package/vitevuu'
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      #   run: npm publish
-
-      # - name: publish 成功通知
-      #   run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
-
-      # - name: github-release
-      #   working-directory: 'package/vitevuu'
-      #   run: |
-      #     npm i -g github-release-from-changelog
-      #     yarn genlog
-      #     github-release-from-changelog
-      #   env:
-      #     GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
+      - name: github-release
+        working-directory: 'package/vitevuu'
+        run: |
+          npm i -g github-release-from-changelog
+          npm run genlog
+          github-release-from-changelog
+        env:
+          GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
