@@ -7,8 +7,6 @@ on:
   # 当对分支main进行push操作的时候，这个工作流就被触发了
   push:
     branches: [push-docs]
-  pull_request:
-    branches: [push-docs]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
