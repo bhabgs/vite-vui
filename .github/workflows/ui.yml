@@ -2,7 +2,7 @@ name: 发布ui
 
 on:
   push:
-    branches: [deploy-vuu-5]
+    branches: [deploy-vui]
 jobs:
   publish:
     name: 发布util工作流
@@ -53,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         with:
           tag_name: vitevui-v${{ steps.package-version.outputs.version }}
-          release_name: Release ${{ github.ref }}
+          release_name: Release vitevui-v${{ steps.package-version.outputs.version }}
           draft: false
           prerelease: false
           body: |
