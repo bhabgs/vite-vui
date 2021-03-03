@@ -26,11 +26,10 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: 编译util
+      - name: 编译部署util
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           cd package/vitevuu
           yarn build
-      - name: publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          npm publish
