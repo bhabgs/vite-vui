@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "./lib/types/index.d.ts",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/vuu/",
-  "repository": "bhabgs/vite-vui",
+  "repository": "https://github.com/bhabgs/vite-vui",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=dev rollup -c -w",
