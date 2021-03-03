@@ -2,10 +2,10 @@ name: 发布ui
 
 on:
   push:
-    branches: [deploy-ui]
+    branches: [deploy-vui]
 jobs:
-  build:
-    name: 发布工作流
+  publish:
+    name: 发布util工作流
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
 
       - name: 安装yarn
         run: npm i -g yarn
@@ -26,11 +27,34 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: 编译ui
-        run: |
-          cd package/vitevui
-          yarn build
+      - name: 编译部署util
+        working-directory: 'package/vitevui'
+        run: yarn build
+
       - name: publish
-        run: npm publish
+        working-directory: 'package/vitevui'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: npm publish
+
+      - name: publish 成功通知
+        run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/
+
+      - name: Read package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        with:
+          path: './package/vitevui'
+        id: package-version
+
+      - name: Create Release for Tag
+        id: release_tag
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: vitevui-v${{ steps.package-version.outputs.version }}
+          release_name: Release vitevui-v${{ steps.package-version.outputs.version }}
+          draft: false
+          prerelease: false
+          body: |
+            请点击查看 [更新日志](https://bhabgs.github.io/vite-vui-docs/components/log.html).

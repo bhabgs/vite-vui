@@ -1,10 +1,10 @@
-name: 发布ui
+name: 发布util
 
 on:
   push:
     branches: [deploy-vuu]
 jobs:
-  build:
+  publish:
     name: 发布util工作流
     runs-on: ubuntu-latest
     strategy:
@@ -36,3 +36,25 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: npm publish
+
+      - name: publish 成功通知
+        run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
+
+      - name: Read package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        with:
+          path: './package/vitevuu'
+        id: package-version
+
+      - name: Create Release for Tag
+        id: release_tag
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: vitevuu-v${{ steps.package-version.outputs.version }}
+          release_name: Release vitevuu-v${{ steps.package-version.outputs.version }}
+          draft: false
+          prerelease: false
+          body: |
+            请点击查看 [更新日志](https://bhabgs.github.io/vite-vui-docs/vuu/log.html).
