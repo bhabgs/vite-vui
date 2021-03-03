@@ -1,4 +1,4 @@
-name: Create Release
+name: 创建文档release
 
 on:
   push:
