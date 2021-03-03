@@ -27,9 +27,11 @@ jobs:
         run: yarn
 
       - name: 编译部署util
+        working-directory: 'package/vitevuu'
+        run: yarn build
+
+      - name: publish
+        working-directory: 'package/vitevuu'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          cd package/vitevuu
-          yarn build
-          npm publish
+        run: npm publish
