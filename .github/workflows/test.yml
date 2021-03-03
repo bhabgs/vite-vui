@@ -11,8 +11,9 @@ jobs:
 
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
+        width:
+          path: './package/vitevuu/package.json'
         id: package-version
 
       - name: Show version number
-        working-directory: 'package/vitevuu'
         run: echo "Version is ${{ steps.package-version.outputs.version }}"
