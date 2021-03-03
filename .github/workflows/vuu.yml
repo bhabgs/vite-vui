@@ -21,18 +21,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
+      - name: 安装yarn
+        run: npm i -g yarn
+
+      - name: 安装依赖
+        run: yarn
+
       - name: Read package.json
         uses: dutscher/read-package-json-endpoint-actions@v1.33.7
         id: package-json-endpoint
 
       - name: Show version number
         run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
-
-      # - name: 安装yarn
-      #   run: npm i -g yarn
-
-      # - name: 安装依赖
-      #   run: yarn
 
       # - name: 编译部署util
       #   working-directory: 'package/vitevuu'
