@@ -11,7 +11,7 @@ jobs:
 
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
-        width:
+        with:
           path: './package/vitevuu/package.json'
         id: package-version
 
