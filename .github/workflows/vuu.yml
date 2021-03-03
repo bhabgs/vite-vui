@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
 
       - name: 安装yarn
         run: npm i -g yarn
@@ -26,11 +27,12 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: 编译util
-        run: |
-          cd package/vitevuu
-          yarn build
+      - name: 编译部署util
+        working-directory: 'package/vitevuu'
+        run: yarn build
+
       - name: publish
-        run: npm publish
+        working-directory: 'package/vitevuu'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: npm publish
