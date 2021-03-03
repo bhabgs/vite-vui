@@ -10,6 +10,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:push": "bash deploy.sh",
+    "commit": "git-cz",
     "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
@@ -31,6 +32,13 @@
     "vue-router": "^4.0.4",
     "axios": "^0.21.1",
     "vitepress": "^0.12.2",
-    "conventional-changelog-cli": "^2.1.1"
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "commitizen": "^4.2.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
