@@ -33,12 +33,12 @@
     "axios": "^0.21.1",
     "vitepress": "^0.12.2",
     "conventional-changelog-cli": "^2.1.1",
-    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.2.0",
     "commitizen": "^4.2.3"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "node_modules/cz-customizable"
     }
   }
 }

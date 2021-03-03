@@ -7,9 +7,15 @@
   "homepage": "https://bhabgs.github.io/vite-vui-docs/vuu/",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
-    "dev": "cross-env NODE_ENV=dev rollup -c -w"
+    "dev": "cross-env NODE_ENV=dev rollup -c -w",
+    "commit": "git-cz",
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "author": "bhabgs",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "commitizen": "^4.2.3"
+  }
 }
