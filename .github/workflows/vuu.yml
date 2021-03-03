@@ -21,11 +21,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      - name: 安装yarn
-        run: npm i -g yarn
+      - name: Read package.json
+        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
+        id: package-json-endpoint
 
-      - name: 安装依赖
-        run: yarn
+      - name: Show version number
+        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
+
+      # - name: 安装yarn
+      #   run: npm i -g yarn
+
+      # - name: 安装依赖
+      #   run: yarn
 
       # - name: 编译部署util
       #   working-directory: 'package/vitevuu'
@@ -40,11 +47,11 @@ jobs:
       # - name: publish 成功通知
       #   run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
 
-      - name: github-release
-        working-directory: 'package/vitevuu'
-        run: |
-          npm i -g github-release-from-changelog
-          yarn genlog
-          github-release-from-changelog
-        env:
-          GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
+      # - name: github-release
+      #   working-directory: 'package/vitevuu'
+      #   run: |
+      #     npm i -g github-release-from-changelog
+      #     yarn genlog
+      #     github-release-from-changelog
+      #   env:
+      #     GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
