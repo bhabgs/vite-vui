@@ -40,11 +40,21 @@ jobs:
       - name: publish 成功通知
         run: echo npm vuu 推送成功，请访问 https://bhabgs.github.io/vite-vui-docs/vuu/
 
-      - name: github-release
-        working-directory: 'package/vitevuu'
-        run: |
-          npm i -g github-release-from-changelog
-          npm run genlog
-          github-release-from-changelog
+      - name: Read package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        with:
+          path: './package/vitevuu'
+        id: package-version
+
+      - name: Create Release for Tag
+        id: release_tag
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{secrets.PERSONAL_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: vitevuu-v${{ steps.package-version.outputs.version }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+          body: |
+            请点击查看 [更新日志](https://bhabgs.github.io/vite-vui-docs/vuu/log.html).
