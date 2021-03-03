@@ -1,0 +1,70 @@
+# name属性用来指定这个工作流的名字
+
+name: 发布release
+
+# 这个部分用来指定能够触发工作流执行的事件
+on:
+  # 当对分支main进行push操作的时候，这个工作流就被触发了
+  push:
+    branches: [docs-release]
+  pull_request:
+    branches: [docs-release]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# 工作流是由一个或多个的jobs构成的，在jobs里来说明要交给GitHub aciton执行的任务
+jobs:
+  # 这个jobs中的一个任务，名字叫build(随便怎么取)
+  build:
+    # 用来指定这个任务在什么操作系统上跑(服务器是GitHub免费提供的)
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    # 指出这个build任务的步骤
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: 初始化node环境
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 安装yarn
+        run: npm i -g yarn
+
+      - name: 安装依赖
+        run: yarn
+
+      - name: 打包文档
+        run: |
+          yarn docs:build
+          cd docs
+
+      # 创建release
+      - name: 打包zip
+        run: tar -zcvf release.tgz *
+
+      - name: 发布release
+        id: create_release
+        uses: actions/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }} # (tag)标签名称
+          release_name: Release ${{ github.ref }}
+          draft: false # 是否是草稿
+          prerelease: false # 是否是预发布
+      - name: 上传release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # 上传地址，通过创建Release获取到的
+          asset_path: ./release.tgz # 要上传文件
+          asset_name: release.tgz # 上传后的文件名
+          asset_content_type: application/x-tgz
