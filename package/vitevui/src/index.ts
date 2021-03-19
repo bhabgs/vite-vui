@@ -4,9 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:05:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-24 09:12:51
+ * @LastEditTime: 2021-03-18 11:59:35
  */
 import type { App } from 'vue';
+import directive from './directive';
 import type { baseObject } from './types';
 import viLayout from './layout/lay';
 import viLayoutHeader from './layout/lay_header';
@@ -27,6 +28,7 @@ const COMPS: baseObject = {
 const VERSION: string = '0.0.1';
 
 const install = (app: App) => {
+  app.use(directive);
   for (const key in COMPS) {
     app.use(COMPS[key]);
   }
