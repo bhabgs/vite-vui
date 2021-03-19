@@ -43,3 +43,20 @@
 @padding-md: @padding-base * 4;
 @padding-lg: @padding-base * 6;
 @padding-xl: @padding-base * 8;
+
+.create_rotate(@n, @i: 1) when (@i =< @n) {
+  .rotate@{i} {
+    transform: rotate(@i+0deg);
+  }
+  .create_rotate(@n, (@i + 1));
+}
+
+.create_animate(@n, @i: 1) when (@i =< @n) {
+  .animate@{i} {
+    transition: all @i*0.1 + 0s;
+  }
+  .create_animate(@n, (@i + 1));
+}
+
+.create_animate(10);
+.create_rotate(360);

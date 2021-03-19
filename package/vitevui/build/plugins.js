@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-20 16:55:51
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-23 11:08:58
+ * @LastEditTime: 2021-03-19 12:01:18
  */
 import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
@@ -18,7 +18,7 @@ const extensions = ['.ts', '.js', '.tsx'];
 
 export default [
   typescript({
-    lib: ['es5'], // , 'es6', 'dom'
+    lib: ['es5', 'dom'], // , 'es6', 'dom'
     target: 'es5',
     noEmitOnError: true,
   }),
