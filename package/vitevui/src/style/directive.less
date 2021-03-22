@@ -1,0 +1,31 @@
+.contextmenu {
+  background-color: @white;
+  position: fixed;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  border-radius: 0.5rem;
+  z-index: -5;
+  .animate3();
+  &.active {
+    opacity: 1;
+    z-index: 99;
+  }
+  &.box_shadow {
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+  }
+  li {
+    list-style: none;
+    display: block;
+    font-size: 1.2rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    .animate3();
+    color: @black;
+    &:hover {
+      color: @white;
+      background-color: @blue;
+    }
+  }
+}
