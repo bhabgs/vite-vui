@@ -1,4 +1,13 @@
+/*
+ * @abstract: JianJie
+ * @version: 0.0.1
+ * @Author: bhabgs
+ * @Date: 2021-03-19 13:38:28
+ * @LastEditors: bhabgs
+ * @LastEditTime: 2021-03-22 17:59:31
+ */
 import { App } from 'vue';
+let contextmenuClass = 'contextmenu box_shadow';
 
 export default {
   install(app: App) {
@@ -7,7 +16,12 @@ export default {
         const ul = document.createElement('ul');
         ul.id = 'contextmenu_box';
         const createdMenuElement = () => {
-          ul.className = 'contextmenu';
+          if (b.value.box_shadow === 'close') {
+            contextmenuClass.replace('box_shadow', '');
+          }
+
+          ul.className = contextmenuClass;
+
           for (let i of b.value.menus) {
             const text = document.createTextNode(i.name);
             const li = document.createElement('li');
@@ -22,6 +36,10 @@ export default {
           el.appendChild(ul);
         };
         createdMenuElement();
+
+        window.addEventListener('scroll', () => {
+          ul.className = contextmenuClass;
+        });
 
         el.style.position = 'relative';
       },
@@ -38,9 +56,9 @@ export default {
             y: el.offsetTop,
           };
           e.preventDefault();
-          ul.className = 'contextmenu active';
-          ul.style.left = e.x - x + 'px';
-          ul.style.top = e.y - y + 'px';
+          ul.className = contextmenuClass + ' active';
+          ul.style.left = e.clientX + 'px';
+          ul.style.top = e.clientY + 'px';
         });
 
         // 单击box 隐藏
