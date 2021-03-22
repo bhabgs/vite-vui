@@ -4,8 +4,9 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-03 16:55:24
+ * @LastEditTime: 2021-03-22 17:13:22
  */
+
 module.exports = {
   head: [
     [
@@ -38,6 +39,8 @@ module.exports = {
             { text: '介绍', link: '/' },
             { text: '日志', link: '/components/log' },
             { text: 'Button', link: '/components/button/' },
+            { text: 'Layout', link: '/components/layout/' },
+            { text: 'contextmenu', link: '/components/contextmenu/' },
           ],
         },
         {
