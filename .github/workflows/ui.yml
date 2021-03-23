@@ -27,7 +27,7 @@ jobs:
       - name: 安装依赖
         run: yarn
 
-      - name: 编译部署util
+      - name: 编译部署ui
         working-directory: 'package/vitevui'
         run: yarn build
 
