@@ -37,6 +37,10 @@ jobs:
       - name: 安装依赖
         run: yarn
 
+      - name: 打包ui
+        working-directory: 'package/vitevui'
+        run: yarn build
+
       - name: 打包文档
         run: yarn docs:build
 
