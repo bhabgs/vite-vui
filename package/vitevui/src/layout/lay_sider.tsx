@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-22 15:22:08
+ * @LastEditTime: 2021-03-30 15:21:51
  */
 import { App, defineComponent } from 'vue';
 
@@ -17,7 +17,12 @@ const viLayoutSider = defineComponent({
         return '200px';
       },
     },
+    custom: {
+      type: Boolean,
+      default: true,
+    },
   },
+
   render() {
     const { $slots, $parent } = this;
     const def = $slots.default;

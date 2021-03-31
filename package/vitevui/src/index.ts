@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:05:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-18 11:59:35
+ * @LastEditTime: 2021-03-31 11:31:11
  */
 import type { App } from 'vue';
 import directive from './directive';
@@ -14,7 +14,8 @@ import viLayoutHeader from './layout/lay_header';
 import viLayoutSider from './layout/lay_sider';
 import viLayoutMain from './layout/lay_main';
 import viLayoutFooter from './layout/lay_footer';
-import button from './button';
+import button from '@/button';
+import SideBox from '@/menu';
 import './style/index.less';
 
 const COMPS: baseObject = {
@@ -24,6 +25,7 @@ const COMPS: baseObject = {
   viLayoutMain,
   viLayoutFooter,
   button,
+  SideBox,
 };
 const VERSION: string = '0.0.1';
 
@@ -34,10 +36,6 @@ const install = (app: App) => {
   }
 };
 
-const n: baseObject = {
-  a: 666,
-};
-
 export {
   viLayout,
   viLayoutHeader,
@@ -45,7 +43,7 @@ export {
   viLayoutMain,
   viLayoutFooter,
   button,
-  n,
+  SideBox,
 };
 
 export default {

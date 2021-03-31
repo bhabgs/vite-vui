@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-19 13:27:18
+ * @LastEditTime: 2021-03-31 15:55:45
  */
 import { defineComponent, reactive } from 'vue';
 
@@ -21,11 +21,51 @@ export default defineComponent({
   components: {},
   created() {},
   render() {
+    const props = reactive({
+      collapsed: false,
+    });
     return (
       <vi-layout>
         <vi-layout-header>header</vi-layout-header>
         <vi-layout>
-          <vi-layout-sider>sider</vi-layout-sider>
+          <vi-layout-sider>
+            <menuBox
+              menuTitle={'润滑管理'}
+              menus={[
+                {
+                  title: '111111',
+                  id: '1',
+                  icon: 'vite_vehivles',
+                },
+                {
+                  title: '22222222',
+                  id: '2',
+                  child: [
+                    {
+                      title: '222222-111111',
+                      id: '2-1',
+                    },
+                    {
+                      title: '222222-222222',
+                      id: '2-2',
+                      icon: 'vite_vehivles',
+                    },
+                  ],
+                },
+                {
+                  title: '3333333',
+                  id: '3',
+                },
+              ]}
+              collapsed={props.collapsed}
+              onItemclick={(e: any) => {
+                console.log(e);
+              }}
+              onCollapsed={(e: boolean) => {
+                console.log(e);
+              }}
+            />
+          </vi-layout-sider>
           <vi-layout-main
             vContextmenu={{
               menus,
