@@ -1,6 +1,6 @@
 .contextmenu {
   background-color: @white;
-  position: absolute;
+  position: fixed;
   opacity: 0;
   margin: 0;
   padding: 0;
@@ -12,6 +12,9 @@
     opacity: 1;
     z-index: 99;
   }
+  &.box_shadow {
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+  }
   li {
     list-style: none;
     display: block;
@@ -19,6 +22,7 @@
     padding: 0.3rem 1rem;
     cursor: pointer;
     .animate3();
+    color: @black;
     &:hover {
       color: @white;
       background-color: @blue;

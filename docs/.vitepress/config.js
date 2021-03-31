@@ -4,9 +4,11 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-03 16:55:24
+ * @LastEditTime: 2021-03-31 16:00:15
  */
+
 module.exports = {
+  lang: 'en-US',
   head: [
     [
       'meta',
@@ -18,18 +20,11 @@ module.exports = {
     ],
     ['meta', { name: 'keywords', content: 'vite vui' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    // 引入 Gitalk
-    [
-      'link',
-      { rel: 'stylesheet', href: 'https://unpkg.com/gitalk/dist/gitalk.css' },
-    ],
-    ['script', { src: 'https://unpkg.com/gitalk/dist/gitalk.min.js' }],
   ],
   title: 'Vite vui',
   base: '/vite-vui-docs/',
   themeConfig: {
-    search: true,
-    // 保存解析 Markdown 的元数据
+    repo: 'bhabgs/vite-vui',
     sidebar: {
       '/': [
         {
@@ -38,6 +33,9 @@ module.exports = {
             { text: '介绍', link: '/' },
             { text: '日志', link: '/components/log' },
             { text: 'Button', link: '/components/button/' },
+            { text: 'Layout', link: '/components/layout/' },
+            { text: 'contextmenu', link: '/components/contextmenu/' },
+            { text: 'menu', link: '/components/menu/' },
           ],
         },
         {
