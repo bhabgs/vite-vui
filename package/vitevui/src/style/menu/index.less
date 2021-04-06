@@ -1,9 +1,29 @@
 @itemHeight: 3.29rem;
 @itemMargin: 0.2rem;
 @itemBorderWidth: 0.29rem;
+
+.active {
+  position: relative;
+  background-color: @blue-4;
+  .hover();
+  &::after {
+    transform: scaleY(1);
+    opacity: 1;
+    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+      opacity 0.15s;
+  }
+}
+.hover {
+  color: @blue;
+}
+
 .vite_menu_box {
   padding: @itemMargin 0;
   overflow: hidden;
+  @import './group.less';
+  @import './theme/dark.less';
+  @import './theme/light.less';
+  .animate3();
   .vite_menu_title {
     display: flex;
     justify-content: space-between;
@@ -36,6 +56,13 @@
     display: flex;
     align-items: center;
     color: @text-color;
+    > span {
+      display: flex;
+      align-items: center;
+      i {
+        margin-right: 0.2rem;
+      }
+    }
   }
 
   li {
@@ -52,71 +79,16 @@
         opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
       content: '';
     }
-    &.vite_menu_item_active,
+    &.vite_menu_item_active {
+      .active();
+    }
     &:hover {
-      position: relative;
-      background-color: @blue-4;
-      color: @blue;
-      &::after {
-        transform: scaleY(1);
-        opacity: 1;
-        transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
-          opacity 0.15s;
-      }
+      .hover();
     }
-  }
-  .vite_menu_group {
-    li {
-      padding-left: @padding-xs*2;
-    }
-  }
-
-  // 暗色系
-  &.vite_menu_dark {
-    background-color: @black;
-  }
-  // 亮色系
-  &.vite_menu_light {
-    background-color: @white;
   }
 
   .menu_item_icon_box {
     display: inline-block;
   }
-  // 折叠后
-  &.vite_menu_collapsed {
-    .menu_item_icon_box {
-      display: block;
-    }
-    .vite_menu_title {
-      justify-content: center;
-    }
-    li,
-    .vite_menu_group_title {
-      min-height: @itemHeight;
-      display: flex;
-      text-align: center;
-      justify-content: center;
-      padding-left: 0;
-      padding: @itemMargin 0;
-    }
-    .vite_menu_group {
-      display: none;
-      li {
-        display: none;
-      }
-    }
-
-    li {
-      flex-direction: column;
-      &.vite_menu_item_active,
-      &:hover {
-        position: relative;
-        background-color: @blue-4;
-        &::after {
-          opacity: 0;
-        }
-      }
-    }
-  }
+  @import './collapsed.less';
 }

@@ -1,0 +1,40 @@
+.vite_menu_group {
+  li {
+    padding-left: @padding-xs*2;
+  }
+  .vite_menu_group_title {
+    justify-content: space-between;
+    padding-right: 2 * @itemMargin;
+    .animate2();
+    &:hover {
+      .hover();
+    }
+    &:active {
+      .active();
+    }
+  }
+  .vite_arrow-down {
+    .animate3();
+  }
+  > ul {
+    .animate3();
+    overflow: hidden;
+    max-height: 2000px;
+  }
+  &.vite_menu_group_close {
+    .animate2();
+    > ul {
+      max-height: 0;
+    }
+    .vite_arrow-down {
+      transform: rotateX(180deg);
+    }
+  }
+
+  // 当子级有选中的时候
+  &.vite_menu_active_in_child {
+    .vite_menu_group_title {
+      .hover();
+    }
+  }
+}
