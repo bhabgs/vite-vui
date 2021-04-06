@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-31 16:33:06
+ * @LastEditTime: 2021-04-06 10:22:22
  */
 import { App, defineComponent, provide, ref, readonly, computed } from 'vue';
 import { setStyleClass } from '@/util';
@@ -103,7 +103,11 @@ const side = defineComponent({
         icon: item.icon,
         title: item.title,
       };
-      return <menusGroup {...groupProp}>{renderItem(item.child)}</menusGroup>;
+      return (
+        <menusGroup {...groupProp} child={item.child}>
+          {renderItem(item.child)}
+        </menusGroup>
+      );
     };
 
     // 折叠逻辑和样式

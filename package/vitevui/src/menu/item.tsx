@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-03-31 09:58:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-31 15:54:31
+ * @LastEditTime: 2021-04-06 09:32:53
  */
 import { computed, defineComponent, inject, ref, Ref, watch } from 'vue';
 import { setStyleClass } from '@/util';
@@ -45,14 +45,10 @@ export default defineComponent({
           context.emit('customclick', props);
         }}
       >
-        {props.icon ? (
-          <div class='menu_item_icon_box'>
-            <i class={`${props.icon} vite_`}></i>
-          </div>
-        ) : (
-          ''
-        )}
-        {props.title}
+        <span>
+          {props.icon ? <i class={`${props.icon} vite_`}></i> : ''}
+          {props.title}
+        </span>
       </li>
     );
   },
