@@ -4,9 +4,18 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-31 15:55:45
+ * @LastEditTime: 2021-04-08 10:44:52
  */
-import { defineComponent, reactive } from 'vue';
+import {
+  defineComponent,
+  reactive,
+  ref,
+  getCurrentInstance,
+  nextTick,
+} from 'vue';
+import test from './components/test';
+import test1 from './components/test1';
+import test2 from './components/test2';
 
 const menus = [
   { name: 'deng', key: 'deng' },
@@ -17,64 +26,91 @@ const state = reactive({
   t: 'ooo',
 });
 
+const tabsItem = ref([
+  {
+    name: '润滑管理',
+    icon: 'sss',
+    hasClosed: false,
+    disabled: false,
+    component: test,
+    id: 'aaaa',
+  },
+  {
+    name: '润滑管理1',
+    icon: 'sss',
+    hasClosed: true,
+    disabled: false,
+    component: test1,
+    id: 'bbbbbb',
+  },
+  {
+    name: '润滑管理2',
+    icon: 'sss',
+    hasClosed: true,
+    disabled: true,
+    component: test2,
+    id: 'ccccc',
+  },
+]);
+
+const v = ref('aaa');
+
 export default defineComponent({
   components: {},
   created() {},
+  setup() {},
   render() {
     const props = reactive({
       collapsed: false,
     });
+    const { proxy } = getCurrentInstance()!;
+    const mitt = proxy!.$mitt;
+    nextTick(() => {
+      mitt.emit('vite-tabspage-add', tabsItem.value[0]);
+    });
     return (
       <vi-layout>
-        <vi-layout-header>header</vi-layout-header>
+        <vi-layout-header></vi-layout-header>
         <vi-layout>
-          <vi-layout-sider>
-            <menuBox
-              menuTitle={'润滑管理'}
-              menus={[
-                {
-                  title: '111111',
-                  id: '1',
-                  icon: 'vite_vehivles',
-                },
-                {
-                  title: '22222222',
-                  id: '2',
-                  child: [
-                    {
-                      title: '222222-111111',
-                      id: '2-1',
-                    },
-                    {
-                      title: '222222-222222',
-                      id: '2-2',
-                      icon: 'vite_vehivles',
-                    },
-                  ],
-                },
-                {
-                  title: '3333333',
-                  id: '3',
-                },
-              ]}
-              collapsed={props.collapsed}
-              onItemclick={(e: any) => {
-                console.log(e);
-              }}
-              onCollapsed={(e: boolean) => {
-                console.log(e);
-              }}
-            />
-          </vi-layout-sider>
-          <vi-layout-main
-            vContextmenu={{
-              menus,
-              callBack(e: any) {
-                console.log(e);
+          <menuBox
+            menuTitle={'润滑管理'}
+            menus={[
+              {
+                title: '111111',
+                id: '1',
+                icon: 'vite_vehivles',
               },
+              {
+                title: '22222222',
+                id: '2',
+                icon: 'vite_vehivles',
+                child: [
+                  {
+                    title: '222222-111111',
+                    id: '2-1',
+                  },
+                  {
+                    title: '222222-222222',
+                    id: '2-2',
+                    icon: 'vite_vehivles',
+                  },
+                ],
+              },
+              {
+                title: '3333333',
+                id: '3',
+              },
+            ]}
+            collapsed={props.collapsed}
+            onItemclick={(e: any) => {
+              console.log(e);
             }}
-          >
-            {state.t}
+            onCollapsed={(e: boolean) => {
+              console.log(e);
+            }}
+          />
+          <vi-layout-main>
+            <viteTabsPage />
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer>footer</vi-layout-footer>

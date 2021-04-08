@@ -4,9 +4,10 @@
  * @Author: bhabgs
  * @Date: 2020-11-30 09:53:41
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-19 11:10:51
+ * @LastEditTime: 2021-04-07 16:15:57
  */
 import { App } from 'vue';
+// import vui from '../package/vitevui/src/index';
 import vui from '../package/vitevui';
 import vitevuu from '../package/vitevuu';
 
