@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-03-31 09:58:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 09:32:53
+ * @LastEditTime: 2021-04-06 14:27:56
  */
 import { computed, defineComponent, inject, ref, Ref, watch } from 'vue';
-import { setStyleClass } from '@/util';
+import { setStyleClass } from '../util';
 import { MenuItemProps } from './group';
 
 export default defineComponent({

@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 10:22:22
+ * @LastEditTime: 2021-04-06 14:27:47
  */
 import { App, defineComponent, provide, ref, readonly, computed } from 'vue';
-import { setStyleClass } from '@/util';
+import { setStyleClass } from '../util';
 import menusGroup, { MenuItemProps } from './group';
 import menusItem from './item';
 
