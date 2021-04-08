@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-08 13:25:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 14:13:13
+ * @LastEditTime: 2021-04-08 14:30:01
 -->
 
 # tabsPage
@@ -25,6 +25,16 @@ export default defineComponent({
     return () => <viteTabsPage />;
   },
 });
+```
+
+> 为了能在项目内的 vue 原型上使用 `$mitt`, 需要进行如下配置
+
+```ts
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $mitt: typeof Emitter;
+  }
+}
 ```
 
 ## `mitt` 与 tabsPage 通讯方式
@@ -68,6 +78,12 @@ export default defineComponent({
 
    ```ts
    mitt.emit('vite-tabspage-open', pageId);
+   ```
+
+4. `vite-tabspage-clear` -> 清空 tabspage
+
+   ```ts
+   mitt.emit('vite-tabspage-clear');
    ```
 
 ## 其他方法
