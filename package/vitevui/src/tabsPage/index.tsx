@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 14:11:38
+ * @LastEditTime: 2021-04-08 14:29:19
  */
 import { defineComponent, App, computed, nextTick } from 'vue';
 import componentsBox from './components';
@@ -42,6 +42,11 @@ const viteTabs = defineComponent({
         tabsData.active = id;
       }
     };
+
+    // 等待晴空tabs
+    mitt.on('vite-tabspage-clear', () => {
+      updatePage([]);
+    });
     // 等待触发添加
     mitt.on('vite-tabspage-add', (e: tabItem | undefined) => {
       // 判断是否存在该id的页面
