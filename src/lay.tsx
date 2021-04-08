@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 10:44:52
+ * @LastEditTime: 2021-04-08 15:54:34
  */
 import {
   defineComponent,
@@ -16,6 +16,7 @@ import {
 import test from './components/test';
 import test1 from './components/test1';
 import test2 from './components/test2';
+import upload from './components/upload';
 
 const menus = [
   { name: 'deng', key: 'deng' },
@@ -32,7 +33,7 @@ const tabsItem = ref([
     icon: 'sss',
     hasClosed: false,
     disabled: false,
-    component: test,
+    component: upload,
     id: 'aaaa',
   },
   {
