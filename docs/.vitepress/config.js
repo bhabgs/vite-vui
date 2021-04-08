@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-31 16:00:15
+ * @LastEditTime: 2021-04-08 13:27:07
  */
 
 module.exports = {
@@ -36,6 +36,7 @@ module.exports = {
             { text: 'Layout', link: '/components/layout/' },
             { text: 'contextmenu', link: '/components/contextmenu/' },
             { text: 'menu', link: '/components/menu/' },
+            { text: 'tabsPage', link: '/components/tabsPage/' },
           ],
         },
         {

@@ -1,6 +1,6 @@
 {
   "name": "vitevui",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "description": "vue3.0 ui",
   "main": "lib/index.js",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
@@ -35,7 +35,8 @@
     "cssnano": "^4.1.10",
     "less": "^3.12.2",
     "rollup-plugin-postcss": "^3.1.8",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "mitt": "2.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.1",

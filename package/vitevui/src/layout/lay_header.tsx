@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-22 15:49:03
+ * @LastEditTime: 2021-04-06 14:06:40
  */
 import { App, defineComponent } from 'vue';
 
@@ -23,7 +23,7 @@ const viLayoutHeader = defineComponent({
     const def = $slots.default;
     return (
       <section class='vite-layout-header' style={{ height: this.height }}>
-        <def />
+        {def ? <def /> : ''}
       </section>
     );
   },

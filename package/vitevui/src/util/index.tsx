@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-06 11:59:49
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-31 14:24:09
+ * @LastEditTime: 2021-04-07 14:53:58
  */
 import { Text, VNode } from 'vue';
 
@@ -29,3 +29,18 @@ export const getButtonSlots: (
 export const setStyleClass: (classes: Array<string>) => Array<string> = (
   classes,
 ) => classes.map((item) => (item !== '' ? `vite_${item}` : ''));
+
+export const arrayCheck: (
+  arr1: Array<any>,
+  arr2: Array<any>,
+  key: string,
+) => boolean = (arr1, arr2, key) => {
+  if (arr1.length !== arr2.length) return false;
+  try {
+    arr1.map((item) => item[key]);
+    arr2.map((item) => item[key]);
+  } catch (error) {
+    return false;
+  }
+  return true;
+};
