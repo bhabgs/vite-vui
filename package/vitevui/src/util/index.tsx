@@ -4,8 +4,9 @@
  * @Author: bhabgs
  * @Date: 2021-01-06 11:59:49
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-07 14:53:58
+ * @LastEditTime: 2021-04-09 11:58:23
  */
+import { baseObject } from '@/types';
 import { Text, VNode } from 'vue';
 
 export const tuple = <T extends string[]>(...args: T) => args;
@@ -43,4 +44,38 @@ export const arrayCheck: (
     return false;
   }
   return true;
+};
+type TYPEOF =
+  | 'string'
+  | 'array'
+  | 'object'
+  | 'number'
+  | 'boolean'
+  | 'function'
+  | 'date'
+  | 'document'
+  | 'global'
+  | 'RegExp'
+  | 'error'
+  | 'undefined'
+  | 'null';
+
+const typeEnums: baseObject<TYPEOF> = {
+  '[object String]': 'string',
+  '[object Number]': 'number',
+  '[object Boolean]': 'boolean',
+  '[object Undefined]': 'undefined',
+  '[object Null]': 'null',
+  '[object Function]': 'function',
+  '[object Date]': 'date',
+  '[object Array]': 'array',
+  '[object Error]': 'error',
+  '[object RegExp]': 'RegExp',
+  '[object HTMLDocument]': 'document',
+  '[object global]': 'global',
+};
+
+export const viteTypeof: (ars: any) => TYPEOF = (ars) => {
+  const ty = Object.prototype.toString.call(ars);
+  return typeEnums[ty] || 'any';
 };
