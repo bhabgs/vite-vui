@@ -4,9 +4,15 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:45:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 11:10:10
+ * @LastEditTime: 2021-04-12 16:22:26
  */
-import { createCommentVNode, defineComponent, toRaw, Transition } from 'vue';
+import {
+  createCommentVNode,
+  defineComponent,
+  toRaw,
+  Transition,
+  TransitionGroup,
+} from 'vue';
 import { setStyleClass } from '../util';
 import { tabsProps } from './tabsFunHook';
 
@@ -21,25 +27,28 @@ export default defineComponent({
       type: Array,
     },
     activeVal: String,
+    animate: String,
   },
   setup(Prop, context) {
     const props = Prop as componentProps;
     const classes = setStyleClass(['tabs_components_box']);
     return () => (
       <div class={classes}>
-        {props.items.map((item) => {
-          const com = toRaw(item.component || createCommentVNode(''));
-          const params = item.params || {};
-          return (
-            <Transition name={props.animate}>
+        <TransitionGroup name={props.animate}>
+          {props.items.map((item, key) => {
+            const com = toRaw(item.component || createCommentVNode(''));
+            const params = item.params || {};
+
+            return (
               <com
                 {...params}
+                key={key}
                 class={[setStyleClass(['component_item'])]}
                 vShow={item.id === props.activeVal}
               />
-            </Transition>
-          );
-        })}
+            );
+          })}
+        </TransitionGroup>
       </div>
     );
   },

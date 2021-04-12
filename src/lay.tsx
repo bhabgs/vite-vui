@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 15:29:07
+ * @LastEditTime: 2021-04-12 16:22:03
  */
 import {
   defineComponent,
@@ -67,7 +67,9 @@ export default defineComponent({
     const mitt = proxy!.$mitt;
     nextTick(() => {
       mitt.emit('vite-tabspage-add', tabsItem.value[0]);
-      mitt.emit('vite-tabspage-add', tabsItem.value[1]);
+      nextTick(() => {
+        mitt.emit('vite-tabspage-add', tabsItem.value[1]);
+      });
     });
     return (
       <vi-layout>
@@ -118,7 +120,11 @@ export default defineComponent({
             <viteTabsPage />
           </vi-layout-main>
         </vi-layout>
-        <vi-layout-footer>footer</vi-layout-footer>
+        <vi-layout-footer
+          v-contextmenu={{ menus: [{ key: '1', name: '哈哈' }], callBack() {} }}
+        >
+          footer
+        </vi-layout-footer>
       </vi-layout>
     );
   },
