@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 13:16:37
+ * @LastEditTime: 2021-04-12 13:56:01
  */
 import { defineComponent, App, computed, nextTick } from 'vue';
 import componentsBox from './components';
@@ -12,7 +12,7 @@ import { arrayCheck, setStyleClass, viteTypeof } from '../util';
 import log from '../util/log';
 import tabs from './tab';
 import hooks from './tabsHooks';
-import { tabItem, setCurrentDetail } from './tabsFunHook';
+import funHooks, { tabItem, setCurrentDetail } from './tabsFunHook';
 
 const viteTabs = defineComponent({
   name: 'viteTabsPage',
@@ -24,7 +24,8 @@ const viteTabs = defineComponent({
     animate: String,
   },
   setup(Prop) {
-    const { tabsData, mitt } = hooks();
+    const { open, mitt } = funHooks();
+    const { tabsData } = hooks();
     const classes = setStyleClass(['tabs', 'tabs_page']);
 
     const activePageDetail = computed(() =>
@@ -47,7 +48,8 @@ const viteTabs = defineComponent({
     mitt.on('vite-tabspage-add', (e: tabItem | undefined) => {
       // 判断是否存在该id的页面
       const hasPage = tabsData.list.find((item) => item.id === e!.id);
-      if (hasPage) return log.warn('页面已经存在，请勿重复添加');
+      if (hasPage) return open(hasPage.id);
+      // return log.warn('页面已经存在，请勿重复添加');
 
       const newArr: Array<tabItem> = [...(tabsData.list ? tabsData.list : [])];
 

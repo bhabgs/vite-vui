@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-04-08 10:17:27
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 14:10:40
+ * @LastEditTime: 2021-04-12 13:56:18
  */
-import { reactive, Component, getCurrentInstance, watch } from 'vue';
-import { tabItem, tabsProps } from './tabsFunHook';
+import { reactive, getCurrentInstance, watch } from 'vue';
+import { tabItem } from './tabsFunHook';
 
 export default function () {
   const { proxy } = getCurrentInstance()!;
