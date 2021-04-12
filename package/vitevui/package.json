@@ -1,6 +1,6 @@
 {
   "name": "vitevui",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "vue3.0 ui",
   "main": "lib/index.js",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "cssnano": "^4.1.10",
+    "babel-plugin-component": "1.1.1",
     "rollup-plugin-postcss": "^3.1.8",
     "@rollup/plugin-alias": "^3.1.1",
     "@types/cssnano": "^4.0.0",

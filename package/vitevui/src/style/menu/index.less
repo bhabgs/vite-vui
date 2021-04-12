@@ -25,28 +25,15 @@
   @import './theme/dark.less';
   @import './theme/light.less';
   .animate3();
-  .vite_menu_title {
-    display: flex;
-    justify-content: space-between;
-    padding: @itemMargin @padding-xs;
-    .vite_menu_title_content {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      font-size: @font-size-xs;
-    }
-    button {
+  @import './title.less';
+  &.vite_menu_zhankai {
+    li,
+    .vite_menu_group_title {
       height: @itemHeight;
-      cursor: pointer;
-      &:hover {
-        color: @blue;
-      }
-      font-size: @font-size-xs;
     }
   }
   li,
   .vite_menu_group_title {
-    height: @itemHeight;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;

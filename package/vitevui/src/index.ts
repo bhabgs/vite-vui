@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:05:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 17:41:08
+ * @LastEditTime: 2021-04-09 16:17:44
  */
 import type { App } from 'vue';
 import { setupElement } from './setup/element';
@@ -21,7 +21,7 @@ import menu from './menu';
 import viteTabs from './tabs';
 import viteTabsPage from './tabsPage';
 import upload from './upload';
-import { getTabCurrentDetail } from './tabsPage/tabsHooks';
+import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 
 const COMPS: baseObject = {
@@ -58,8 +58,8 @@ export {
   viteTabsPage,
   viteTabs,
   upload,
-  setupElement,
   getTabCurrentDetail,
+  tabsPageHook,
 };
 
 export default {

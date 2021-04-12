@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 15:54:34
+ * @LastEditTime: 2021-04-09 15:29:07
  */
 import {
   defineComponent,
@@ -13,7 +13,6 @@ import {
   getCurrentInstance,
   nextTick,
 } from 'vue';
-import test from './components/test';
 import test1 from './components/test1';
 import test2 from './components/test2';
 import upload from './components/upload';
@@ -29,9 +28,9 @@ const state = reactive({
 
 const tabsItem = ref([
   {
-    name: '润滑管理',
-    icon: 'sss',
-    hasClosed: false,
+    name: '润滑管理润滑管理润滑管理润滑管理润滑管理',
+    icon: 'vite_atm-away',
+    hasClosed: true,
     disabled: false,
     component: upload,
     id: 'aaaa',
@@ -68,10 +67,15 @@ export default defineComponent({
     const mitt = proxy!.$mitt;
     nextTick(() => {
       mitt.emit('vite-tabspage-add', tabsItem.value[0]);
+      mitt.emit('vite-tabspage-add', tabsItem.value[1]);
     });
     return (
       <vi-layout>
-        <vi-layout-header></vi-layout-header>
+        <vi-layout-header>
+          <div class='text_overflow_ellipsis'>
+            润滑管理润滑管理润滑管理润滑管理润滑管理
+          </div>
+        </vi-layout-header>
         <vi-layout>
           <menuBox
             menuTitle={'润滑管理'}
