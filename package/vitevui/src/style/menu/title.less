@@ -1,0 +1,20 @@
+.vite_menu_title {
+  display: flex;
+  justify-content: space-between;
+  padding: @itemMargin @padding-xs;
+  .vite_menu_title_content {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: @font-size-xs;
+    white-space: nowrap;
+  }
+  button {
+    height: @itemHeight;
+    cursor: pointer;
+    &:hover {
+      color: @blue;
+    }
+    font-size: @font-size-xs;
+  }
+}
