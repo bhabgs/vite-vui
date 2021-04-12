@@ -47,6 +47,13 @@
 @padding-lg: @padding-base * 6;
 @padding-xl: @padding-base * 8;
 
+.text_overflow_ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100px;
+}
+
 .create_rotate(@n, @i: 1) when (@i =< @n) {
   .rotate@{i} {
     transform: rotate(@i+0deg);

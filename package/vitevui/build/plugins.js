@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-20 16:55:51
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-19 12:01:18
+ * @LastEditTime: 2021-04-09 16:40:08
  */
 import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
@@ -30,9 +30,4 @@ export default [
     plugins: [cssnano],
     extract: 'style.css', // 输出路径
   }),
-  // replace({
-  //   __buildEnv__: "production",
-  //   __buildDate__: () => new Date(),
-  //   __buildVersion: 1,
-  // }),
 ];
