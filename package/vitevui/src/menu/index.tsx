@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 14:50:57
+ * @LastEditTime: 2021-04-12 14:43:25
  */
 import { App, defineComponent, provide, ref, readonly, computed } from 'vue';
 import { setStyleClass } from '../util';
@@ -66,7 +66,7 @@ const side = defineComponent({
     },
   },
   setup(Prop, Context) {
-    const props = Prop as SiderProps;
+    const props = (Prop as unknown) as SiderProps;
     const collapsed = ref(props.collapsed);
     const collapsedActiveIng = ref(false);
     const siderBoxStyleClass = computed(() =>

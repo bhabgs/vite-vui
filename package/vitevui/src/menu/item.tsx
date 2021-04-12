@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-03-31 09:58:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 14:27:56
+ * @LastEditTime: 2021-04-12 14:40:52
  */
 import { computed, defineComponent, inject, ref, Ref, watch } from 'vue';
 import { setStyleClass } from '../util';
@@ -25,8 +25,7 @@ export default defineComponent({
       type: String,
     },
   },
-  setup(Prop, context) {
-    const props = (Prop as unknown) as MenuItemProps;
+  setup(props, context) {
     const slots = context.slots;
     const def = slots.default;
     const meun_active_item = inject<Ref>('meun_active_item');
