@@ -5,33 +5,7 @@
   }
   .vite_tab_box {
     display: flex;
-    .vite_tabs_item {
-      height: @tabsItemHeight;
-      padding: 0 @padding-base;
-      display: flex;
-      font-size: 1rem;
-      cursor: pointer;
-      align-items: center;
-      border-radius: 0.5rem 0.5rem 0 0;
-      .animate2();
-      i {
-        color: @gray-6;
-        font-size: 0.7rem;
-        margin-left: 0.5rem;
-        border-radius: 50%;
-        .animate2();
-      }
-
-      &.vite_tabs_item_active {
-        background-color: @white;
-        &:hover {
-          i {
-            background-color: @red;
-            color: @white;
-          }
-        }
-      }
-    }
+    @import './item.less';
   }
   @import './tabsPage.less';
 }

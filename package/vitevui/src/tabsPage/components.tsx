@@ -4,11 +4,11 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:45:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 13:19:30
+ * @LastEditTime: 2021-04-09 11:10:10
  */
 import { createCommentVNode, defineComponent, toRaw, Transition } from 'vue';
 import { setStyleClass } from '../util';
-import { tabsProps } from './tabsHooks';
+import { tabsProps } from './tabsFunHook';
 
 interface componentProps extends tabsProps {
   animate: string;

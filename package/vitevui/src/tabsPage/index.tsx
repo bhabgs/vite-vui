@@ -4,19 +4,15 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 14:29:19
+ * @LastEditTime: 2021-04-09 13:16:37
  */
 import { defineComponent, App, computed, nextTick } from 'vue';
 import componentsBox from './components';
-import { arrayCheck, setStyleClass } from '../util';
+import { arrayCheck, setStyleClass, viteTypeof } from '../util';
 import log from '../util/log';
 import tabs from './tab';
-import hooks, { tabsProps, tabItem, setCurrentDetail } from './tabsHooks';
-
-interface TabsProps extends tabsProps {
-  value: string;
-  animate: string;
-}
+import hooks from './tabsHooks';
+import { tabItem, setCurrentDetail } from './tabsFunHook';
 
 const viteTabs = defineComponent({
   name: 'viteTabsPage',
@@ -65,34 +61,62 @@ const viteTabs = defineComponent({
     });
 
     // 等待触发主动删除
-    mitt.on('vite-tabspage-remove', (e: Array<string> | undefined) => {
-      let newArr = [];
-      let flag = 0;
-      if (!e) {
-        newArr = tabsData.list.filter((item, key) => {
-          const status = item.id !== tabsData.active;
+    mitt.on(
+      'vite-tabspage-remove',
+      (e?: string | Array<string> | undefined) => {
+        let newArr: string | any[] = [];
+        let flag: number = 100000;
+        if (!e) {
+          newArr = tabsData.list.filter((item, key) => {
+            const status = item.id !== tabsData.active;
+            if (!status) {
+              flag = key;
+            }
+            return status;
+          });
+        }
 
-          if (!status) {
-            flag = key;
-          }
-          return status;
-        });
-      } else {
-        newArr = tabsData.list.filter((item) => {
-          return !e?.find((fItem) => fItem === item.id);
-        });
-      }
+        if (viteTypeof(e) === 'string') {
+          newArr = tabsData.list.filter((item, key) => {
+            const status = item.id === e;
+            if (status) {
+              flag = key;
+            }
+            return !status;
+          });
+        }
 
-      if (flag === 0) {
-        log.err('默认第一个page 为主page，主page无法删除');
-      }
+        if (viteTypeof(e) === 'array') {
+          newArr = tabsData.list.filter((item, key) => {
+            if (key === 0) {
+              // 当获取到第一个page时 验证删除页面里是否存在首页
+              const isFirst = (e as Array<string>).find((fi, fk) => {
+                const status = fi === item.id;
+                if (status) {
+                  (e as Array<string>).splice(fk, 1);
+                }
+                return status;
+              });
+              if (isFirst) {
+                log.warn('默认第一个page 为主page，主page无法删除');
+              }
+            }
+            return !(e as Array<string>).find((fi) => fi === item.id);
+          });
+          flag = newArr.length;
+        }
 
-      if (!arrayCheck(newArr, tabsData.list, 'id')) {
-        updatePage(newArr);
-      } else {
-        log.warn('没有匹配的键');
-      }
-    });
+        if (flag === 100000) {
+          return log.warn('默认第一个page 为主page，主page无法删除');
+        }
+
+        if (!arrayCheck(newArr, tabsData.list, 'id')) {
+          updatePage(newArr, tabsData.list[flag - 1].id);
+        } else {
+          log.warn('没有匹配的键');
+        }
+      },
+    );
 
     // 等待打开某个页面
     mitt.on('vite-tabspage-open', (id: string | undefined) => {
@@ -108,22 +132,6 @@ const viteTabs = defineComponent({
         <tabs
           items={tabsData.list}
           activeVal={tabsData.active}
-          onClose={async (e: tabItem) => {
-            // 默认打开第一页
-            let openPage: tabItem = tabsData.list[0];
-            const newArr = tabsData.list.filter((item, key) => {
-              const flag = item.id !== e.id;
-              if (!flag) {
-                // 默认打开上一页
-                openPage = tabsData.list[key - 1];
-              }
-              return flag;
-            });
-            // 负责更新标签页
-            updatePage(newArr, openPage.id);
-
-            // 更新页面 active id
-          }}
           onSelect={(e: tabItem) => {
             tabsData.active = e.id;
             setCurrentDetail(activePageDetail.value);
