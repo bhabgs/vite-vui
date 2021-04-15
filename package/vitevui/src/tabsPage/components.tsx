@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:45:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 16:22:26
+ * @LastEditTime: 2021-04-13 13:38:41
  */
 import {
   createCommentVNode,
@@ -43,8 +43,13 @@ export default defineComponent({
               <com
                 {...params}
                 key={key}
-                class={[setStyleClass(['component_item'])]}
-                vShow={item.id === props.activeVal}
+                class={[
+                  setStyleClass([
+                    'component_item',
+                    item.id === props.activeVal ? 'component_item_active' : '',
+                  ]),
+                ]}
+                // vShow={item.id === props.activeVal}
               />
             );
           })}

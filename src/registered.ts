@@ -4,13 +4,13 @@
  * @Author: bhabgs
  * @Date: 2020-11-30 09:53:41
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 16:03:45
+ * @LastEditTime: 2021-04-13 13:39:59
  */
 import { App } from 'vue';
 import vui from '../package/vitevui/src/index';
-// import 'element-plus/lib/theme-chalk/index.css';
+import '../package/vitevui/src/style/index.less';
 // import vui from '../package/vitevui';
-import '../package/vitevui/lib/style.css';
+// import '../package/vitevui/lib/style.css';
 import vitevuu from '../package/vitevuu';
 
 export default {
