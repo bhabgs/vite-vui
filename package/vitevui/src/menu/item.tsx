@@ -4,11 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-03-31 09:58:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 14:40:52
+ * @LastEditTime: 2021-04-19 10:32:00
  */
 import { computed, defineComponent, inject, ref, Ref, watch } from 'vue';
 import { setStyleClass } from '../util';
-import { MenuItemProps } from './group';
 
 export default defineComponent({
   props: {
@@ -45,7 +44,7 @@ export default defineComponent({
         }}
       >
         <span>
-          {props.icon ? <i class={`${props.icon} vite_`}></i> : ''}
+          {props.icon ? <viIcon name={props.icon} /> : ''}
           {props.title}
         </span>
       </li>

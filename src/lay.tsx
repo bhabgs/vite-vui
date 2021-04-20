@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 16:22:03
+ * @LastEditTime: 2021-04-19 11:17:20
  */
 import {
   defineComponent,
@@ -67,9 +67,9 @@ export default defineComponent({
     const mitt = proxy!.$mitt;
     nextTick(() => {
       mitt.emit('vite-tabspage-add', tabsItem.value[0]);
-      nextTick(() => {
-        mitt.emit('vite-tabspage-add', tabsItem.value[1]);
-      });
+      // nextTick(() => {
+      //   mitt.emit('vite-tabspage-add', tabsItem.value[1]);
+      // });
     });
     return (
       <vi-layout>
@@ -79,7 +79,7 @@ export default defineComponent({
           </div>
         </vi-layout-header>
         <vi-layout>
-          <menuBox
+          <viMenuBox
             menuTitle={'润滑管理'}
             menus={[
               {
@@ -117,7 +117,7 @@ export default defineComponent({
             }}
           />
           <vi-layout-main>
-            <viteTabsPage />
+            <viTabsPage />
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer
