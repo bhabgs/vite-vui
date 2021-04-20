@@ -4,13 +4,12 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:45:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-13 13:38:41
+ * @LastEditTime: 2021-04-20 15:49:23
  */
 import {
   createCommentVNode,
   defineComponent,
   toRaw,
-  Transition,
   TransitionGroup,
 } from 'vue';
 import { setStyleClass } from '../util';
@@ -20,22 +19,23 @@ interface componentProps extends tabsProps {
   animate: string;
 }
 
-export default defineComponent({
-  props: {
-    items: {
-      default: [],
-      type: Array,
-    },
-    activeVal: String,
-    animate: String,
+const props = {
+  items: {
+    default: [],
+    type: Array,
   },
-  setup(Prop, context) {
-    const props = Prop as componentProps;
+  activeVal: String,
+  animate: String,
+};
+
+export default defineComponent({
+  props,
+  setup(props, context) {
     const classes = setStyleClass(['tabs_components_box']);
     return () => (
       <div class={classes}>
         <TransitionGroup name={props.animate}>
-          {props.items.map((item, key) => {
+          {props.items.map((item: any, key) => {
             const com = toRaw(item.component || createCommentVNode(''));
             const params = item.params || {};
 

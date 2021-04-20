@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-03-30 15:27:25
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 14:28:04
+ * @LastEditTime: 2021-04-20 14:36:34
  */
 import { computed, inject, defineComponent, ref, Ref } from 'vue';
 import { setStyleClass } from '../util';
@@ -78,10 +78,10 @@ export default defineComponent({
           }}
         >
           <span>
-            {props.icon ? <i class={`${props.icon} vite_`}></i> : ''}
+            {props.icon ? <viIcon name={props.icon} /> : ''}
             {props.title}
           </span>
-          <i class={`vite_arrow-down vite_`}></i>
+          <viIcon name={'vite_xiala'} />
         </div>
         <ul class={classesChild}>{<def />}</ul>
       </ul>

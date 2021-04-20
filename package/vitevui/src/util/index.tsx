@@ -4,34 +4,17 @@
  * @Author: bhabgs
  * @Date: 2021-01-06 11:59:49
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 11:58:23
+ * @LastEditTime: 2021-04-20 15:26:08
  */
-import { baseObject } from '@/types';
-import { Text, VNode } from 'vue';
+import { viteTypeof } from './objType';
+import { getFileType } from './files';
+import installComponent from './installComponent';
+import { getSlots } from './getslots';
 
-export const tuple = <T extends string[]>(...args: T) => args;
+const setStyleClass: (classes: Array<string>) => Array<string> = (classes) =>
+  classes.map((item) => (item !== '' ? `vite_${item}` : ''));
 
-export const getButtonSlots: (
-  self: any,
-  name?: string,
-) => Array<VNode | JSX.Element> = (self: any, name = 'default') => {
-  let res = self.$slots[name]({});
-  const children: Array<VNode | JSX.Element> = [];
-  res.forEach((element: VNode) => {
-    if (element.type === Text) {
-      children.push(<span>{element.children}</span>);
-    } else {
-      children.push(element);
-    }
-  });
-  return children;
-};
-
-export const setStyleClass: (classes: Array<string>) => Array<string> = (
-  classes,
-) => classes.map((item) => (item !== '' ? `vite_${item}` : ''));
-
-export const arrayCheck: (
+const arrayCheck: (
   arr1: Array<any>,
   arr2: Array<any>,
   key: string,
@@ -45,37 +28,12 @@ export const arrayCheck: (
   }
   return true;
 };
-type TYPEOF =
-  | 'string'
-  | 'array'
-  | 'object'
-  | 'number'
-  | 'boolean'
-  | 'function'
-  | 'date'
-  | 'document'
-  | 'global'
-  | 'RegExp'
-  | 'error'
-  | 'undefined'
-  | 'null';
 
-const typeEnums: baseObject<TYPEOF> = {
-  '[object String]': 'string',
-  '[object Number]': 'number',
-  '[object Boolean]': 'boolean',
-  '[object Undefined]': 'undefined',
-  '[object Null]': 'null',
-  '[object Function]': 'function',
-  '[object Date]': 'date',
-  '[object Array]': 'array',
-  '[object Error]': 'error',
-  '[object RegExp]': 'RegExp',
-  '[object HTMLDocument]': 'document',
-  '[object global]': 'global',
-};
-
-export const viteTypeof: (ars: any) => TYPEOF = (ars) => {
-  const ty = Object.prototype.toString.call(ars);
-  return typeEnums[ty] || 'any';
+export {
+  viteTypeof,
+  arrayCheck,
+  setStyleClass,
+  getFileType,
+  installComponent,
+  getSlots,
 };

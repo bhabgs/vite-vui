@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:43:20
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 14:34:02
+ * @LastEditTime: 2021-04-20 15:50:19
  */
 import { defineComponent, withModifiers } from 'vue';
 import { setStyleClass } from '../util';
@@ -17,14 +17,13 @@ export default defineComponent({
     },
     activeVal: String,
   },
-  setup(Prop, context) {
-    const props = Prop as tabsProps;
-    const { mitt, open, remove } = hook();
+  setup(props) {
+    const { open, remove } = hook();
     const classes = setStyleClass(['tab_box']);
     return () => (
       <div class={classes}>
         <div class={setStyleClass(['items_box'])}>
-          {props.items.map((item) => {
+          {props.items.map((item: any) => {
             const itemClass = setStyleClass([
               'tabs_item',
               item.disabled ? 'disabled' : '',
@@ -41,20 +40,26 @@ export default defineComponent({
                 }}
               >
                 <span>
-                  <i class={[item.icon, 'vite_']}></i>
+                  <viIcon name={item.icon} />
                   {item.name}
                 </span>
                 {item.hasClosed ? (
-                  <i
-                    class='vite_close vite_'
-                    onClick={withModifiers(
-                      (e: any) => {
-                        remove([item.id]);
-                      },
-                      ['stop'],
-                    )}
-                  ></i>
+                  <viIcon
+                    name={'vite_close'}
+                    onClick={(e: any) => {
+                      remove([item.id]);
+                    }}
+                  />
                 ) : (
+                  // <i
+                  //   class='vite_close vite_'
+                  //   onClick={withModifiers(
+                  //     (e: any) => {
+                  //       remove([item.id]);
+                  //     },
+                  //     ['stop'],
+                  //   )}
+                  // ></i>
                   ''
                 )}
               </div>

@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 14:43:25
+ * @LastEditTime: 2021-04-20 15:43:18
  */
-import { App, defineComponent, provide, ref, readonly, computed } from 'vue';
-import { setStyleClass } from '../util';
+import { defineComponent, provide, ref, readonly, computed } from 'vue';
+import { setStyleClass, installComponent } from '../util';
 import menusGroup, { MenuItemProps } from './group';
 import menusItem from './item';
 
@@ -29,7 +29,7 @@ export interface SiderProps {
 }
 
 const side = defineComponent({
-  name: 'menuBox',
+  name: 'viMenuBox',
   components: { menusGroup, menusItem },
   props: {
     width: {
@@ -112,10 +112,9 @@ const side = defineComponent({
     };
 
     // 折叠逻辑和样式
-    const iconClass = computed(() => [
-      collapsed.value ? 'vite_zhankai' : 'vite_shouqi',
-      'vite_',
-    ]);
+    const iconClass = computed(() =>
+      collapsed.value ? 'vite_caidanyou' : 'vite_caidan',
+    );
     const style = computed(() =>
       collapsed.value
         ? { width: props.collapsedwidth }
@@ -141,7 +140,7 @@ const side = defineComponent({
               }, 300);
             }}
           >
-            <i class={iconClass.value}></i>
+            <viIcon name={iconClass.value} />
           </button>
         </div>
         {renderItem(props.menus)}
@@ -150,7 +149,4 @@ const side = defineComponent({
   },
 });
 
-side.install = (app: App) => {
-  app.component(side.name, side);
-};
-export default side;
+export default installComponent(side, 'viMenuBox');

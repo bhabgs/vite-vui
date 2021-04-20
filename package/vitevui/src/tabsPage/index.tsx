@@ -4,12 +4,13 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-12 16:21:33
+ * @LastEditTime: 2021-04-20 15:49:57
  */
 import { defineComponent, App, computed, nextTick } from 'vue';
 import componentsBox from './components';
 import { arrayCheck, setStyleClass, viteTypeof } from '../util';
 import log from '../util/log';
+import installComponent from '../util/installComponent';
 import tabs from './tab';
 import hooks from './tabsHooks';
 import funHooks, { tabItem, setCurrentDetail } from './tabsFunHook';
@@ -26,7 +27,7 @@ const viteTabs = defineComponent({
       type: String,
     },
   },
-  setup(Prop) {
+  setup(props) {
     const { open, mitt } = funHooks();
     const { tabsData } = hooks();
     const classes = setStyleClass(['tabs', 'tabs_page']);
@@ -143,7 +144,7 @@ const viteTabs = defineComponent({
           }}
         />
         <componentsBox
-          animate={Prop.animate}
+          animate={props.animate}
           items={tabsData.list}
           activeVal={tabsData.active}
         />
@@ -151,7 +152,5 @@ const viteTabs = defineComponent({
     );
   },
 });
-viteTabs.install = (app: App) => {
-  app.component(viteTabs.name, viteTabs);
-};
-export default viteTabs;
+
+export default installComponent(viteTabs, 'viTabsPage');

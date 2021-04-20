@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:05:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-09 16:17:44
+ * @LastEditTime: 2021-04-20 15:52:43
  */
 import type { App } from 'vue';
 import { setupElement } from './setup/element';
@@ -21,6 +21,7 @@ import menu from './menu';
 import viteTabs from './tabs';
 import viteTabsPage from './tabsPage';
 import upload from './upload';
+import viIcon from './icon';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 
@@ -34,9 +35,10 @@ const COMPS: baseObject = {
   viteTabs,
   viteTabsPage,
   menu,
+  viIcon,
   upload,
 };
-const VERSION: string = '0.0.1';
+const VERSION: string = '0.0.2';
 
 const install = (app: App) => {
   app.use(directive);
@@ -58,6 +60,7 @@ export {
   viteTabsPage,
   viteTabs,
   upload,
+  viIcon,
   getTabCurrentDetail,
   tabsPageHook,
 };
