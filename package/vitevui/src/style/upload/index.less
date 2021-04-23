@@ -1,6 +1,14 @@
 .vite_upload_box {
   display: flex;
   flex-direction: column;
+  &.vite_upload_disabled {
+    .vite_button_upload {
+      opacity: 0.5;
+      input {
+        opacity: 0;
+      }
+    }
+  }
   .vite_button_upload {
     width: 7.86rem;
     height: 7.86rem;
@@ -17,6 +25,14 @@
       margin-bottom: 0.3rem;
       box-sizing: border-box;
       border: 1px solid @gray-4;
+      position: relative;
+      .progress {
+        position: absolute;
+        height: 2px;
+        left: 0;
+        bottom: 0;
+        .animate3();
+      }
     }
     &.img_video_box {
       margin-top: 0.3rem;
@@ -76,13 +92,20 @@
         }
       }
     }
-
-    .item_close {
+    a {
+      text-decoration: none;
+      color: @black;
+    }
+    .item_close,
+    .loadfile_button {
       cursor: pointer;
       .animate3();
       &:hover {
         color: @red;
       }
+    }
+    .loadfile_button {
+      font-size: 1.3rem;
     }
   }
 }
