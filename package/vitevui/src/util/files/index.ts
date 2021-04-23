@@ -6,7 +6,7 @@ import { baseObject } from '@/types';
  * @Author: bhabgs
  * @Date: 2021-04-19 09:44:52
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-19 10:11:45
+ * @LastEditTime: 2021-04-23 13:51:30
  */
 export type iconsName =
   | 'vite_yasuo'
@@ -21,6 +21,7 @@ export type iconsName =
   | 'vite_MP3'
   | 'vite_XML'
   | 'vite_MP4'
+  | 'vite_XLS'
   | 'vite_PNG';
 
 export type FileTypes =
@@ -29,13 +30,13 @@ export type FileTypes =
   | 'css'
   | 'eps'
   | 'cad'
-  | 'zip'
-  | 'json'
+  | 'application/zip'
+  | 'application/json'
   | 'html'
-  | 'jpg'
+  | 'image/jpg'
   | 'ppt'
   | 'txt'
-  | 'gif'
+  | 'image/gif'
   | 'wav'
   | 'docx'
   | 'pdf'
@@ -43,32 +44,33 @@ export type FileTypes =
   | 'mp3'
   | 'xml'
   | 'mp4'
-  | 'xls'
+  | 'application/vnd.ms-excel'
+  | 'application/vnd.openxmlformats-officedocument.spreadsheetml.shee'
   | 'vid'
-  | 'png';
+  | 'image/png';
 
 const fileName: baseObject<iconsName> = {
-  png: 'vite_PNG',
-  zip: 'vite_yasuo',
+  'image/png': 'vite_PNG',
+  'application/zip': 'vite_yasuo',
+  'application/x-rar': 'vite_yasuo',
+  'application/json': 'vite_JSON',
+  'image/jpg': 'vite_JPG',
+  'image/jpeg': 'vite_JPG',
+  'image/gif': 'vite_GIF',
+  'application/vnd.ms-excel': 'vite_XLS',
   gzip: 'vite_yasuo',
   tag: 'vite_yasuo',
-  json: 'vite_JSON',
   html: 'vite_HTML',
-  jpg: 'vite_JPG',
   ppt: 'vite_PPT',
   pptx: 'vite_PPT',
   txt: 'vite_TXT',
-  gif: 'vite_GIF',
   pdf: 'vite_GIF',
-  doc: 'vite_DOCX',
   docx: 'vite_DOCX',
-  mp3: 'vite_MP3',
+  'audio/mpeg': 'vite_MP3',
   xml: 'vite_XML',
-  mp4: 'vite_MP4',
+  'video/mp4': 'vite_MP4',
 };
 
 export const getFileType: (src: string) => iconsName = (src) => {
-  const index = src.lastIndexOf('.');
-  const name = src.substr(index + 1);
-  return fileName[name] || 'vite_wenjianjiami';
+  return fileName[src] || 'vite_wenjianjiami';
 };
