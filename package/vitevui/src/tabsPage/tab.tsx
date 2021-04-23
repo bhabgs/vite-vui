@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:43:20
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-20 15:50:19
+ * @LastEditTime: 2021-04-21 14:36:34
  */
 import { defineComponent, withModifiers } from 'vue';
 import { setStyleClass } from '../util';
@@ -44,22 +44,13 @@ export default defineComponent({
                   {item.name}
                 </span>
                 {item.hasClosed ? (
-                  <viIcon
+                  <vi-icon
                     name={'vite_close'}
-                    onClick={(e: any) => {
-                      remove([item.id]);
-                    }}
+                    onClick={withModifiers(() => {
+                      remove(item.id);
+                    }, ['stop'])}
                   />
                 ) : (
-                  // <i
-                  //   class='vite_close vite_'
-                  //   onClick={withModifiers(
-                  //     (e: any) => {
-                  //       remove([item.id]);
-                  //     },
-                  //     ['stop'],
-                  //   )}
-                  // ></i>
                   ''
                 )}
               </div>
