@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2020-11-30 09:53:41
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-13 13:39:59
+ * @LastEditTime: 2021-04-21 13:31:27
  */
 import { App } from 'vue';
 import vui from '../package/vitevui/src/index';
