@@ -4,17 +4,15 @@
  * @Author: bhabgs
  * @Date: 2021-04-08 15:57:51
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-23 15:49:34
+ * @LastEditTime: 2021-04-25 13:00:17
  */
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { uploader, manageFile, onErr } from './upload_util';
 import {
   setStyleClass,
   installComponent,
   getFileType,
-  xhr,
-  cId,
   computedSize,
-  log,
 } from '../util';
 import { iconsName, FileTypes } from '../util/files';
 import uploadButton from './uploadButton';
@@ -76,9 +74,6 @@ const viteUpload = defineComponent({
   setup(props, context) {
     let uploadStatus = false;
 
-    const onErr = (msg: string) => {
-      context.emit('err', { msg });
-    };
     // 区分可预览和不可预览的文件列
     const files = computed(() => {
       const previewFiles: Array<uploadItem> = [];
@@ -130,47 +125,16 @@ const viteUpload = defineComponent({
     // 上传文件处理
     const uploadFile = async (e: any) => {
       const files = e.target.files[0];
+
+      const { data, formData, state } = manageFile(props, context, files);
+
+      if (!state) return;
+
+      uploader(props, context, data.id, formData);
       uploadStatus = true;
 
-      if (files.size >= props.fileSize) {
-        const text = `文件上传大小不能超过 ${computedSize(
-          props.fileSize,
-        )}, 当前文件大小为${computedSize(files.size)}`;
-        onErr(text);
-        return log.warn(text);
-      }
-      const body = new FormData();
-      const id = cId();
-      const newItemval = {
-        name: files.name,
-        size: files.size,
-        fileType: files.type,
-        url: window.URL.createObjectURL(files),
-        id,
-        progress: 0,
-      };
-      props.value?.push(newItemval);
-      body.append('file', files);
-      body.append('size', files.size);
-      body.append('name', files.name);
-      body.append('fileType', files.type);
-
-      const aaa: any = props.value?.find((item: any) => item.id === id);
-
-      const res = await xhr.post(props.action, body, {
-        headers: props.headers || {},
-        progress: (e): any => {
-          const { val } = e;
-          aaa.progress = val;
-        },
-        progressDone({ val, e }): any {
-          aaa.progress = 100;
-        },
-      });
-      uploadStatus = false;
       e.target.files = null;
       e.target.value = null;
-      aaa.url = res.data.url;
     };
 
     const renderProgress = (progress: number) => {
@@ -202,12 +166,7 @@ const viteUpload = defineComponent({
           multiple={props.multiple}
           disabled={files.value.length >= props.limit ? true : props.disabled}
           onChange={(e: any) => {
-            console.log(e, uploadStatus);
             uploadFile(e);
-            // if (!uploadStatus) {
-            // } else {
-            //   onErr('文件正在上传中，请等待当前文件上传完成.');
-            // }
           }}
         />
         {/* 图片视频预览位置 */}
