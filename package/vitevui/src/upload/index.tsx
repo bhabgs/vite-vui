@@ -4,11 +4,20 @@
  * @Author: bhabgs
  * @Date: 2021-04-08 15:57:51
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-20 15:52:06
+ * @LastEditTime: 2021-04-23 15:49:34
  */
-import { defineComponent, computed } from 'vue';
-import { setStyleClass, installComponent, getFileType } from '../util';
+import { defineComponent, computed, ref } from 'vue';
+import {
+  setStyleClass,
+  installComponent,
+  getFileType,
+  xhr,
+  cId,
+  computedSize,
+  log,
+} from '../util';
 import { iconsName, FileTypes } from '../util/files';
+import uploadButton from './uploadButton';
 
 export interface uploadItem {
   name: string;
@@ -16,6 +25,8 @@ export interface uploadItem {
   size: number;
   fileType: FileTypes;
   icon?: iconsName;
+  progress?: number;
+  id?: any;
 }
 
 const viteUploadProp = {
@@ -33,36 +44,10 @@ const viteUploadProp = {
     type: Boolean,
     default: false,
   }, // 是否支持多文件上传
-  accept: {
-    type: Array,
-    default: [
-      'ai',
-      'arm',
-      'css',
-      'eps',
-      'cad',
-      'zip',
-      'json',
-      'html',
-      'jpg',
-      'ppt',
-      'txt',
-      'gif',
-      'wav',
-      'docx',
-      'pdf',
-      'ps',
-      'mp3',
-      'xml',
-      'mp4',
-      'xls',
-      'vid',
-      'png',
-    ],
-  }, // 允许上传的文件类型
+  accept: String, // 允许上传的文件类型
   limit: {
     type: Number,
-    default: 10,
+    default: 2,
   }, // 允许上传文件最大个数
   disabled: {
     type: Boolean,
@@ -72,27 +57,54 @@ const viteUploadProp = {
     type: String,
     default: '',
   },
+  progressColor: {
+    type: String,
+    default: '#4498f0',
+  },
+  fileSize: {
+    type: Number,
+    default: 1024 * 1024 * 10,
+  },
   value: Array, // 默认值
 };
 
 const viteUpload = defineComponent({
   props: viteUploadProp,
+  components: {
+    uploadButton,
+  },
   setup(props, context) {
-    const classes = setStyleClass(['upload_box']);
+    let uploadStatus = false;
+
+    const onErr = (msg: string) => {
+      context.emit('err', { msg });
+    };
     // 区分可预览和不可预览的文件列
     const files = computed(() => {
       const previewFiles: Array<uploadItem> = [];
       const others: Array<uploadItem> = [];
-      const previewFilesType = ['png', 'jpg', 'gif', 'video'];
+      const previewFilesType = [
+        'image/png',
+        'image/jpg',
+        'image/gif',
+        'video',
+        'image/jpeg',
+      ];
+      let length = 0;
       for (const i of props.value as Array<uploadItem>) {
         const hasPreview = previewFilesType.find((item) => item === i.fileType);
+        length += 1;
         if (hasPreview) {
           previewFiles.push(i);
         } else {
           others.push(i);
         }
       }
-      return { previewFiles, others };
+      const classes = setStyleClass([
+        'upload_box',
+        length >= props.limit ? 'upload_disabled' : '',
+      ]);
+      return { previewFiles, others, length, classes };
     });
 
     // 删除方法
@@ -100,7 +112,6 @@ const viteUpload = defineComponent({
       const newval = props.value?.filter(
         (unitem: any) => item.url !== unitem.url,
       );
-      console.log(newval);
       context.emit('update:value', newval);
     };
     // 删除按钮 vdom
@@ -116,14 +127,87 @@ const viteUpload = defineComponent({
       );
     };
 
+    // 上传文件处理
+    const uploadFile = async (e: any) => {
+      const files = e.target.files[0];
+      uploadStatus = true;
+
+      if (files.size >= props.fileSize) {
+        const text = `文件上传大小不能超过 ${computedSize(
+          props.fileSize,
+        )}, 当前文件大小为${computedSize(files.size)}`;
+        onErr(text);
+        return log.warn(text);
+      }
+      const body = new FormData();
+      const id = cId();
+      const newItemval = {
+        name: files.name,
+        size: files.size,
+        fileType: files.type,
+        url: window.URL.createObjectURL(files),
+        id,
+        progress: 0,
+      };
+      props.value?.push(newItemval);
+      body.append('file', files);
+      body.append('size', files.size);
+      body.append('name', files.name);
+      body.append('fileType', files.type);
+
+      const aaa: any = props.value?.find((item: any) => item.id === id);
+
+      const res = await xhr.post(props.action, body, {
+        headers: props.headers || {},
+        progress: (e): any => {
+          const { val } = e;
+          aaa.progress = val;
+        },
+        progressDone({ val, e }): any {
+          aaa.progress = 100;
+        },
+      });
+      uploadStatus = false;
+      e.target.files = null;
+      e.target.value = null;
+      aaa.url = res.data.url;
+    };
+
+    const renderProgress = (progress: number) => {
+      let flag = true;
+
+      if (progress >= 100) {
+        flag = false;
+      }
+      if (progress) {
+        return (
+          <div
+            class='progress'
+            style={{
+              width: progress + '%',
+              background: props.progressColor,
+              opacity: !flag ? 0 : 1,
+            }}
+          ></div>
+        );
+      }
+      return '';
+    };
+
     return () => (
-      <div class={classes}>
-        <viButton
-          type='upload'
-          vSlots={{
-            uploadTitle() {
-              return props.fileTitle || <viIcon name='vite_ziyuan' />;
-            },
+      <div class={files.value.classes}>
+        <uploadButton
+          fileTitle={props.fileTitle}
+          accept={props.accept}
+          multiple={props.multiple}
+          disabled={files.value.length >= props.limit ? true : props.disabled}
+          onChange={(e: any) => {
+            console.log(e, uploadStatus);
+            uploadFile(e);
+            // if (!uploadStatus) {
+            // } else {
+            //   onErr('文件正在上传中，请等待当前文件上传完成.');
+            // }
           }}
         />
         {/* 图片视频预览位置 */}
@@ -132,6 +216,7 @@ const viteUpload = defineComponent({
             <li title={item.name}>
               <img src={item.url} alt={item.name} />
               {closeIcon(item)}
+              {renderProgress(item.progress || 0)}
             </li>
           ))}
         </ul>
@@ -139,13 +224,17 @@ const viteUpload = defineComponent({
         <ul class='other_files'>
           {files.value.others.map((item) => (
             <li>
-              <viIcon svg name={item.icon || getFileType(item.url)} />
+              <viIcon svg name={item.icon || getFileType(item.fileType)} />
               <div class='upload_context'>
                 <span class='file_name'>{item.name}</span>
-                <span class='file_size'>{item.size}KB</span>
+                <span class='file_size'>{computedSize(item.size)}</span>
               </div>
               <viIcon svg name={item.icon} />
+              <a href={item.url} target='view_window'>
+                <viIcon name='vite_xiazai-2' class='loadfile_button' />
+              </a>
               {closeIcon(item)}
+              {renderProgress(item.progress || 0)}
             </li>
           ))}
         </ul>
