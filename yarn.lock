@@ -584,7 +584,7 @@
   dependencies:
     "@types/node" "*"
 
-"@vitejs/plugin-vue-jsx@^1.1.0":
+"@vitejs/plugin-vue-jsx@^1.1.3":
   version "1.1.3"
   resolved "https://registry.npm.taobao.org/@vitejs/plugin-vue-jsx/download/@vitejs/plugin-vue-jsx-1.1.3.tgz#426c68f8a367a603acb82fca6e2b12506ba9fc8e"
   integrity sha1-Qmxo+KNnpgOsuC/KbisSUGup/I4=
@@ -595,7 +595,7 @@
     "@vue/babel-plugin-jsx" "^1.0.3"
     hash-sum "^2.0.0"
 
-"@vitejs/plugin-vue@^1.1.4":
+"@vitejs/plugin-vue@^1.1.4", "@vitejs/plugin-vue@^1.2.1":
   version "1.2.1"
   resolved "https://registry.npm.taobao.org/@vitejs/plugin-vue/download/@vitejs/plugin-vue-1.2.1.tgz#6de49436fc346f829a56676066428e3f011522ac"
   integrity sha1-beSUNvw0b4KaVmdgZkKOPwEVIqw=

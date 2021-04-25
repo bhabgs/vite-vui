@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-20 15:28:51
+ * @LastEditTime: 2021-04-23 11:20:43
  */
 import { defineComponent } from 'vue';
 import { setStyleClass, installComponent, getSlots } from '../util/index';
@@ -14,9 +14,15 @@ const buttonProps = {
     type: String,
     default: 'default',
   },
+  accept: String,
   radius: {
     type: Boolean,
     default: true,
+  },
+  multiple: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 };
 
@@ -41,7 +47,13 @@ const Button = defineComponent({
                 <slots.uploadTitle />
               )}
             </div>
-            <input class={classes} type='file' />
+            <input
+              class={classes}
+              type='file'
+              accept={props.accept}
+              multiple={props.multiple}
+              disabled={props.disabled}
+            />
           </>
         ) : (
           <slots.def />

@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:05:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-20 15:52:43
+ * @LastEditTime: 2021-04-21 14:33:01
  */
 import type { App } from 'vue';
 import { setupElement } from './setup/element';

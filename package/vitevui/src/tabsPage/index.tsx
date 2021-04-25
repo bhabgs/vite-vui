@@ -4,9 +4,9 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-20 15:49:57
+ * @LastEditTime: 2021-04-21 14:40:26
  */
-import { defineComponent, App, computed, nextTick } from 'vue';
+import { defineComponent, computed, nextTick } from 'vue';
 import componentsBox from './components';
 import { arrayCheck, setStyleClass, viteTypeof } from '../util';
 import log from '../util/log';
@@ -112,11 +112,11 @@ const viteTabs = defineComponent({
           flag = newArr.length;
         }
 
-        if (flag === 100000) {
+        if (flag - 1 < 0) {
           return log.warn('默认第一个page 为主page，主page无法删除');
         }
 
-        if (!arrayCheck(newArr, tabsData.list, 'id')) {
+        if (!arrayCheck(newArr, tabsData.list, 'id') && flag - 1 >= 0) {
           updatePage(newArr, tabsData.list[flag - 1].id);
         } else {
           log.warn('没有匹配的键');

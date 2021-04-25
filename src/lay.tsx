@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:42:58
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-19 11:17:20
+ * @LastEditTime: 2021-04-21 15:18:58
  */
 import {
   defineComponent,
@@ -123,7 +123,12 @@ export default defineComponent({
         <vi-layout-footer
           v-contextmenu={{ menus: [{ key: '1', name: '哈哈' }], callBack() {} }}
         >
-          footer
+          <vi-icon
+            name='vite_close'
+            onClick={() => {
+              alert(666);
+            }}
+          />
         </vi-layout-footer>
       </vi-layout>
     );
