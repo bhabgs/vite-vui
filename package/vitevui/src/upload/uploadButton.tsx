@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-21 14:48:11
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-23 11:19:19
+ * @LastEditTime: 2021-04-26 10:00:16
  */
 import { defineComponent } from 'vue';
 
@@ -30,17 +30,20 @@ export default defineComponent({
   props,
   setup(props, context) {
     return () => (
-      <viButton
-        type='upload'
-        accept={props.accept}
-        multiple={props.multiple}
-        disabled={props.disabled}
-        vSlots={{
-          uploadTitle() {
-            return props.fileTitle || <viIcon name='vite_ziyuan' />;
-          },
-        }}
-      />
+      <span>
+        <viButton
+          type='upload'
+          accept={props.accept}
+          multiple={props.multiple}
+          disabled={props.disabled}
+          class={[props.fileTitle ? 'vite_upload_filetitle_button' : '']}
+          vSlots={{
+            uploadTitle() {
+              return props.fileTitle || <viIcon name='vite_ziyuan' />;
+            },
+          }}
+        />
+      </span>
     );
   },
 });

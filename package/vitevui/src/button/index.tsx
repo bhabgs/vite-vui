@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-23 11:20:43
+ * @LastEditTime: 2021-04-26 09:50:20
  */
 import { defineComponent } from 'vue';
 import { setStyleClass, installComponent, getSlots } from '../util/index';
@@ -48,7 +48,7 @@ const Button = defineComponent({
               )}
             </div>
             <input
-              class={classes}
+              // class={classes}
               type='file'
               accept={props.accept}
               multiple={props.multiple}
