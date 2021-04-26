@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-22 15:58:19
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-23 15:10:19
+ * @LastEditTime: 2021-04-26 08:55:18
  */
 
 import { baseObject } from '@/types';
@@ -25,9 +25,9 @@ class xhr {
     this.config = Object.assign(this.config, config || {});
 
     methods.forEach((item) => {
-      (this as any)[item] = (url: string, data: any, config?: Config) => {
+      (this as any)[item] = async (url: string, data: any, config?: Config) => {
         this.config.data = data;
-        return this.request(
+        return await this.request(
           url,
           item,
           Object.assign(this.config, config || {}),
@@ -71,15 +71,14 @@ class xhr {
       ajax.send(config?.data);
 
       ajax.onload = () => {
-        this.config.progressDone
-          ? this.config.progressDone({
-              e: ajax.response,
-              val: 100,
-            })
-          : '';
-
         if (ajax.status === 200) {
           res(JSON.parse(ajax.response));
+          this.config.progressDone
+            ? this.config.progressDone({
+                e: ajax.response,
+                val: 100,
+              })
+            : '';
         } else {
           (this.config as any).progress({ e: ajax.response, val: 0 });
           rej(ajax.responseText);

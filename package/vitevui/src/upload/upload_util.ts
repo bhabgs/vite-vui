@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-25 09:32:36
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-25 12:08:49
+ * @LastEditTime: 2021-04-26 09:31:26
  */
 import { SetupContext } from '@vue/runtime-core';
 import { uploadItem } from '.';
@@ -63,17 +63,25 @@ export const uploader: (
   context: SetupContext,
   id: string,
   formData: FormData,
-) => any = (props: any, context: SetupContext, id, formData) => {
+) => any = async (props: any, context: SetupContext, id, formData) => {
   const ndata = props.value?.find((item: any) => item.id === id);
-  xhr.post(props.action, formData, {
-    headers: props.headers || {},
-    progress: (e): any => {
-      const { val } = e;
-      ndata.progress = val;
-    },
-    progressDone: (): any => {
-      console.log(ndata.id, 'succcess');
-      ndata.progress = 100;
-    },
-  });
+  const ajax = xhr.create();
+
+  let res: any = {};
+  try {
+    res = await ajax.post(props.action, formData, {
+      headers: props.headers || {},
+      progress: (e): any => {
+        const { val } = e;
+        ndata.progress = val;
+      },
+      progressDone: (): any => {
+        console.log(ndata.id);
+      },
+    });
+    ndata.progress = 100;
+    ndata.url = res.data.url;
+  } catch (error) {
+    ndata.progress = 0;
+  }
 };

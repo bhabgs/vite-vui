@@ -9,11 +9,19 @@
       }
     }
   }
+
   .vite_button_upload {
     width: 7.86rem;
     height: 7.86rem;
+    overflow: hidden;
+    &.vite_upload_filetitle_button {
+      height: 2.43rem;
+      input[type='file'] {
+        font-size: 0;
+      }
+    }
     .vite_button_mask i {
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: normal;
     }
   }
@@ -33,6 +41,12 @@
         bottom: 0;
         z-index: 2;
         .animate3();
+      }
+      &:hover {
+        .item_close,
+        .loadfile_button {
+          opacity: 1;
+        }
       }
     }
     &.img_video_box {
@@ -97,9 +111,11 @@
       text-decoration: none;
       color: @black;
     }
+
     .item_close,
     .loadfile_button {
       cursor: pointer;
+      opacity: 0;
       .animate3();
       &:hover {
         color: @red;
