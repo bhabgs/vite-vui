@@ -6,6 +6,7 @@
   position: relative;
   background-color: @blue-4;
   .hover();
+
   &::after {
     transform: scaleY(1);
     opacity: 1;
@@ -13,6 +14,7 @@
       opacity 0.15s;
   }
 }
+
 .hover {
   color: @blue;
 }
@@ -26,12 +28,15 @@
   @import './theme/light.less';
   .animate3();
   @import './title.less';
+
   &.vite_menu_zhankai {
+
     li,
     .vite_menu_group_title {
       height: @itemHeight;
     }
   }
+
   li,
   .vite_menu_group_title {
     overflow: hidden;
@@ -44,17 +49,24 @@
     display: flex;
     align-items: center;
     color: @text-color;
-    > span {
-      display: flex;
-      align-items: center;
-      i {
-        margin-right: 0.2rem;
+
+    >span {
+
+      &:not(.vite_badge),
+      &.vite_badge>span {
+        display: flex;
+        align-items: center;
+
+        i {
+          margin-right: 0.2rem;
+        }
       }
     }
   }
 
   li {
     .animate3();
+
     &::after {
       position: absolute;
       top: 0;
@@ -67,9 +79,11 @@
         opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
       content: '';
     }
+
     &.vite_menu_item_active {
       .active();
     }
+
     &:hover {
       .hover();
     }
@@ -78,5 +92,6 @@
   .menu_item_icon_box {
     display: inline-block;
   }
+
   @import './collapsed.less';
 }

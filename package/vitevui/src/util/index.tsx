@@ -10,6 +10,7 @@ import { viteTypeof } from './objType';
 import { getFileType } from './files';
 import installComponent from './installComponent';
 import { getSlots } from './getslots';
+import { simpleDownload, blobDownload } from './download';
 import xhr from './xhr';
 import log from './log';
 
@@ -60,4 +61,6 @@ export {
   cId,
   computedSize,
   log,
+  simpleDownload,
+  blobDownload,
 };

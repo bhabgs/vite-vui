@@ -15,6 +15,7 @@ export interface MenusItem {
   title: string;
   id: string;
   icon?: string;
+  badgeCount: string | number;
   child: Array<MenusItem>;
 }
 
@@ -103,6 +104,7 @@ const side = defineComponent({
         key: item.id,
         icon: item.icon,
         title: item.title,
+        badgeCount: item.badgeCount,
       };
       return (
         <menusGroup {...groupProp} child={item.child}>

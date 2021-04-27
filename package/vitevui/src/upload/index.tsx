@@ -6,7 +6,7 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-04-26 11:24:09
  */
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { uploader, manageFile, onErr } from './upload_util';
 import {
   setStyleClass,
@@ -55,13 +55,20 @@ const viteUploadProp = {
     type: String,
     default: '',
   },
+  // 进度条颜色
   progressColor: {
     type: String,
     default: '#4498f0',
   },
+  // 文件size
   fileSize: {
     type: Number,
     default: 1024 * 1024 * 10,
+  },
+  // 只读则隐藏上传按钮
+  readonly: {
+    type: Boolean,
+    default: false,
   },
   value: Array, // 默认值
 };
@@ -115,7 +122,8 @@ const viteUpload = defineComponent({
         <viIcon
           name={'vite_close'}
           class='item_close'
-          onClick={() => {
+          onClick={(e: Event) => {
+            e.stopPropagation();
             removeItem(item);
           }}
         />
@@ -135,6 +143,22 @@ const viteUpload = defineComponent({
 
       e.target.files = null;
       e.target.value = null;
+    };
+
+    const visible = ref(false);
+
+    const srcIndex = ref(0);
+
+    const srcList = computed(() => {
+      return files.value.previewFiles.map((item: any) => item.url);
+    });
+
+    // 图片点击操作
+    const imgClick = (item: uploadItem, index: number) => {
+      if (item.progress && item.progress === 100) {
+        visible.value = true;
+        srcIndex.value = index;
+      }
     };
 
     const renderProgress = (progress: number) => {
@@ -160,21 +184,30 @@ const viteUpload = defineComponent({
 
     return () => (
       <div class={files.value.classes}>
-        <uploadButton
-          fileTitle={props.fileTitle}
-          accept={props.accept}
-          multiple={props.multiple}
-          disabled={files.value.length >= props.limit ? true : props.disabled}
-          onChange={(e: any) => {
-            uploadFile(e);
-          }}
-        />
+        {!props.readonly ? (
+          <uploadButton
+            fileTitle={props.fileTitle}
+            accept={props.accept}
+            multiple={props.multiple}
+            disabled={files.value.length >= props.limit ? true : props.disabled}
+            onChange={(e: any) => {
+              uploadFile(e);
+            }}
+          />
+        ) : (
+          ''
+        )}
         {/* 图片视频预览位置 */}
         <ul class='img_video_box'>
-          {files.value.previewFiles.map((item) => (
-            <li title={item.name}>
+          {files.value.previewFiles.map((item, index) => (
+            <li
+              title={item.name}
+              onClick={() => {
+                imgClick(item, index);
+              }}
+            >
               <img src={item.url} alt={item.name} />
-              {closeIcon(item)}
+              {!props.readonly ? closeIcon(item) : ''}
               {renderProgress(item.progress || 0)}
             </li>
           ))}
@@ -191,11 +224,19 @@ const viteUpload = defineComponent({
               <a href={item.url} target='view_window'>
                 <viIcon name='vite_xiazai-2' class='loadfile_button' />
               </a>
-              {closeIcon(item)}
+              {!props.readonly ? closeIcon(item) : ''}
               {renderProgress(item.progress || 0)}
             </li>
           ))}
         </ul>
+        {/* 图片预览 */}
+        <viEasyLightBox
+          v-models={[
+            [visible.value, 'value'],
+            [srcIndex.value, 'srcIndex'],
+          ]}
+          srcList={srcList.value}
+        />
       </div>
     );
   },

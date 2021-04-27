@@ -86,20 +86,24 @@ export default defineComponent({
                 title: '111111',
                 id: '1',
                 icon: 'vite_vehivles',
+                badgeCount: 1,
               },
               {
                 title: '22222222',
                 id: '2',
                 icon: 'vite_vehivles',
+                badgeCount: 20,
                 child: [
                   {
                     title: '222222-111111',
                     id: '2-1',
+                    badgeCount: 1,
                   },
                   {
                     title: '222222-222222',
                     id: '2-2',
                     icon: 'vite_vehivles',
+                    badgeCount: 0,
                   },
                 ],
               },

@@ -17,6 +17,8 @@ import viLayoutSider from './layout/lay_sider';
 import viLayoutMain from './layout/lay_main';
 import viLayoutFooter from './layout/lay_footer';
 import button from './button';
+import easylightbox from './easylightbox';
+import badge from './badge';
 import menu from './menu';
 import viteTabs from './tabs';
 import viteTabsPage from './tabsPage';
@@ -32,6 +34,8 @@ const COMPS: baseObject = {
   viLayoutMain,
   viLayoutFooter,
   button,
+  easylightbox,
+  badge,
   viteTabs,
   viteTabsPage,
   menu,
@@ -56,6 +60,8 @@ export {
   viLayoutMain,
   viLayoutFooter,
   button,
+  easylightbox,
+  badge,
   menu,
   viteTabsPage,
   viteTabs,

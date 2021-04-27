@@ -23,6 +23,9 @@ export default defineComponent({
       default: '',
       type: String,
     },
+    badgeCount: {
+      type: [String, Number],
+    },
   },
   setup(props, context) {
     const slots = context.slots;
@@ -43,10 +46,12 @@ export default defineComponent({
           context.emit('customclick', props);
         }}
       >
-        <span>
-          {props.icon ? <viIcon name={props.icon} /> : ''}
-          {props.title}
-        </span>
+        <viBadge count={props.badgeCount}>
+          <span>
+            {props.icon ? <viIcon name={props.icon} /> : ''}
+            {props.title}
+          </span>
+        </viBadge>
       </li>
     );
   },

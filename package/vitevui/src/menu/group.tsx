@@ -14,6 +14,7 @@ export interface MenuItemProps {
   icon: string;
   id: string;
   title: string;
+  badgeCount: string | number;
   child: Array<MenusItem>;
 }
 
@@ -30,6 +31,9 @@ export default defineComponent({
     title: {
       default: '',
       type: String,
+    },
+    badgeCount: {
+      type: [String, Number],
     },
     child: {
       default: [],
@@ -77,10 +81,12 @@ export default defineComponent({
             close.value = !close.value;
           }}
         >
-          <span>
-            {props.icon ? <viIcon name={props.icon} /> : ''}
-            {props.title}
-          </span>
+          <viBadge count={props.badgeCount}>
+            <span>
+              {props.icon ? <viIcon name={props.icon} /> : ''}
+              {props.title}
+            </span>
+          </viBadge>
           <viIcon name={'vite_xiala'} />
         </div>
         <ul class={classesChild}>{<def />}</ul>
