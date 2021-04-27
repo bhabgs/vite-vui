@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-08 15:57:51
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-25 13:00:17
+ * @LastEditTime: 2021-04-26 11:24:09
  */
 import { defineComponent, computed } from 'vue';
 import { uploader, manageFile, onErr } from './upload_util';
@@ -188,7 +188,6 @@ const viteUpload = defineComponent({
                 <span class='file_name'>{item.name}</span>
                 <span class='file_size'>{computedSize(item.size)}</span>
               </div>
-              <viIcon svg name={item.icon} />
               <a href={item.url} target='view_window'>
                 <viIcon name='vite_xiazai-2' class='loadfile_button' />
               </a>
