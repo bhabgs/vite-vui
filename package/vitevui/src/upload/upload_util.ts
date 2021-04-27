@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-04-25 09:32:36
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-26 09:31:26
+ * @LastEditTime: 2021-04-27 14:14:32
  */
 import { SetupContext } from '@vue/runtime-core';
 import { uploadItem } from '.';
@@ -39,17 +39,20 @@ export const manageFile: (
   let msg = '';
   let state = true;
   if (e.size >= props.fileSize) {
+    state = false;
     msg = `文件上传大小不能超过 ${computedSize(
       props.fileSize,
     )}, 当前文件大小为${computedSize(e.size)}`;
     onErr(context, msg);
     log.warn(msg);
   }
-  props.value.push(data);
-  formData.append('file', e);
-  formData.append('size', String(e.size));
-  formData.append('name', e.name);
-  formData.append('fileType', e.type);
+  if (state) {
+    props.value.push(data);
+    formData.append('file', e);
+    formData.append('size', String(e.size));
+    formData.append('name', e.name);
+    formData.append('fileType', e.type);
+  }
   return {
     state,
     msg,

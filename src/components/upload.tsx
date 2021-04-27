@@ -10,7 +10,28 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup(Prop, context) {
-    const values = ref([]);
+    const values = ref([
+      {
+        name: 'logo-dark-1000-1000.jpg',
+        size: 167445,
+        fileType: 'image/jpeg',
+        url:
+          'http://192.168.5.176/nas/document/1/20210427/logo-dark-1000-1000_1619487260876.jpg',
+        id: 'aexa3fs4yg80000',
+        progress: 100,
+      },
+      {
+        name: '431941.jpg',
+        size: 359215,
+        fileType: 'image/jpeg',
+        // url:
+        //   'http://192.168.5.176/nas/document/1/20210427/431941_1619488799917.jpg',
+        url:
+          'http://xwm-dev-nginx.c8386e42c9ecd42db8bf3600f579223a7.cn-zhangjiakou.alicontainer.com/files/datafilling/20210427/TEMP/431941.jpg',
+        id: '5vpzfw04cjg0000',
+        progress: 100,
+      },
+    ]);
     return () => (
       <div class='test'>
         <viUpload
@@ -20,6 +41,7 @@ export default defineComponent({
           headers={{
             corpId: '1',
           }}
+          readonly
           v-model={[values.value, 'value']}
         />
         {JSON.stringify(values.value)}
