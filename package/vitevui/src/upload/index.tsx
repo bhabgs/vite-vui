@@ -6,7 +6,7 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-04-25 13:00:17
  */
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { uploader, manageFile, onErr } from './upload_util';
 import {
   setStyleClass,
@@ -115,7 +115,8 @@ const viteUpload = defineComponent({
         <viIcon
           name={'vite_close'}
           class='item_close'
-          onClick={() => {
+          onClick={(e: Event) => {
+            e.stopPropagation();
             removeItem(item);
           }}
         />
@@ -135,6 +136,22 @@ const viteUpload = defineComponent({
 
       e.target.files = null;
       e.target.value = null;
+    };
+
+    const visible = ref(false);
+
+    const srcIndex = ref(0);
+
+    const srcList = computed(() => {
+      return files.value.previewFiles.map((item: any) => item.url);
+    });
+
+    // 图片点击操作
+    const imgClick = (item: uploadItem, index: number) => {
+      if (item.progress && item.progress === 100) {
+        visible.value = true;
+        srcIndex.value = index;
+      }
     };
 
     const renderProgress = (progress: number) => {
@@ -171,8 +188,13 @@ const viteUpload = defineComponent({
         />
         {/* 图片视频预览位置 */}
         <ul class='img_video_box'>
-          {files.value.previewFiles.map((item) => (
-            <li title={item.name}>
+          {files.value.previewFiles.map((item, index) => (
+            <li
+              title={item.name}
+              onClick={() => {
+                imgClick(item, index);
+              }}
+            >
               <img src={item.url} alt={item.name} />
               {closeIcon(item)}
               {renderProgress(item.progress || 0)}
@@ -197,6 +219,14 @@ const viteUpload = defineComponent({
             </li>
           ))}
         </ul>
+        {/* 图片预览 */}
+        <viEasyLightBox
+          v-models={[
+            [visible.value, 'value'],
+            [srcIndex.value, 'srcIndex'],
+          ]}
+          srcList={srcList.value}
+        />
       </div>
     );
   },
