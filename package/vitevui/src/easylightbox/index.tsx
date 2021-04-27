@@ -28,6 +28,10 @@ const easyLightBox = defineComponent({
     };
 
     const closeLightbox = () => {
+      delayS.value = 0;
+      scale.value = 1;
+      deg.value = 0;
+
       context.emit('update:value', false);
     };
 
