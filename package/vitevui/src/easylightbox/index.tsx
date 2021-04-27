@@ -16,7 +16,7 @@ const props = {
   },
 };
 const easyLightBox = defineComponent({
-  name: 'easyLightBox',
+  name: 'viEasyLightBox',
   props,
   setup(props, context) {
     const showControl = (url: string) => {
