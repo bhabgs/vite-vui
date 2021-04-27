@@ -24,8 +24,10 @@ export default defineComponent({
         name: '431941.jpg',
         size: 359215,
         fileType: 'image/jpeg',
+        // url:
+        //   'http://192.168.5.176/nas/document/1/20210427/431941_1619488799917.jpg',
         url:
-          'http://192.168.5.176/nas/document/1/20210427/431941_1619488799917.jpg',
+          'http://xwm-dev-nginx.c8386e42c9ecd42db8bf3600f579223a7.cn-zhangjiakou.alicontainer.com/files/datafilling/20210427/TEMP/431941.jpg',
         id: '5vpzfw04cjg0000',
         progress: 100,
       },
@@ -39,6 +41,7 @@ export default defineComponent({
           headers={{
             corpId: '1',
           }}
+          readonly
           v-model={[values.value, 'value']}
         />
         {JSON.stringify(values.value)}

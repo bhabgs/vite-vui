@@ -1,4 +1,4 @@
-import { installComponent, setStyleClass } from '../util';
+import { installComponent, setStyleClass, simpleDownload } from '../util';
 import { defineComponent, PropType, ref, Teleport } from 'vue';
 
 const props = {
@@ -78,6 +78,15 @@ const easyLightBox = defineComponent({
       }
       if (type === 'right') {
         deg.value += 90;
+      }
+    };
+
+    const download = async (e: Event) => {
+      const fileUrl = props.srcList?.[props.srcIndex];
+
+      if (fileUrl) {
+        // 执行下载
+        simpleDownload(fileUrl);
       }
     };
 
@@ -190,6 +199,7 @@ const easyLightBox = defineComponent({
                 {/* 下载 */}
                 <div
                   class={setStyleClass(['easylightbox_actions_zoom-download'])}
+                  onClick={download}
                 >
                   {'⇩'}
                 </div>

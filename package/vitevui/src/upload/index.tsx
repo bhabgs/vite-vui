@@ -55,13 +55,20 @@ const viteUploadProp = {
     type: String,
     default: '',
   },
+  // 进度条颜色
   progressColor: {
     type: String,
     default: '#4498f0',
   },
+  // 文件size
   fileSize: {
     type: Number,
     default: 1024 * 1024 * 10,
+  },
+  // 只读则隐藏上传按钮
+  readonly: {
+    type: Boolean,
+    default: false,
   },
   value: Array, // 默认值
 };
@@ -177,15 +184,19 @@ const viteUpload = defineComponent({
 
     return () => (
       <div class={files.value.classes}>
-        <uploadButton
-          fileTitle={props.fileTitle}
-          accept={props.accept}
-          multiple={props.multiple}
-          disabled={files.value.length >= props.limit ? true : props.disabled}
-          onChange={(e: any) => {
-            uploadFile(e);
-          }}
-        />
+        {!props.readonly ? (
+          <uploadButton
+            fileTitle={props.fileTitle}
+            accept={props.accept}
+            multiple={props.multiple}
+            disabled={files.value.length >= props.limit ? true : props.disabled}
+            onChange={(e: any) => {
+              uploadFile(e);
+            }}
+          />
+        ) : (
+          ''
+        )}
         {/* 图片视频预览位置 */}
         <ul class='img_video_box'>
           {files.value.previewFiles.map((item, index) => (
@@ -196,7 +207,7 @@ const viteUpload = defineComponent({
               }}
             >
               <img src={item.url} alt={item.name} />
-              {closeIcon(item)}
+              {!props.readonly ? closeIcon(item) : ''}
               {renderProgress(item.progress || 0)}
             </li>
           ))}
@@ -214,7 +225,7 @@ const viteUpload = defineComponent({
               <a href={item.url} target='view_window'>
                 <viIcon name='vite_xiazai-2' class='loadfile_button' />
               </a>
-              {closeIcon(item)}
+              {!props.readonly ? closeIcon(item) : ''}
               {renderProgress(item.progress || 0)}
             </li>
           ))}
