@@ -135,7 +135,7 @@ const easyLightBox = defineComponent({
                       switchPic('prev');
                     }}
                   >
-                    {'←'}
+                    <viIcon name='vite_left' />
                   </div>,
                   <div
                     class={setStyleClass([
@@ -146,7 +146,7 @@ const easyLightBox = defineComponent({
                       switchPic('next');
                     }}
                   >
-                    {'→'}
+                    <viIcon name='vite_right' />
                   </div>,
                 ]
               : ''}
@@ -165,7 +165,7 @@ const easyLightBox = defineComponent({
                     zoomClick('zoomOut');
                   }}
                 >
-                  {'⊖'}
+                  <viIcon name='vite_minus-circle' />
                 </div>
                 <div
                   class={setStyleClass(['easylightbox_actions_zoom-in'])}
@@ -173,7 +173,7 @@ const easyLightBox = defineComponent({
                     zoomClick('zoomIn');
                   }}
                 >
-                  {'⊕'}
+                  <viIcon name='vite_plus-circle' />
                 </div>
                 {/* 旋转 */}
                 <div
@@ -184,7 +184,7 @@ const easyLightBox = defineComponent({
                     rotate('left');
                   }}
                 >
-                  {'⟲'}
+                  <viIcon name='vite_rotate-left' />
                 </div>
                 <div
                   class={setStyleClass([
@@ -194,14 +194,14 @@ const easyLightBox = defineComponent({
                     rotate('right');
                   }}
                 >
-                  {'⟳'}
+                  <viIcon name='vite_rotate-right' />
                 </div>
                 {/* 下载 */}
                 <div
                   class={setStyleClass(['easylightbox_actions_zoom-download'])}
                   onClick={download}
                 >
-                  {'⇩'}
+                  <viIcon name='vite_xiazai-2' />
                 </div>
               </div>
             </div>
