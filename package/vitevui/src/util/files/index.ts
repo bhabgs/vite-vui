@@ -1,13 +1,13 @@
-import { baseObject } from '@/types';
-
 /*
  * @abstract: JianJie
  * @version: 0.0.1
  * @Author: bhabgs
  * @Date: 2021-04-19 09:44:52
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-23 13:51:30
+ * @LastEditTime: 2021-05-06 09:17:08
  */
+import { baseObject } from '@/types';
+
 export type iconsName =
   | 'vite_yasuo'
   | 'vite_JSON'
