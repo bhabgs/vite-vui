@@ -85,13 +85,13 @@ export default defineComponent({
               {
                 title: '111111',
                 id: '1',
-                icon: 'vite_vehivles',
+                icon: 'vite_plus-circle',
                 badgeCount: 1,
               },
               {
                 title: '22222222',
                 id: '2',
-                icon: 'vite_vehivles',
+                icon: 'vite_plus-circle',
                 badgeCount: 20,
                 child: [
                   {
@@ -102,7 +102,7 @@ export default defineComponent({
                   {
                     title: '222222-222222',
                     id: '2-2',
-                    icon: 'vite_vehivles',
+                    icon: 'vite_plus-circle',
                     badgeCount: 0,
                   },
                 ],
