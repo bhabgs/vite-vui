@@ -13,6 +13,7 @@ import {
   getCurrentInstance,
   nextTick,
 } from 'vue';
+import { viFlow } from '../package/vitevui/src';
 import test1 from './components/test1';
 import test2 from './components/test2';
 import upload from './components/upload';
@@ -83,7 +84,7 @@ export default defineComponent({
             menuTitle={'润滑管理'}
             menus={[
               {
-                title: '111111',
+                title: '1111119099',
                 id: '1',
                 icon: 'vite_vehivles',
                 badgeCount: 1,
@@ -121,7 +122,8 @@ export default defineComponent({
             }}
           />
           <vi-layout-main>
-            <viTabsPage />
+            {/* <viTabsPage /> */}
+            <viFlow></viFlow>
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer
