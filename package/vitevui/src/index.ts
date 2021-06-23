@@ -8,6 +8,7 @@
  */
 import type { App } from 'vue';
 import { setupElement } from './setup/element';
+import { setupAntDesign } from './setup/antDesign';
 import mitt from './util/mitt';
 import directive from './directive';
 import type { baseObject } from './types';
@@ -24,6 +25,7 @@ import viteTabs from './tabs';
 import viteTabsPage from './tabsPage';
 import upload from './upload';
 import viIcon from './icon';
+import viFlow from './flow';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 
@@ -40,6 +42,7 @@ const COMPS: baseObject = {
   viteTabsPage,
   menu,
   viIcon,
+  viFlow,
   upload,
 };
 const VERSION: string = '0.0.2';
@@ -51,6 +54,7 @@ const install = (app: App) => {
     app.use(COMPS[key]);
   }
   setupElement(app);
+  setupAntDesign(app);
 };
 
 export {
@@ -66,6 +70,7 @@ export {
   viteTabsPage,
   viteTabs,
   upload,
+  viFlow,
   viIcon,
   getTabCurrentDetail,
   tabsPageHook,

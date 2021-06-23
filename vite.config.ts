@@ -18,7 +18,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api/': 'http://192.168.5.176:8043/',
+      '/api/': 'http://192.168.5.184:8017',
     },
   },
 });
