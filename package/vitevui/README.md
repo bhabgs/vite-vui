@@ -17,3 +17,5 @@
 [![NPM downloads](https://img.shields.io/npm/dt/vitevui.svg)](https://npmjs.org/package/vitevui)
 
 [文档连接](https://bhabgs.github.io/vite-vui-docs/components/log.html)
+
+flow组件会依赖'ant-design-vue','@antv/x6'
