@@ -4,9 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 13:47:41
+ * @LastEditTime: 2021-04-20 15:39:00
  */
-import { App, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
+import { installComponent } from '../util';
 
 const viLayoutMain = defineComponent({
   name: 'viLayoutMain',
@@ -24,7 +25,4 @@ const viLayoutMain = defineComponent({
   },
 });
 
-viLayoutMain.install = (app: App) => {
-  app.component(viLayoutMain.name, viLayoutMain);
-};
-export default viLayoutMain;
+export default installComponent(viLayoutMain, 'viLayoutMain');

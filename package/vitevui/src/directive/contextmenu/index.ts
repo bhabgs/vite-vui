@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-03-19 13:38:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-22 17:59:31
+ * @LastEditTime: 2021-04-12 16:03:29
  */
 import { App } from 'vue';
 let contextmenuClass = 'contextmenu box_shadow';
@@ -55,6 +55,7 @@ export default {
             x: el.offsetLeft,
             y: el.offsetTop,
           };
+          console.log(x, y);
           e.preventDefault();
           ul.className = contextmenuClass + ' active';
           ul.style.left = e.clientX + 'px';

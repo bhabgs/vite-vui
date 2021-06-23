@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 14:27:47
+ * @LastEditTime: 2021-04-20 15:43:18
  */
-import { App, defineComponent, provide, ref, readonly, computed } from 'vue';
-import { setStyleClass } from '../util';
+import { defineComponent, provide, ref, readonly, computed } from 'vue';
+import { setStyleClass, installComponent } from '../util';
 import menusGroup, { MenuItemProps } from './group';
 import menusItem from './item';
 
@@ -15,6 +15,7 @@ export interface MenusItem {
   title: string;
   id: string;
   icon?: string;
+  badgeCount: string | number;
   child: Array<MenusItem>;
 }
 
@@ -29,7 +30,7 @@ export interface SiderProps {
 }
 
 const side = defineComponent({
-  name: 'menuBox',
+  name: 'viMenuBox',
   components: { menusGroup, menusItem },
   props: {
     width: {
@@ -66,14 +67,15 @@ const side = defineComponent({
     },
   },
   setup(Prop, Context) {
-    const props = Prop as SiderProps;
+    const props = (Prop as unknown) as SiderProps;
     const collapsed = ref(props.collapsed);
-
+    const collapsedActiveIng = ref(false);
     const siderBoxStyleClass = computed(() =>
       setStyleClass([
         'menu_box',
         `menu_${props.theme || 'light'}`,
-        collapsed.value ? 'menu_collapsed' : '',
+        collapsedActiveIng.value ? 'menu_collapsed_active' : '',
+        collapsed.value ? 'menu_collapsed' : 'menu_zhankai',
       ]),
     );
 
@@ -102,6 +104,7 @@ const side = defineComponent({
         key: item.id,
         icon: item.icon,
         title: item.title,
+        badgeCount: item.badgeCount,
       };
       return (
         <menusGroup {...groupProp} child={item.child}>
@@ -111,10 +114,9 @@ const side = defineComponent({
     };
 
     // 折叠逻辑和样式
-    const iconClass = computed(() => [
-      collapsed.value ? 'vite_shouqi' : 'vite_zhankai',
-      'vite_',
-    ]);
+    const iconClass = computed(() =>
+      collapsed.value ? 'vite_caidanyou' : 'vite_caidan',
+    );
     const style = computed(() =>
       collapsed.value
         ? { width: props.collapsedwidth }
@@ -133,10 +135,14 @@ const side = defineComponent({
           <button
             onClick={() => {
               collapsed.value = !collapsed.value;
+              collapsedActiveIng.value = true;
               Context.emit('collapsed', collapsed.value);
+              setTimeout(() => {
+                collapsedActiveIng.value = false;
+              }, 300);
             }}
           >
-            <i class={iconClass.value}></i>
+            <viIcon name={iconClass.value} />
           </button>
         </div>
         {renderItem(props.menus)}
@@ -145,7 +151,4 @@ const side = defineComponent({
   },
 });
 
-side.install = (app: App) => {
-  app.component(side.name, side);
-};
-export default side;
+export default installComponent(side, 'viMenuBox');

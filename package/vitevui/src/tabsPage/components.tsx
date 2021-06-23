@@ -4,42 +4,56 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:45:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 13:19:30
+ * @LastEditTime: 2021-04-20 15:49:23
  */
-import { createCommentVNode, defineComponent, toRaw, Transition } from 'vue';
+import {
+  createCommentVNode,
+  defineComponent,
+  toRaw,
+  TransitionGroup,
+} from 'vue';
 import { setStyleClass } from '../util';
-import { tabsProps } from './tabsHooks';
+import { tabsProps } from './tabsFunHook';
 
 interface componentProps extends tabsProps {
   animate: string;
 }
 
-export default defineComponent({
-  props: {
-    items: {
-      default: [],
-      type: Array,
-    },
-    activeVal: String,
+const props = {
+  items: {
+    default: [],
+    type: Array,
   },
-  setup(Prop, context) {
-    const props = Prop as componentProps;
+  activeVal: String,
+  animate: String,
+};
+
+export default defineComponent({
+  props,
+  setup(props, context) {
     const classes = setStyleClass(['tabs_components_box']);
     return () => (
       <div class={classes}>
-        {props.items.map((item) => {
-          const com = toRaw(item.component || createCommentVNode(''));
-          const params = item.params || {};
-          return (
-            <Transition name={props.animate}>
+        <TransitionGroup name={props.animate}>
+          {props.items.map((item: any, key) => {
+            const com = toRaw(item.component || createCommentVNode(''));
+            const params = item.params || {};
+
+            return (
               <com
                 {...params}
-                class={[setStyleClass(['component_item'])]}
-                vShow={item.id === props.activeVal}
+                key={key}
+                class={[
+                  setStyleClass([
+                    'component_item',
+                    item.id === props.activeVal ? 'component_item_active' : '',
+                  ]),
+                ]}
+                // vShow={item.id === props.activeVal}
               />
-            </Transition>
-          );
-        })}
+            );
+          })}
+        </TransitionGroup>
       </div>
     );
   },

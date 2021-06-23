@@ -4,7 +4,7 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 15:31:48
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-23 13:25:46
+ * @LastEditTime: 2021-04-08 18:17:06
 -->
 
 # vite ui
@@ -16,16 +16,6 @@
 [![NPM module](https://img.shields.io/npm/v/vitevui.svg)](https://npmjs.org/package/vitevui)
 [![NPM downloads](https://img.shields.io/npm/dt/vitevui.svg)](https://npmjs.org/package/vitevui)
 
-- ui 组件 请大家共同维护，持续迭代。
+[文档连接](https://bhabgs.github.io/vite-vui-docs/components/log.html)
 
-## 文档将会一点点优化
-
-## 组件也会一步步完善
-
-- 已完成组件
-  1. `layout`
-     - `<vi-layout></vi-layout>`
-     - `<vi-layout-header></vi-layout-header>`
-     - `<vi-layout-sider></vi-layout-sider>`
-     - `<vi-layout-main></vi-layout-main>`
-     - `<vi-layout-footer></vi-layout-footer>`
+flow组件会依赖'ant-design-vue','@antv/x6'

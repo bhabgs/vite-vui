@@ -4,11 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-03-31 09:58:10
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 14:27:56
+ * @LastEditTime: 2021-05-06 09:22:01
  */
-import { computed, defineComponent, inject, ref, Ref, watch } from 'vue';
+import { computed, defineComponent, inject, Ref } from 'vue';
 import { setStyleClass } from '../util';
-import { MenuItemProps } from './group';
 
 export default defineComponent({
   props: {
@@ -24,9 +23,11 @@ export default defineComponent({
       default: '',
       type: String,
     },
+    badgeCount: {
+      type: [String, Number],
+    },
   },
-  setup(Prop, context) {
-    const props = (Prop as unknown) as MenuItemProps;
+  setup(props, context) {
     const slots = context.slots;
     const def = slots.default;
     const meun_active_item = inject<Ref>('meun_active_item');
@@ -45,10 +46,12 @@ export default defineComponent({
           context.emit('customclick', props);
         }}
       >
-        <span>
-          {props.icon ? <i class={`${props.icon} vite_`}></i> : ''}
-          {props.title}
-        </span>
+        <viBadge count={props.badgeCount}>
+          <span>
+            {props.icon ? <viIcon name={props.icon} /> : ''}
+            {props.title}
+          </span>
+        </viBadge>
       </li>
     );
   },

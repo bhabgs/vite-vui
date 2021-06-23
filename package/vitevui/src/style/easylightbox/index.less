@@ -1,0 +1,116 @@
+.vite_easylightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+
+  &_mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: .5;
+    background: #000;
+  }
+
+  &_canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .vite_easylightbox_item {
+      height: 100%;
+      transition: transform 0.3s ease 0s;
+
+      img {
+        display: block;
+        height: 100%;
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .vite_easylightbox_btn {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: .8;
+    cursor: pointer;
+    box-sizing: border-box;
+    user-select: none;
+
+    .vite_ {
+      font-size: inherit;
+    }
+
+    &.vite_easylightbox_close {
+      top: 40px;
+      right: 40px;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      color: #fff;
+      background-color: #606266;
+    }
+
+    &.vite_easylightbox_prev,
+    &.vite_easylightbox_next {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+      color: #fff;
+      background-color: #606266;
+      border-color: #fff;
+    }
+
+    &.vite_easylightbox_prev {
+      left: 40px;
+    }
+
+    &.vite_easylightbox_next {
+      right: 40px;
+      text-indent: 2px;
+    }
+
+    &.vite_easylightbox_actions {
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      width: 282px;
+      height: 44px;
+      padding: 0 23px;
+      background-color: #606266;
+      border-color: #fff;
+      border-radius: 22px;
+
+      .vite_easylightbox_actions-inner {
+        width: 100%;
+        height: 100%;
+        text-align: justify;
+        cursor: default;
+        font-size: 23px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        >div {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+
+}

@@ -1,0 +1,49 @@
+.vite_button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: @white;
+  border: 1px solid @gray-4;
+  color: @gray-8;
+  text-align: center;
+  padding: @padding-xs;
+  font-size: 1rem;
+  .animate2();
+  &_upload {
+    position: relative;
+    .vite_button_mask,
+    > input {
+      position: absolute;
+      cursor: pointer;
+      opacity: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .vite_button_mask {
+      z-index: 8;
+      opacity: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    > input {
+      z-index: 9;
+    }
+    &:active {
+      > input {
+        opacity: 0;
+      }
+    }
+  }
+  &_radius {
+    border-radius: @border-radius-base*2;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}

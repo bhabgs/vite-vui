@@ -4,10 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:13:21
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 15:28:13
+ * @LastEditTime: 2021-04-20 15:46:21
  */
-import { defineComponent, App } from 'vue';
-import { setStyleClass } from '../util';
+import { defineComponent } from 'vue';
+import { setStyleClass, installComponent } from '../util';
 import tabs, { tabsProps, tabItem } from './tab';
 
 export interface TabsProps extends tabsProps {
@@ -44,7 +44,5 @@ const viteTabs = defineComponent({
     );
   },
 });
-viteTabs.install = (app: App) => {
-  app.component(viteTabs.name, viteTabs);
-};
-export default viteTabs;
+
+export default installComponent(viteTabs, 'viteTabs');

@@ -4,11 +4,10 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 16:21:03
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 14:09:43
+ * @LastEditTime: 2021-04-16 15:06:41
  */
 import { defineComponent, getCurrentInstance } from 'vue';
 import { getTabCurrentDetail } from '../../package/vitevui';
-import { tabItem } from '../../package/vitevui/lib/types/tabsPage/tabsHooks';
 import test1 from './test1';
 
 export default defineComponent({
@@ -23,7 +22,7 @@ export default defineComponent({
       <div class='test'>
         <button
           onClick={() => {
-            const tabPage: tabItem = {
+            const tabPage: any = {
               name: 'newPage',
               id: 'newpage',
               component: test1,

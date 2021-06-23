@@ -4,12 +4,11 @@
  * @Author: bhabgs
  * @Date: 2021-04-06 11:43:20
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-08 10:40:33
+ * @LastEditTime: 2021-04-21 14:36:34
  */
 import { defineComponent, withModifiers } from 'vue';
 import { setStyleClass } from '../util';
-import { tabsProps } from './tabsHooks';
-
+import hook, { tabsProps } from './tabsFunHook';
 export default defineComponent({
   props: {
     items: {
@@ -18,13 +17,13 @@ export default defineComponent({
     },
     activeVal: String,
   },
-  setup(Prop, context) {
-    const props = Prop as tabsProps;
+  setup(props) {
+    const { open, remove } = hook();
     const classes = setStyleClass(['tab_box']);
     return () => (
       <div class={classes}>
         <div class={setStyleClass(['items_box'])}>
-          {props.items.map((item) => {
+          {props.items.map((item: any) => {
             const itemClass = setStyleClass([
               'tabs_item',
               item.disabled ? 'disabled' : '',
@@ -34,23 +33,23 @@ export default defineComponent({
             return (
               <div
                 class={itemClass}
+                title={item.name}
                 onClick={(e) => {
                   e.preventDefault();
-                  context.emit('select', item);
+                  open(item.id);
                 }}
               >
-                {item.name}
+                <span>
+                  <viIcon name={item.icon} />
+                  {item.name}
+                </span>
                 {item.hasClosed ? (
-                  <i
-                    class='vite_close vite_'
-                    onClick={withModifiers(
-                      (e: any) => {
-                        // 关闭
-                        context.emit('close', item);
-                      },
-                      ['stop'],
-                    )}
-                  ></i>
+                  <vi-icon
+                    name={'vite_close'}
+                    onClick={withModifiers(() => {
+                      remove(item.id);
+                    }, ['stop'])}
+                  />
                 ) : (
                   ''
                 )}

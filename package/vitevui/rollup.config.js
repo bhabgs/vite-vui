@@ -17,5 +17,5 @@ export default {
   output,
   plugins,
   acornInjectPlugins: [jsx()],
-  external: ['vue'],
+  external: ['vue','ant-design-vue','@antv/x6'],
 };

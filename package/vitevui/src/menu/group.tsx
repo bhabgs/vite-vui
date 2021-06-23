@@ -4,16 +4,17 @@
  * @Author: bhabgs
  * @Date: 2021-03-30 15:27:25
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-04-06 14:28:04
+ * @LastEditTime: 2021-05-06 09:29:30
  */
 import { computed, inject, defineComponent, ref, Ref } from 'vue';
-import { setStyleClass } from '../util';
+import { setStyleClass, getSlots } from '../util';
 import { MenusItem } from '.';
 
 export interface MenuItemProps {
   icon: string;
   id: string;
   title: string;
+  badgeCount: string | number;
   child: Array<MenusItem>;
 }
 
@@ -31,14 +32,16 @@ export default defineComponent({
       default: '',
       type: String,
     },
+    badgeCount: {
+      type: [String, Number],
+    },
     child: {
       default: [],
       type: Array,
     },
   },
   setup(Prop, context) {
-    const slots = context.slots;
-    const def = slots.default;
+    const asd = getSlots(context);
 
     const props = (Prop as unknown) as MenuItemProps;
     const meun_active_item = inject<Ref>('meun_active_item');
@@ -77,13 +80,15 @@ export default defineComponent({
             close.value = !close.value;
           }}
         >
-          <span>
-            {props.icon ? <i class={`${props.icon} vite_`}></i> : ''}
-            {props.title}
-          </span>
-          <i class={`vite_arrow-down vite_`}></i>
+          <viBadge count={props.badgeCount}>
+            <span>
+              {props.icon ? <viIcon name={props.icon} /> : ''}
+              {props.title}
+            </span>
+          </viBadge>
+          <viIcon name={'vite_xiala'} />
         </div>
-        <ul class={classesChild}>{<def />}</ul>
+        <ul class={classesChild}>{<asd.def />}</ul>
       </ul>
     );
   },
