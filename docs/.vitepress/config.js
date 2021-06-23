@@ -33,6 +33,7 @@ module.exports = {
             { text: '介绍', link: '/' },
             { text: '日志', link: '/components/log' },
             { text: 'Button', link: '/components/button/' },
+            { text: 'flow', link: '/components/flow/' },
             { text: 'Layout', link: '/components/layout/' },
             { text: 'contextmenu', link: '/components/contextmenu/' },
             { text: 'menu', link: '/components/menu/' },

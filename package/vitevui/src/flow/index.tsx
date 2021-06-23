@@ -157,7 +157,7 @@ const viFlow = defineComponent({
         target: this.graph,
         title: '组件',
         stencilGraphWidth: 280,
-        stencilGraphHeight: 800 - 32,
+        stencilGraphHeight: document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
       });
       const stencilContainer = document.querySelector('#module');
       stencilContainer!.appendChild(this.stencil.container);
@@ -347,7 +347,7 @@ const viFlow = defineComponent({
   },
   render(h: any) {
     return (
-      <div class='action'>
+      <div class='vuiFlow'>
         <div class='flex drag'>
           <div id='module'></div>
           <div id='graph'></div>
