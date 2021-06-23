@@ -37,6 +37,12 @@ const props = {
     type: String,
     default: '',
   },
+  functions: {
+    default: [],
+  },
+  rules:{
+    default:[],
+  },
   data: {
     default: [],
   },
@@ -46,7 +52,6 @@ const viFlow = defineComponent({
   props,
   data() {
     return {
-      id: 0 as any,
       recordType: 0 as any, // 0规则 1决策
       graph: undefined as any,
       stencil: undefined as any,
@@ -297,6 +302,7 @@ const viFlow = defineComponent({
         });
         par.nodeList.push(resNode);
       });
+      return par
       // const res: any = await this.$axios.post(
       //   `/fsmEdge/v1/componentGraph/${this.id ? 'modify' : 'create'}`,
       //   par,
@@ -322,6 +328,11 @@ const viFlow = defineComponent({
             {this.diaObj.data ? (
               <customCom
                 com={this.diaObj}
+                funAll={this.functions}
+                rules={this.rules}
+                onRuleSearch={(val:string)=>{
+                  this.$emit('ruleSearch',val)
+                }}
                 onOk={(res: any) => {
                   this.setDiaVal(res);
                 }}
@@ -341,16 +352,7 @@ const viFlow = defineComponent({
           <div id='module'></div>
           <div id='graph'></div>
         </div>
-        <div class='buttons'>
-          <a-button
-            type='primary'
-            onClick={() => {
-              this.save();
-            }}
-          >
-            保存
-          </a-button>
-        </div>
+        
         {this.renderDia()}
       </div>
     );

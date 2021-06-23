@@ -9,11 +9,10 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com'],
+  props: ['com','funAll'],
   setup(props: any, context) {
     const state = reactive({
       funOption: [],
-      funAll: [],
       resData: {
         value: '',
         valueType: '',
@@ -45,7 +44,7 @@ export default defineComponent({
     });
 
     const handleSearch = (val: string) => {
-      const arr = state.funAll.filter((ele: any) => {
+      const arr = props.funAll.filter((ele: any) => {
         return (
           (ele.name && ele.name.indexOf(val) >= 0) ||
           ele.funcName.indexOf(val) >= 0
@@ -54,7 +53,7 @@ export default defineComponent({
       state.funOption = arr;
     };
     const handleChange = (val: string) => {
-      state.funAll.forEach((element: any) => {
+      props.funAll.forEach((element: any) => {
         if (element.funcName === val) {
           state.resData.name = element.name;
           state.resData.funcName = element.funcName;
@@ -86,13 +85,13 @@ export default defineComponent({
               handleSearch(val);
             }}
           >
-            {/* {state.funOption.map((ele: any) => {
+            {state.funOption.map((ele: any) => {
               return (
                 <a-select-option key={ele.funcName}>
                   {ele.name}:{ele.funcName}
-                </a-select-a-select-option>
+                </a-select-option>
               );
-            })} */}
+            })}
           </a-select>
           {state.resData.paramList.map((ele: any) => {
             return (

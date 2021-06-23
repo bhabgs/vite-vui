@@ -138,10 +138,10 @@
     "@types/lodash" "^4.14.165"
     lodash "^4.17.15"
 
-"@antv/x6@^1.23.10":
-  version "1.23.10"
-  resolved "https://registry.yarnpkg.com/@antv/x6/-/x6-1.23.10.tgz#d0283d9c2d8de3088e0ed02291d82453b2c69ef2"
-  integrity sha512-R1FF945c2XQULUvoNHeMQyEU7H1QpISSyK6A1rYU8IsPQPmPi+qxZLe+WGtqmi4oUvDcuKlZ3SEZ/CAWcU/thw==
+"@antv/x6@^1.24.2":
+  version "1.24.2"
+  resolved "https://registry.yarnpkg.com/@antv/x6/-/x6-1.24.2.tgz#1d1fc5b5b5cd17bdd9a1486ccea186090ea4ce35"
+  integrity sha512-D05bp4pIWKn8tJOIFy0s/E9kThQZ5B61Gj/Ykk0mNPXMYIYP09xiXefs911bxP7x8WSOkgKTnk49qSOtbYBNWQ==
   dependencies:
     csstype "^3.0.3"
     jquery "^3.5.1"

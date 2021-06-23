@@ -13,6 +13,7 @@ import {
   getCurrentInstance,
   nextTick,
 } from 'vue';
+import axios from 'axios';
 import { viFlow } from '../package/vitevui/src';
 import test1 from './components/test1';
 import test2 from './components/test2';
@@ -72,6 +73,21 @@ export default defineComponent({
       //   mitt.emit('vite-tabspage-add', tabsItem.value[1]);
       // });
     });
+    // 规则引擎测试专用
+    const functions:any[]=[{
+      "name":"解析为java对象",
+      "funcName":"json.parse",
+      "shortIntroduce":"解析json字符串为java对象",
+      "paramDefineList":[
+          {
+              "defineCode":"jsonString",
+              "paramType":"STR",
+              "name":"json字符串"
+          }
+      ]
+  }]
+  let rules:any=[]
+    // 规则引擎测试专用结束
     return (
       <vi-layout>
         <vi-layout-header>
@@ -123,7 +139,30 @@ export default defineComponent({
           />
           <vi-layout-main>
             {/* <viTabsPage /> */}
-            <viFlow></viFlow>
+            <viFlow functions={functions} onRuleSearch={async(val:string)=>{
+              const par: any = { searchTag: val };
+              const res = await axios.post('/api/fsmEdge/v1/componentGraph/search', {
+                recordType: 0,
+                pageNum: 1,
+                pageSize: 1000,
+                ...par,
+              },{
+                headers:{
+                  corpId:'160573079492499'
+                }
+              });
+              rules = res.data.list;
+                }}></viFlow>
+                <div class='buttons'>
+          <a-button
+            type='primary'
+            onClick={() => {
+              // this.save();
+            }}
+          >
+            保存
+          </a-button>
+        </div>
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer

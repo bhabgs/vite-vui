@@ -22,7 +22,7 @@
   "author": "bhabgs",
   "license": "ISC",
   "dependencies": {
-    "@antv/x6": "^1.23.10",
+    "@antv/x6": "^1.24.2",
     "ant-design-vue": "^2.2.0-beta.3",
     "element-plus": "1.0.2-beta.37",
     "mitt": "2.1.0",
