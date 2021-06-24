@@ -69,7 +69,10 @@ const viFlow = defineComponent({
     };
   },
   mounted() {
-    this.initGraph();
+    this.$nextTick(()=>{
+      this.initGraph();
+    })
+    
     // this.recordType = this.$route.query.recordType;
     // this.id = this.$route.query.id;
     if (this.id) {
@@ -81,12 +84,14 @@ const viFlow = defineComponent({
       this.graph.fromJSON(this.data);
     },
     initGraph() {
+      console.log(document.getElementById('graph')!.clientHeight)
       this.graph = new Graph({
         grid: true,
         // 对齐线
         snapline: true,
         // 节点缩放
         resizing: true,
+        // height:document.getElementById('graph')!.clientHeight,
         container: document.getElementById('graph')!,
         background: { color: '#ffffff' },
         // 禁止出画布
