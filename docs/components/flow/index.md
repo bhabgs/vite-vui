@@ -1,5 +1,5 @@
 # flow 规则引擎流程组件
-
+> 依赖ant和x6，需要安装
 ## 参数以及方法
 
 > functions：函数待选数组，格式：[{name:'',funcName:'',paramList:[{name:'',value:''}]}]
