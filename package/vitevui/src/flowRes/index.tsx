@@ -5,10 +5,10 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { installComponent } from '../util';
 import { Graph, Shape, Addon } from '@antv/x6';
-import { message } from 'ant-design-vue';
 
-import '@/assets/less/action.less';
+import './action.less';
 
 const props = {
   cells: {
@@ -19,7 +19,7 @@ const props = {
   },
 };
 
-export default defineComponent({
+const viFlowRes = defineComponent({
   components: {},
   props,
   data() {
@@ -149,7 +149,7 @@ export default defineComponent({
   },
   render(h: any) {
     return (
-      <div class='action'>
+      <div class='vuiFlow'>
         <div class='flex drag'>
           <div id='graph'></div>
         </div>
@@ -157,3 +157,4 @@ export default defineComponent({
     );
   },
 });
+export default installComponent(viFlowRes, 'viFlowRes');
