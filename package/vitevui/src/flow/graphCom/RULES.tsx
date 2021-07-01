@@ -8,7 +8,7 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com'],
+  props: ['com', 'rules'],
   setup(props: any, context) {
     const state = reactive({
       ruleOption: [],
@@ -66,10 +66,11 @@ export default defineComponent({
               handleRuleChange(val);
             }}
             onSearch={(val: string) => {
-              handleRuleSearch(val);
+              // handleRuleSearch(val);
+              context.emit('ruleSearch', val);
             }}
           >
-            {state.ruleOption.map((ele: any) => {
+            {props.rules.map((ele: any) => {
               return (
                 <a-select-option key={ele.recordCode}>
                   {ele.name}:{ele.recordCode}

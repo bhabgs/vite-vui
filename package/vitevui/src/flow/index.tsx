@@ -37,6 +37,12 @@ const props = {
     type: String,
     default: '',
   },
+  functions: {
+    default: [],
+  },
+  rules: {
+    default: [],
+  },
   data: {
     default: [],
   },
@@ -46,7 +52,6 @@ const viFlow = defineComponent({
   props,
   data() {
     return {
-      id: 0 as any,
       recordType: 0 as any, // 0规则 1决策
       graph: undefined as any,
       stencil: undefined as any,
@@ -64,7 +69,10 @@ const viFlow = defineComponent({
     };
   },
   mounted() {
-    this.initGraph();
+    this.$nextTick(() => {
+      this.initGraph();
+    });
+
     // this.recordType = this.$route.query.recordType;
     // this.id = this.$route.query.id;
     if (this.id) {
@@ -82,6 +90,7 @@ const viFlow = defineComponent({
         snapline: true,
         // 节点缩放
         resizing: true,
+        // height:document.getElementById('graph')!.clientHeight,
         container: document.getElementById('graph')!,
         background: { color: '#ffffff' },
         // 禁止出画布
@@ -152,7 +161,8 @@ const viFlow = defineComponent({
         target: this.graph,
         title: '组件',
         stencilGraphWidth: 280,
-        stencilGraphHeight: 800 - 32,
+        stencilGraphHeight:
+          document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
       });
       const stencilContainer = document.querySelector('#module');
       stencilContainer!.appendChild(this.stencil.container);
@@ -297,6 +307,7 @@ const viFlow = defineComponent({
         });
         par.nodeList.push(resNode);
       });
+      return par;
       // const res: any = await this.$axios.post(
       //   `/fsmEdge/v1/componentGraph/${this.id ? 'modify' : 'create'}`,
       //   par,
@@ -322,6 +333,11 @@ const viFlow = defineComponent({
             {this.diaObj.data ? (
               <customCom
                 com={this.diaObj}
+                funAll={this.functions}
+                rules={this.rules}
+                onRuleSearch={(val: string) => {
+                  this.$emit('ruleSearch', val);
+                }}
                 onOk={(res: any) => {
                   this.setDiaVal(res);
                 }}
@@ -336,21 +352,12 @@ const viFlow = defineComponent({
   },
   render(h: any) {
     return (
-      <div class='action'>
+      <div class='vuiFlow'>
         <div class='flex drag'>
           <div id='module'></div>
           <div id='graph'></div>
         </div>
-        <div class='buttons'>
-          <a-button
-            type='primary'
-            onClick={() => {
-              this.save();
-            }}
-          >
-            保存
-          </a-button>
-        </div>
+
         {this.renderDia()}
       </div>
     );
