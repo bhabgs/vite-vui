@@ -1,0 +1,24 @@
+&.vite_tabs_page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  .vite_tabs_components_box {
+    flex: 1;
+    position: relative;
+    .vite_component_item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      opacity: 0;
+      background: @white;
+      .animate3();
+      &_active {
+        opacity: 1;
+        z-index: 9;
+      }
+    }
+  }
+}

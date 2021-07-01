@@ -1,0 +1,97 @@
+@itemHeight: 3.29rem;
+@itemMargin: 0.2rem;
+@itemBorderWidth: 0.29rem;
+
+.active {
+  position: relative;
+  background-color: @blue-4;
+  .hover();
+
+  &::after {
+    transform: scaleY(1);
+    opacity: 1;
+    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+      opacity 0.15s;
+  }
+}
+
+.hover {
+  color: @blue;
+}
+
+.vite_menu_box {
+  padding: @itemMargin 0;
+  overflow: hidden;
+  z-index: inherit;
+  @import './group.less';
+  @import './theme/dark.less';
+  @import './theme/light.less';
+  .animate3();
+  @import './title.less';
+
+  &.vite_menu_zhankai {
+
+    li,
+    .vite_menu_group_title {
+      height: @itemHeight;
+    }
+  }
+
+  li,
+  .vite_menu_group_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    font-size: @font-size-xs;
+    cursor: pointer;
+    padding-left: @padding-xs;
+    margin: @itemMargin 0;
+    display: flex;
+    align-items: center;
+    color: @text-color;
+
+    >span {
+
+      &:not(.vite_badge),
+      &.vite_badge>span {
+        display: flex;
+        align-items: center;
+
+        i {
+          margin-right: 0.2rem;
+        }
+      }
+    }
+  }
+
+  li {
+    .animate3();
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border-right: @itemBorderWidth solid @blue;
+      transform: scaleY(0.0001);
+      opacity: 0;
+      transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+        opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+      content: '';
+    }
+
+    &.vite_menu_item_active {
+      .active();
+    }
+
+    &:hover {
+      .hover();
+    }
+  }
+
+  .menu_item_icon_box {
+    display: inline-block;
+  }
+
+  @import './collapsed.less';
+}
