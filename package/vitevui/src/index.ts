@@ -26,7 +26,7 @@ import viteTabsPage from './tabsPage';
 import upload from './upload';
 import viIcon from './icon';
 import viFlow from './flow';
-import viFlowRes from './FlowRes';
+import viFlowRes from './flowRes';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 
