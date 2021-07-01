@@ -26,6 +26,7 @@ import viteTabsPage from './tabsPage';
 import upload from './upload';
 import viIcon from './icon';
 import viFlow from './flow';
+import viFlowRes from './FlowRes';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 
@@ -43,6 +44,7 @@ const COMPS: baseObject = {
   menu,
   viIcon,
   viFlow,
+  viFlowRes,
   upload,
 };
 const VERSION: string = '0.0.2';
@@ -71,6 +73,7 @@ export {
   viteTabs,
   upload,
   viFlow,
+  viFlowRes,
   viIcon,
   getTabCurrentDetail,
   tabsPageHook,
