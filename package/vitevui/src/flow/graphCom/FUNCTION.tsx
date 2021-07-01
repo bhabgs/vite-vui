@@ -9,7 +9,7 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com','funAll'],
+  props: ['com', 'funAll'],
   setup(props: any, context) {
     const state = reactive({
       funOption: [],

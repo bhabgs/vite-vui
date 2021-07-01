@@ -40,8 +40,8 @@ const props = {
   functions: {
     default: [],
   },
-  rules:{
-    default:[],
+  rules: {
+    default: [],
   },
   data: {
     default: [],
@@ -69,10 +69,10 @@ const viFlow = defineComponent({
     };
   },
   mounted() {
-    this.$nextTick(()=>{
+    this.$nextTick(() => {
       this.initGraph();
-    })
-    
+    });
+
     // this.recordType = this.$route.query.recordType;
     // this.id = this.$route.query.id;
     if (this.id) {
@@ -84,7 +84,6 @@ const viFlow = defineComponent({
       this.graph.fromJSON(this.data);
     },
     initGraph() {
-      console.log(document.getElementById('graph')!.clientHeight)
       this.graph = new Graph({
         grid: true,
         // 对齐线
@@ -162,7 +161,8 @@ const viFlow = defineComponent({
         target: this.graph,
         title: '组件',
         stencilGraphWidth: 280,
-        stencilGraphHeight: document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
+        stencilGraphHeight:
+          document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
       });
       const stencilContainer = document.querySelector('#module');
       stencilContainer!.appendChild(this.stencil.container);
@@ -307,7 +307,7 @@ const viFlow = defineComponent({
         });
         par.nodeList.push(resNode);
       });
-      return par
+      return par;
       // const res: any = await this.$axios.post(
       //   `/fsmEdge/v1/componentGraph/${this.id ? 'modify' : 'create'}`,
       //   par,
@@ -335,8 +335,8 @@ const viFlow = defineComponent({
                 com={this.diaObj}
                 funAll={this.functions}
                 rules={this.rules}
-                onRuleSearch={(val:string)=>{
-                  this.$emit('ruleSearch',val)
+                onRuleSearch={(val: string) => {
+                  this.$emit('ruleSearch', val);
                 }}
                 onOk={(res: any) => {
                   this.setDiaVal(res);
@@ -357,7 +357,7 @@ const viFlow = defineComponent({
           <div id='module'></div>
           <div id='graph'></div>
         </div>
-        
+
         {this.renderDia()}
       </div>
     );
