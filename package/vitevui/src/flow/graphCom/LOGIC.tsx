@@ -8,13 +8,14 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com'],
+  props: ['com', 'type'],
   setup(props: any, context) {
     const state = reactive({
       resData: {
         value: '',
         valueType: '',
         name: '',
+        dynamically: false,
       },
     });
     const { proxy }: any = getCurrentInstance();
@@ -34,15 +35,26 @@ export default defineComponent({
     const renderOperator = () => {
       return (
         <div>
-          <div>
-            逻辑符：
-            <a-select
-              v-model={[state.resData.value, 'value']}
-              style='width: 120px'
-            >
-              <a-select-option value='&&'>并且</a-select-option>
-              <a-select-option value='||'>或者</a-select-option>
-            </a-select>
+          <div class='flex line'>
+            <div class='name'>逻辑符：</div>
+            <div class='flex1'>
+              <a-select
+                v-model={[state.resData.value, 'value']}
+                style='width: 120px'
+              >
+                <a-select-option value='&&'>并且</a-select-option>
+                <a-select-option value='||'>或者</a-select-option>
+              </a-select>
+            </div>
+            {props.type === 'template' ? (
+              <div class='option'>
+                <a-checkbox v-model={[state.resData.dynamically, 'checked']}>
+                  可配
+                </a-checkbox>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       );

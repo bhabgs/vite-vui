@@ -9,7 +9,7 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com', 'funAll'],
+  props: ['com', 'funAll', 'type'],
   setup(props: any, context) {
     const state = reactive({
       funOption: [],
@@ -100,6 +100,15 @@ export default defineComponent({
                 <div class='flex1'>
                   <a-input v-model={[ele.value, 'value']} />
                 </div>
+                {props.type === 'template' ? (
+                  <div class='option'>
+                    <a-checkbox v-model={[ele.dynamically, 'checked']}>
+                      可配
+                    </a-checkbox>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             );
           })}
