@@ -408,7 +408,7 @@ export default defineComponent({
           />
           <vi-layout-main>
             {/* <viTabsPage /> */}
-            <viFlow
+            {/* <viFlow
               type='template'
               functions={functions}
               onRuleSearch={async (val: string) => {
@@ -429,8 +429,8 @@ export default defineComponent({
                 );
                 rules = res.data.list;
               }}
-            ></viFlow>
-            {/* <viFlowRes nodeList={nodeList} cells={cells} /> */}
+            ></viFlow> */}
+            <viFlowRes nodeList={nodeList} cells={cells} type='template' />
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer

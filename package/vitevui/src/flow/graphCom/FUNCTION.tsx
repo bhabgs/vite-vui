@@ -17,6 +17,7 @@ export default defineComponent({
         value: '',
         valueType: '',
         name: '',
+        dynamically: false,
         paramList: [],
         funcName: '',
         resField: '', // 函数返回字段
@@ -65,6 +66,11 @@ export default defineComponent({
       });
     };
     const handleOk = () => {
+      state.resData.paramList.forEach((ele: any) => {
+        if (ele.dynamically) {
+          state.resData.dynamically = true;
+        }
+      });
       context.emit('ok', state.resData);
     };
     const renderFun = () => {
