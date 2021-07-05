@@ -11,6 +11,9 @@ import { Graph, Shape, Addon } from '@antv/x6';
 import './action.less';
 
 const props = {
+  type: {
+    default: 'res',
+  },
   cells: {
     default: [],
   },
@@ -42,10 +45,30 @@ const viFlowRes = defineComponent({
   },
   mounted() {
     this.initGraph();
-    this.getData();
+    if (this.type === 'template') {
+      this.dealTemData();
+    } else {
+      this.dealResData();
+    }
   },
   methods: {
-    async getData() {
+    finishEdit(ele: any) {
+      ele.done = true;
+      ele.attrs.body.stroke = 'green';
+    },
+    dealTemData() {
+      this.cells.forEach((ele: any) => {
+        if (ele.shape !== 'edge') {
+          if (ele.dynamically) {
+            ele.done = false;
+            ele.attrs.body.stroke = 'blue';
+            ele.attrs.body.strokeWidth = 2;
+          }
+        }
+      });
+      this.graph.fromJSON(this.cells);
+    },
+    dealResData() {
       this.cells.forEach((ele: any) => {
         // 暂时只有函数
         if (ele.shape !== 'edge') {
@@ -144,6 +167,11 @@ const viFlowRes = defineComponent({
             return true;
           },
         },
+      });
+      this.graph.on('node:click', (arg: any) => {
+        this.selectedObj = arg.node.store.data;
+        console.log(this.selectedObj);
+        this.$emit('click', this.selectedObj);
       });
     },
   },

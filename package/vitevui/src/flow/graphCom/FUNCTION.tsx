@@ -9,7 +9,7 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com', 'funAll'],
+  props: ['com', 'funAll', 'type'],
   setup(props: any, context) {
     const state = reactive({
       funOption: [],
@@ -17,6 +17,7 @@ export default defineComponent({
         value: '',
         valueType: '',
         name: '',
+        dynamically: false,
         paramList: [],
         funcName: '',
         resField: '', // 函数返回字段
@@ -65,6 +66,11 @@ export default defineComponent({
       });
     };
     const handleOk = () => {
+      state.resData.paramList.forEach((ele: any) => {
+        if (ele.dynamically) {
+          state.resData.dynamically = true;
+        }
+      });
       context.emit('ok', state.resData);
     };
     const renderFun = () => {
@@ -100,6 +106,15 @@ export default defineComponent({
                 <div class='flex1'>
                   <a-input v-model={[ele.value, 'value']} />
                 </div>
+                {props.type === 'template' ? (
+                  <div class='option'>
+                    <a-checkbox v-model={[ele.dynamically, 'checked']}>
+                      可配
+                    </a-checkbox>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             );
           })}

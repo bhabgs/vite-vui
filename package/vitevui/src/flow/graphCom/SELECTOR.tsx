@@ -8,14 +8,16 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com'],
+  props: ['com', 'type'],
   setup(props: any, context) {
     const state = reactive({
       resData: {
         selectorParamList: [
           {
             leftOp: '',
+            leftOpDynamically: false,
             leftValue: '',
+            leftValueDynamically: false,
             leftValueType: '',
           },
         ] as any[],
@@ -32,30 +34,69 @@ export default defineComponent({
     });
 
     const handleOk = () => {
+      const obj = state.resData.selectorParamList[0];
+      if (obj.leftOpDynamically || obj.leftValueDynamically) {
+        obj.dynamically = true;
+      }
       context.emit('ok', state.resData);
     };
 
     const renderConstant = () => {
       return (
         <div>
-          <div>
-            判断：
-            <a-select
-              v-model={[state.resData.selectorParamList[0].leftOp, 'value']}
-              style='width: 120px'
-            >
-              <a-select-option value='>'>大于</a-select-option>
-              <a-select-option value='>='>大于等于</a-select-option>
-              <a-select-option value='=='>等于</a-select-option>
-              <a-select-option value='<'>小于</a-select-option>
-              <a-select-option value='<='>小于等于</a-select-option>
-            </a-select>
+          <div class='flex line'>
+            <div class='name'>判断：</div>
+            <div class='flex1'>
+              <a-select
+                v-model={[state.resData.selectorParamList[0].leftOp, 'value']}
+                style='width: 120px'
+              >
+                <a-select-option value='>'>大于</a-select-option>
+                <a-select-option value='>='>大于等于</a-select-option>
+                <a-select-option value='=='>等于</a-select-option>
+                <a-select-option value='<'>小于</a-select-option>
+                <a-select-option value='<='>小于等于</a-select-option>
+              </a-select>
+            </div>
+            {props.type === 'template' ? (
+              <div class='option'>
+                <a-checkbox
+                  v-model={[
+                    state.resData.selectorParamList[0].leftOpDynamically,
+                    'checked',
+                  ]}
+                >
+                  可配
+                </a-checkbox>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
-          <div>
-            判断值：
-            <a-input
-              v-model={[state.resData.selectorParamList[0].leftValue, 'value']}
-            />
+          <div class='flex line'>
+            <div class='name'>判断值：</div>
+            <div class='flex1'>
+              <a-input
+                v-model={[
+                  state.resData.selectorParamList[0].leftValue,
+                  'value',
+                ]}
+              />
+            </div>
+            {props.type === 'template' ? (
+              <div class='option'>
+                <a-checkbox
+                  v-model={[
+                    state.resData.selectorParamList[0].leftValueDynamically,
+                    'checked',
+                  ]}
+                >
+                  可配
+                </a-checkbox>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           <div>
             值类型：

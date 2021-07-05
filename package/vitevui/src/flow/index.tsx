@@ -29,6 +29,7 @@ const coms: any = {
 };
 
 const props = {
+  // 模板：template
   type: {
     type: String,
     default: '',
@@ -72,7 +73,6 @@ const viFlow = defineComponent({
     this.$nextTick(() => {
       this.initGraph();
     });
-
     // this.recordType = this.$route.query.recordType;
     // this.id = this.$route.query.id;
     if (this.id) {
@@ -335,6 +335,7 @@ const viFlow = defineComponent({
                 com={this.diaObj}
                 funAll={this.functions}
                 rules={this.rules}
+                type={this.type}
                 onRuleSearch={(val: string) => {
                   this.$emit('ruleSearch', val);
                 }}
