@@ -29,7 +29,7 @@ import viFlow from './flow';
 import viFlowRes from './flowRes';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
-import './icon/iconfont.css';
+import './style/icon/iconfont.css';
 
 const COMPS: baseObject = {
   viLayout,
