@@ -51,14 +51,14 @@ const props = {
 
 const viFlow = defineComponent({
   props,
-  setup(props, context) {
-    const test = () => {
-      console.log(2);
-    };
-    context.expose({
-      test,
-    });
-  },
+  // setup(props, context) {
+  //   const test = () => {
+  //     console.log(2);
+  //   };
+  //   context.expose({
+  //     test,
+  //   });
+  // },
   data() {
     return {
       recordType: 0 as any, // 0规则 1决策
