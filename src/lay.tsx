@@ -12,6 +12,8 @@ import {
   ref,
   getCurrentInstance,
   nextTick,
+  onMounted,
+  proxyRefs,
 } from 'vue';
 import axios from 'axios';
 import { viFlow } from '../package/vitevui/src';
@@ -326,9 +328,11 @@ const nodeList = [
 
 export default defineComponent({
   components: {},
-  created() {},
-  setup() {},
-  render() {
+  setup(prop, context) {
+    const flow: any = ref(null);
+    onMounted(() => {
+      console.log(flow);
+    });
     const props = reactive({
       collapsed: false,
     });
@@ -355,12 +359,12 @@ export default defineComponent({
         ],
       },
     ];
-    let rules: any = [];
     // 规则引擎测试专用结束
-    return (
+
+    return () => (
       <vi-layout>
         <vi-layout-header>
-          <div class='text_overflow_ellipsis'>
+          <div class='text_overflow_ellipsis' onClick={() => {}}>
             润滑管理润滑管理润滑管理润滑管理润滑管理
           </div>
         </vi-layout-header>
@@ -373,25 +377,6 @@ export default defineComponent({
                 id: '1',
                 icon: 'vite_vehivles',
                 badgeCount: 1,
-              },
-              {
-                title: '22222222',
-                id: '2',
-                icon: 'vite_vehivles',
-                badgeCount: 20,
-                child: [
-                  {
-                    title: '222222-111111',
-                    id: '2-1',
-                    badgeCount: 1,
-                  },
-                  {
-                    title: '222222-222222',
-                    id: '2-2',
-                    icon: 'vite_vehivles',
-                    badgeCount: 0,
-                  },
-                ],
               },
               {
                 title: '3333333',
@@ -408,29 +393,8 @@ export default defineComponent({
           />
           <vi-layout-main>
             {/* <viTabsPage /> */}
-            {/* <viFlow
-              type='template'
-              functions={functions}
-              onRuleSearch={async (val: string) => {
-                const par: any = { searchTag: val };
-                const res = await axios.post(
-                  '/api/fsmEdge/v1/componentGraph/search',
-                  {
-                    recordType: 0,
-                    pageNum: 1,
-                    pageSize: 1000,
-                    ...par,
-                  },
-                  {
-                    headers: {
-                      corpId: '160573079492499',
-                    },
-                  },
-                );
-                rules = res.data.list;
-              }}
-            ></viFlow> */}
-            <viFlowRes nodeList={nodeList} cells={cells} type='template' />
+            <viFlow ref={flow} type='template' functions={functions}></viFlow>
+            {/* <viFlowRes nodeList={nodeList} cells={cells} type='template' /> */}
           </vi-layout-main>
         </vi-layout>
         <vi-layout-footer
