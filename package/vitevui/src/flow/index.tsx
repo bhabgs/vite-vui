@@ -51,6 +51,14 @@ const props = {
 
 const viFlow = defineComponent({
   props,
+  setup(props, context) {
+    const test = () => {
+      console.log(2);
+    };
+    context.expose({
+      test,
+    });
+  },
   data() {
     return {
       recordType: 0 as any, // 0规则 1决策
@@ -256,7 +264,7 @@ const viFlow = defineComponent({
       this.diaVisible = false;
     },
 
-    async save() {
+    save() {
       const cells = this.graph.toJSON();
       const nodes = cells.cells.filter((ele: any) => {
         return ele.shape !== 'edge';
