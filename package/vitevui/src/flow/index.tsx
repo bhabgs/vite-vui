@@ -59,6 +59,7 @@ const viFlow = defineComponent({
   //     test,
   //   });
   // },
+
   data() {
     return {
       recordType: 0 as any, // 0规则 1决策
@@ -70,12 +71,21 @@ const viFlow = defineComponent({
         moduleCode: '',
         des: '',
       },
+      funs: [] as any[],
       diaVisible: false,
       selectedObj: undefined as any,
       diaObj: {
         name: '',
       } as any,
     };
+  },
+  watch: {
+    functions: {
+      handler(val: any[]) {
+        this.funs = val;
+      },
+      deep: true,
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -341,7 +351,7 @@ const viFlow = defineComponent({
             {this.diaObj.data ? (
               <customCom
                 com={this.diaObj}
-                funAll={this.functions}
+                funAll={this.funs}
                 rules={this.rules}
                 type={this.type}
                 onRuleSearch={(val: string) => {
