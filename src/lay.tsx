@@ -345,26 +345,33 @@ export default defineComponent({
       // });
     });
     // 规则引擎测试专用
-    const functions: any[] = [
-      {
-        name: '解析为java对象',
-        funcName: 'json.parse',
-        shortIntroduce: '解析json字符串为java对象',
-        paramDefineList: [
-          {
-            defineCode: 'jsonString',
-            paramType: 'STR',
-            name: 'json字符串',
-          },
-        ],
-      },
-    ];
+    // let functions: any[] = reactive([]);
+    let state: any = reactive({ functions: [] });
     // 规则引擎测试专用结束
 
     return () => (
       <vi-layout>
         <vi-layout-header>
-          <div class='text_overflow_ellipsis' onClick={() => {}}>
+          <div
+            class='text_overflow_ellipsis'
+            onClick={() => {
+              debugger;
+              state.functions = [
+                {
+                  name: '解析为java对象',
+                  funcName: 'json.parse',
+                  shortIntroduce: '解析json字符串为java对象',
+                  paramDefineList: [
+                    {
+                      defineCode: 'jsonString',
+                      paramType: 'STR',
+                      name: 'json字符串',
+                    },
+                  ],
+                },
+              ];
+            }}
+          >
             润滑管理润滑管理润滑管理润滑管理润滑管理
           </div>
         </vi-layout-header>
@@ -393,7 +400,11 @@ export default defineComponent({
           />
           <vi-layout-main>
             {/* <viTabsPage /> */}
-            <viFlow ref={flow} type='template' functions={functions}></viFlow>
+            <viFlow
+              ref={flow}
+              type='template'
+              functions={state.functions}
+            ></viFlow>
             {/* <viFlowRes nodeList={nodeList} cells={cells} type='template' /> */}
           </vi-layout-main>
         </vi-layout>
