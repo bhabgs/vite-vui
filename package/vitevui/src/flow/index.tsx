@@ -215,6 +215,7 @@ const viFlow = defineComponent({
         this.graph.redo();
       });
       this.graph.on('node:dblclick', (arg: any) => {
+        debugger;
         this.selectedObj = arg.node;
         this.diaObj = { ...this.selectedObj.store };
         this.diaVisible = true;
@@ -248,11 +249,12 @@ const viFlow = defineComponent({
     },
 
     async setDiaVal(data: any) {
+      this.diaObj = {};
       const selected = this.selectedObj.store.data;
       selected.data = {
         nodeType: data.nodeType,
         ...selected.data,
-        ...data,
+        ...JSON.parse(JSON.stringify(data)),
       };
       if (selected.data.nodeType.indexOf('Line') >= 0) {
         this.selectedObj.setData({ info: data });

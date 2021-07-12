@@ -330,8 +330,22 @@ export default defineComponent({
   components: {},
   setup(prop, context) {
     const flow: any = ref(null);
+    let state: any = reactive({ functions: [] });
     onMounted(() => {
-      console.log(flow);
+      state.functions = [
+        {
+          name: '解析为java对象',
+          funcName: 'json.parse',
+          shortIntroduce: '解析json字符串为java对象',
+          paramDefineList: [
+            {
+              defineCode: 'jsonString',
+              paramType: 'STR',
+              name: 'json字符串',
+            },
+          ],
+        },
+      ];
     });
     const props = reactive({
       collapsed: false,
@@ -340,38 +354,12 @@ export default defineComponent({
     const mitt = proxy!.$mitt;
     nextTick(() => {
       mitt.emit('vite-tabspage-add', tabsItem.value[0]);
-      // nextTick(() => {
-      //   mitt.emit('vite-tabspage-add', tabsItem.value[1]);
-      // });
     });
-    // 规则引擎测试专用
-    // let functions: any[] = reactive([]);
-    let state: any = reactive({ functions: [] });
-    // 规则引擎测试专用结束
 
     return () => (
       <vi-layout>
         <vi-layout-header>
-          <div
-            class='text_overflow_ellipsis'
-            onClick={() => {
-              debugger;
-              state.functions = [
-                {
-                  name: '解析为java对象',
-                  funcName: 'json.parse',
-                  shortIntroduce: '解析json字符串为java对象',
-                  paramDefineList: [
-                    {
-                      defineCode: 'jsonString',
-                      paramType: 'STR',
-                      name: 'json字符串',
-                    },
-                  ],
-                },
-              ];
-            }}
-          >
+          <div class='text_overflow_ellipsis' onClick={() => {}}>
             润滑管理润滑管理润滑管理润滑管理润滑管理
           </div>
         </vi-layout-header>

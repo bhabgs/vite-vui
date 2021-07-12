@@ -4,6 +4,7 @@ import {
   onMounted,
   getCurrentInstance,
   watch,
+  ref,
 } from 'vue';
 
 import customUtil from './util';
@@ -12,7 +13,7 @@ export default defineComponent({
   props: ['com', 'funAll', 'type'],
   setup(props: any, context) {
     const state = reactive({
-      funOption: [],
+      funOption: [] as any[],
       resData: {
         value: '',
         valueType: '',
@@ -33,11 +34,6 @@ export default defineComponent({
       //   });
     };
 
-    watch(props, () => {
-      getOptions();
-      customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
-    });
     onMounted(() => {
       getOptions();
       customUtil.resetObj(state.resData);
@@ -45,15 +41,18 @@ export default defineComponent({
     });
 
     const handleSearch = (val: string) => {
-      const arr = props.funAll.filter((ele: any) => {
-        return (
+      state.funOption = [];
+      props.funAll.forEach((ele: any) => {
+        if (
           (ele.name && ele.name.indexOf(val) >= 0) ||
           ele.funcName.indexOf(val) >= 0
-        );
+        ) {
+          state.funOption.push(ele);
+        }
       });
-      state.funOption = arr;
     };
     const handleChange = (val: string) => {
+      debugger;
       props.funAll.forEach((element: any) => {
         if (element.funcName === val) {
           state.resData.name = element.name;
@@ -71,6 +70,7 @@ export default defineComponent({
           state.resData.dynamically = true;
         }
       });
+      debugger;
       context.emit('ok', state.resData);
     };
     const renderFun = () => {
@@ -84,12 +84,8 @@ export default defineComponent({
             notFoundContent={null}
             filter-option={false}
             style='width: 200px'
-            onChange={(val: string) => {
-              handleChange(val);
-            }}
-            onSearch={(val: string) => {
-              handleSearch(val);
-            }}
+            onChange={handleChange}
+            onSearch={handleSearch}
           >
             {state.funOption.map((ele: any) => {
               return (
