@@ -28,41 +28,32 @@ const coms: any = {
   SWITCHLine,
 };
 
-const props = {
-  // 模板：template
-  type: {
-    type: String,
-    default: '',
-  },
-  id: {
-    type: String,
-    default: '',
-  },
-  functions: {
-    default: [],
-  },
-  rules: {
-    default: [],
-  },
-  data: {
-    default: [],
-  },
-};
-
 const viFlow = defineComponent({
-  props,
-  // setup(props, context) {
-  //   const test = () => {
-  //     console.log(2);
-  //   };
-  //   context.expose({
-  //     test,
-  //   });
-  // },
+  props: {
+    // 模板：template
+    type: {
+      type: String,
+      default: '',
+    },
+    id: {
+      type: String,
+      default: '',
+    },
+    functions: {
+      default: [],
+    },
+    rules: {
+      default: [],
+    },
+    data: {
+      type: Array as any,
+      default: [],
+    },
+  },
 
   data() {
     return {
-      recordType: 0 as any, // 0规则 1决策
+      recordType: 1 as any, // 0规则 1决策
       graph: undefined as any,
       stencil: undefined as any,
       action: {
@@ -91,15 +82,14 @@ const viFlow = defineComponent({
     this.$nextTick(() => {
       this.initGraph();
     });
-    // this.recordType = this.$route.query.recordType;
-    // this.id = this.$route.query.id;
-    if (this.id) {
+    if (this.data.length != 0) {
       this.init();
     }
   },
   methods: {
     async init() {
-      this.graph.fromJSON(this.data);
+      this.graph.fromJSON(this.data[0].cells);
+      [, this.action] = this.data;
     },
     initGraph() {
       this.graph = new Graph({
@@ -215,7 +205,6 @@ const viFlow = defineComponent({
         this.graph.redo();
       });
       this.graph.on('node:dblclick', (arg: any) => {
-        debugger;
         this.selectedObj = arg.node;
         this.diaObj = { ...this.selectedObj.store };
         this.diaVisible = true;
