@@ -52,7 +52,6 @@ export default defineComponent({
       });
     };
     const handleChange = (val: string) => {
-      debugger;
       props.funAll.forEach((element: any) => {
         if (element.funcName === val) {
           state.resData.name = element.name;
@@ -70,7 +69,6 @@ export default defineComponent({
           state.resData.dynamically = true;
         }
       });
-      debugger;
       context.emit('ok', state.resData);
     };
     const renderFun = () => {
