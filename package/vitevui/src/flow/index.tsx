@@ -35,10 +35,6 @@ const viFlow = defineComponent({
       type: String,
       default: '',
     },
-    id: {
-      type: String,
-      default: '',
-    },
     functions: {
       default: [],
     },
@@ -76,15 +72,20 @@ const viFlow = defineComponent({
         this.funs = val;
       },
       deep: true,
+      immediate: true,
+    },
+    data: {
+      handler(val: any[]) {
+        if (val.length != 0) {
+          this.init();
+        }
+      },
+      deep: true,
+      immediate: true,
     },
   },
   mounted() {
-    this.$nextTick(() => {
-      this.initGraph();
-    });
-    if (this.data.length != 0) {
-      this.init();
-    }
+    this.initGraph();
   },
   methods: {
     async init() {
