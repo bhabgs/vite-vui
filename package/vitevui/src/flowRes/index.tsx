@@ -14,10 +14,8 @@ const props = {
   type: {
     default: 'res',
   },
-  cells: {
-    default: [],
-  },
-  nodeList: {
+  data: {
+    type: Array as any,
     default: [],
   },
 };
@@ -29,19 +27,28 @@ const viFlowRes = defineComponent({
     return {
       recordType: 0 as any, // 0规则 1决策
       graph: undefined as any,
-      stencil: undefined as any,
       action: {
         name: '',
         recordCode: '',
         moduleCode: '',
         des: '',
       },
-      diaVisible: false,
       selectedObj: undefined as any,
-      diaObj: {
-        name: '',
-      } as any,
+      cells: [],
+      nodeList: [],
     };
+  },
+  watch: {
+    data: {
+      handler(val: any[]) {
+        if (val.length != 0) {
+          this.cells = this.data[0].cells;
+          this.nodeList = this.data[1].nodeList;
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   mounted() {
     this.initGraph();
