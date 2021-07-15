@@ -44,6 +44,7 @@ const viFlowRes = defineComponent({
         if (val.length != 0) {
           this.cells = this.data[0].cells;
           this.nodeList = this.data[1].nodeList;
+          this.graph.fromJSON(this.data[0].cells);
         }
       },
       deep: true,
