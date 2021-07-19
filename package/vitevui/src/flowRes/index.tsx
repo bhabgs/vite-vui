@@ -178,8 +178,7 @@ const viFlowRes = defineComponent({
       });
       this.graph.on('node:click', (arg: any) => {
         this.selectedObj = arg.node.store.data;
-        console.log(this.selectedObj);
-        this.$emit('click', this.selectedObj);
+        this.$emit('nodeClick', this.selectedObj);
       });
     },
   },
