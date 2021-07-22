@@ -25,12 +25,14 @@ export default defineComponent({
     });
     const { proxy }: any = getCurrentInstance();
     watch(props, () => {
-      state.resData.selectorParamList = props.com.data.data
-        .selectorParamList ?? [{}];
+      state.resData.selectorParamList = props.com.data.selectorParamList ?? [
+        {},
+      ];
     });
     onMounted(() => {
-      state.resData.selectorParamList = props.com.data.data
-        .selectorParamList ?? [{}];
+      state.resData.selectorParamList = props.com.data.selectorParamList ?? [
+        {},
+      ];
     });
 
     const handleOk = () => {
