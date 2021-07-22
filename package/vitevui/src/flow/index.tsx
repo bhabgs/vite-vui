@@ -207,12 +207,12 @@ const viFlow = defineComponent({
       });
       this.graph.on('node:dblclick', (arg: any) => {
         this.selectedObj = arg.node;
-        this.diaObj = { ...this.selectedObj.store };
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store));
         this.diaVisible = true;
       });
       this.graph.on('edge:click', (arg: any) => {
         this.selectedObj = arg.edge;
-        this.diaObj = { ...this.selectedObj.store };
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store));
         const id = this.diaObj.data.source.cell;
         const node = this.graph.getCellById(id);
         const type = node.store.data.data.nodeType;
