@@ -27,11 +27,7 @@ export default defineComponent({
     const { proxy }: any = getCurrentInstance();
 
     const getOptions = () => {
-      // proxy.$axios
-      //   .get('/fsmEdge/v1/define/getAllMethodDefinition')
-      //   .then((res: any) => {
-      //     state.funAll = res.data;
-      //   });
+      state.funOption = props.funAll;
     };
 
     onMounted(() => {
