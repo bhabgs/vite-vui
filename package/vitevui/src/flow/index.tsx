@@ -321,6 +321,9 @@ const viFlow = defineComponent({
       //   par,
       // );
     },
+    closeDrawer() {
+      this.diaObj = {};
+    },
     renderDia() {
       let customComName = '';
       if (this.diaObj) {
@@ -336,6 +339,7 @@ const viFlow = defineComponent({
           placement='right'
           width='350px'
           v-model={[this.diaVisible, 'visible']}
+          onClose={this.closeDrawer}
         >
           <div>
             {this.diaObj ? (
