@@ -22,11 +22,11 @@ export default defineComponent({
     const { proxy }: any = getCurrentInstance();
     watch(props, () => {
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
     onMounted(() => {
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
 
     const handleOk = () => {
