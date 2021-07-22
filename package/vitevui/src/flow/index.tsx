@@ -61,9 +61,7 @@ const viFlow = defineComponent({
       funs: [] as any[],
       diaVisible: false,
       selectedObj: undefined as any,
-      diaObj: {
-        name: '',
-      } as any,
+      diaObj: {} as any,
     };
   },
   watch: {
@@ -207,13 +205,13 @@ const viFlow = defineComponent({
       });
       this.graph.on('node:dblclick', (arg: any) => {
         this.selectedObj = arg.node;
-        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store));
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
         this.diaVisible = true;
       });
       this.graph.on('edge:click', (arg: any) => {
         this.selectedObj = arg.edge;
-        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store));
-        const id = this.diaObj.data.source.cell;
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
+        const id = this.diaObj.source.cell;
         const node = this.graph.getCellById(id);
         const type = node.store.data.data.nodeType;
         if (type === 'SELECTOR' || type === 'SWITCH') {
@@ -325,8 +323,8 @@ const viFlow = defineComponent({
     },
     renderDia() {
       let customComName = '';
-      if (this.diaObj.data) {
-        customComName = this.diaObj.data.data?.nodeType;
+      if (this.diaObj) {
+        customComName = this.diaObj.data?.nodeType;
       }
       const customCom = customComName
         ? coms[customComName]
@@ -340,7 +338,7 @@ const viFlow = defineComponent({
           v-model={[this.diaVisible, 'visible']}
         >
           <div>
-            {this.diaObj.data ? (
+            {this.diaObj ? (
               <customCom
                 com={this.diaObj}
                 funAll={this.funs}

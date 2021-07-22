@@ -37,7 +37,7 @@ export default defineComponent({
     onMounted(() => {
       getOptions();
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
 
     const handleSearch = (val: string) => {
