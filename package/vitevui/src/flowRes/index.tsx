@@ -36,6 +36,7 @@ const viFlowRes = defineComponent({
       selectedObj: undefined as any,
       cells: [],
       nodeList: [],
+      domNum: 0,
     };
   },
   watch: {
@@ -50,6 +51,9 @@ const viFlowRes = defineComponent({
       deep: true,
       immediate: true,
     },
+  },
+  created() {
+    this.domNum = Math.floor(Math.random() * 1000);
   },
   mounted() {
     this.initGraph();
@@ -186,7 +190,7 @@ const viFlowRes = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div id='graph'></div>
+          <div id={`graph${this.domNum}`}></div>
         </div>
       </div>
     );
