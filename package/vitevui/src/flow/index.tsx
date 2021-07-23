@@ -360,8 +360,8 @@ const viFlow = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div id={`module${this.domNum}`}></div>
-          <div id={`graph${this.domNum}`}></div>
+          <div class='module' id={`module${this.domNum}`}></div>
+          <div class='graph' id={`graph${this.domNum}`}></div>
         </div>
 
         {this.renderDia()}
