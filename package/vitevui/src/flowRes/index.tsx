@@ -190,7 +190,7 @@ const viFlowRes = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div id={`graph${this.domNum}`}></div>
+          <div class='graph' id={`graph${this.domNum}`}></div>
         </div>
       </div>
     );
