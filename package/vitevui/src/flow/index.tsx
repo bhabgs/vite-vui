@@ -62,6 +62,7 @@ const viFlow = defineComponent({
       diaVisible: false,
       selectedObj: undefined as any,
       diaObj: {} as any,
+      domNum: 0,
     };
   },
   watch: {
@@ -82,6 +83,9 @@ const viFlow = defineComponent({
       immediate: true,
     },
   },
+  created() {
+    this.domNum = Math.floor(Math.random() * 1000);
+  },
   mounted() {
     this.initGraph();
   },
@@ -98,7 +102,7 @@ const viFlow = defineComponent({
         // 节点缩放
         resizing: true,
         // height:document.getElementById('graph')!.clientHeight,
-        container: document.getElementById('graph')!,
+        container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
         // 禁止出画布
         translating: {
@@ -171,7 +175,7 @@ const viFlow = defineComponent({
         stencilGraphHeight:
           document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
       });
-      const stencilContainer = document.querySelector('#module');
+      const stencilContainer = document.querySelector(`#module${this.domNum}`);
       stencilContainer!.appendChild(this.stencil.container);
       this.stencil.load([
         fac.getRectRadius(),
@@ -253,14 +257,7 @@ const viFlow = defineComponent({
           nodeCode: selected.id,
           rulesComponent: selected.data,
         };
-
-        // const res: any = await this.$axios.post(
-        //   '/fsmEdge/v1/componentGraph/toView',
-        //   param,
-        // );
-        // this.selectedObj.attr('label/text', res.data.viewStr?.substr(0, 6));
       }
-
       this.diaVisible = false;
     },
 
@@ -316,10 +313,6 @@ const viFlow = defineComponent({
         par.nodeList.push(resNode);
       });
       return par;
-      // const res: any = await this.$axios.post(
-      //   `/fsmEdge/v1/componentGraph/${this.id ? 'modify' : 'create'}`,
-      //   par,
-      // );
     },
     closeDrawer() {
       this.diaObj = {};
@@ -367,8 +360,8 @@ const viFlow = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div id='module'></div>
-          <div id='graph'></div>
+          <div id={`module${this.domNum}`}></div>
+          <div id={`graph${this.domNum}`}></div>
         </div>
 
         {this.renderDia()}
