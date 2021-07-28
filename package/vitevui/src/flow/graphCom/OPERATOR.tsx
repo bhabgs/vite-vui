@@ -42,17 +42,17 @@ export default defineComponent({
                 v-model={[state.resData.value, 'value']}
                 style='width: 120px'
               >
-                <a-select-option value='add'>加</a-select-option>
-                <a-select-option value='subtract'>减</a-select-option>
-                <a-select-option value='multiply'>乘</a-select-option>
-                <a-select-option value='divide'>除</a-select-option>
-                <a-select-option value='mod'>取余</a-select-option>
-                <a-select-option value='eq'>等于</a-select-option>
-                <a-select-option value='ne'>不等于</a-select-option>
-                <a-select-option value='gt'>大于</a-select-option>
-                <a-select-option value='lt'>小于</a-select-option>
-                <a-select-option value='gte'>大于等于</a-select-option>
-                <a-select-option value='lte'>小于等于</a-select-option>
+                <a-select-option value='+'>加</a-select-option>
+                <a-select-option value='-'>减</a-select-option>
+                <a-select-option value='*'>乘</a-select-option>
+                <a-select-option value='/'>除</a-select-option>
+                <a-select-option value='%'>取余</a-select-option>
+                <a-select-option value='=='>等于</a-select-option>
+                <a-select-option value='!='>不等于</a-select-option>
+                <a-select-option value='>'>大于</a-select-option>
+                <a-select-option value='<'>小于</a-select-option>
+                <a-select-option value='>='>大于等于</a-select-option>
+                <a-select-option value='<='>小于等于</a-select-option>
               </a-select>
             </div>
             {props.type === 'template' ? (
