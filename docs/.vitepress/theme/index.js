@@ -6,8 +6,10 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-03-31 16:01:13
  */
+
 import DefaultTheme from 'vitepress/dist/client/theme-default';
 import asa from './component/contentmenu.vue';
+import ant from 'ant-design-vue';
 import vitevui from '../../../package/vitevui';
 import '../../../package/vitevui/src/style/index.less';
 import './style.less';
@@ -16,6 +18,7 @@ export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
     app.use(vitevui);
+    app.use(ant);
     app.component('rightMenu', asa);
   },
 };

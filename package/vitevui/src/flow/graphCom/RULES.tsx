@@ -8,7 +8,7 @@ import {
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com','rules'],
+  props: ['com', 'rules'],
   setup(props: any, context) {
     const state = reactive({
       ruleOption: [],
@@ -22,11 +22,11 @@ export default defineComponent({
     const { proxy }: any = getCurrentInstance();
     watch(props, () => {
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
     onMounted(() => {
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
 
     const handleOk = () => {
@@ -67,7 +67,7 @@ export default defineComponent({
             }}
             onSearch={(val: string) => {
               // handleRuleSearch(val);
-              context.emit('ruleSearch',val)
+              context.emit('ruleSearch', val);
             }}
           >
             {props.rules.map((ele: any) => {

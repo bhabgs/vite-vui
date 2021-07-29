@@ -1,6 +1,6 @@
 {
   "name": "vitevui",
-  "version": "1.0.0-beta.25",
+  "version": "1.0.0-beta.49",
   "description": "vue3.0 ui",
   "main": "lib/index.js",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
@@ -23,8 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@antv/x6": "^1.24.2",
-    "ant-design-vue": "^2.2.0-beta.3",
-    "element-plus": "1.0.2-beta.37",
+    "element-plus": "1.0.2-beta.55",
     "mitt": "2.1.0",
     "vue": "^3.0.5"
   },

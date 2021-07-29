@@ -4,19 +4,21 @@ import {
   onMounted,
   getCurrentInstance,
   watch,
+  ref,
 } from 'vue';
 
 import customUtil from './util';
 
 export default defineComponent({
-  props: ['com','funAll'],
+  props: ['com', 'funAll', 'type'],
   setup(props: any, context) {
     const state = reactive({
-      funOption: [],
+      funOption: [] as any[],
       resData: {
         value: '',
         valueType: '',
         name: '',
+        dynamically: false,
         paramList: [],
         funcName: '',
         resField: '', // 函数返回字段
@@ -25,32 +27,25 @@ export default defineComponent({
     const { proxy }: any = getCurrentInstance();
 
     const getOptions = () => {
-      // proxy.$axios
-      //   .get('/fsmEdge/v1/define/getAllMethodDefinition')
-      //   .then((res: any) => {
-      //     state.funAll = res.data;
-      //   });
+      state.funOption = props.funAll;
     };
 
-    watch(props, () => {
-      getOptions();
-      customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
-    });
     onMounted(() => {
       getOptions();
       customUtil.resetObj(state.resData);
-      state.resData = { ...state.resData, ...props.com.data.data };
+      state.resData = { ...state.resData, ...props.com.data };
     });
 
     const handleSearch = (val: string) => {
-      const arr = props.funAll.filter((ele: any) => {
-        return (
+      state.funOption = [];
+      props.funAll.forEach((ele: any) => {
+        if (
           (ele.name && ele.name.indexOf(val) >= 0) ||
           ele.funcName.indexOf(val) >= 0
-        );
+        ) {
+          state.funOption.push(ele);
+        }
       });
-      state.funOption = arr;
     };
     const handleChange = (val: string) => {
       props.funAll.forEach((element: any) => {
@@ -65,6 +60,11 @@ export default defineComponent({
       });
     };
     const handleOk = () => {
+      state.resData.paramList.forEach((ele: any) => {
+        if (ele.dynamically) {
+          state.resData.dynamically = true;
+        }
+      });
       context.emit('ok', state.resData);
     };
     const renderFun = () => {
@@ -78,12 +78,8 @@ export default defineComponent({
             notFoundContent={null}
             filter-option={false}
             style='width: 200px'
-            onChange={(val: string) => {
-              handleChange(val);
-            }}
-            onSearch={(val: string) => {
-              handleSearch(val);
-            }}
+            onChange={handleChange}
+            onSearch={handleSearch}
           >
             {state.funOption.map((ele: any) => {
               return (
@@ -100,6 +96,15 @@ export default defineComponent({
                 <div class='flex1'>
                   <a-input v-model={[ele.value, 'value']} />
                 </div>
+                {props.type === 'template' ? (
+                  <div class='option'>
+                    <a-checkbox v-model={[ele.dynamically, 'checked']}>
+                      可配
+                    </a-checkbox>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             );
           })}

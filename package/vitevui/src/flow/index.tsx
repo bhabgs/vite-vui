@@ -28,31 +28,28 @@ const coms: any = {
   SWITCHLine,
 };
 
-const props = {
-  type: {
-    type: String,
-    default: '',
-  },
-  id: {
-    type: String,
-    default: '',
-  },
-  functions: {
-    default: [],
-  },
-  rules:{
-    default:[],
-  },
-  data: {
-    default: [],
-  },
-};
-
 const viFlow = defineComponent({
-  props,
+  props: {
+    // 模板：template
+    type: {
+      type: String,
+      default: '',
+    },
+    functions: {
+      default: [],
+    },
+    rules: {
+      default: [],
+    },
+    data: {
+      type: Array as any,
+      default: [],
+    },
+  },
+
   data() {
     return {
-      recordType: 0 as any, // 0规则 1决策
+      recordType: 1 as any, // 0规则 1决策
       graph: undefined as any,
       stencil: undefined as any,
       action: {
@@ -61,24 +58,41 @@ const viFlow = defineComponent({
         moduleCode: '',
         des: '',
       },
+      funs: [] as any[],
       diaVisible: false,
       selectedObj: undefined as any,
-      diaObj: {
-        name: '',
-      } as any,
+      diaObj: {} as any,
+      domNum: 0,
     };
+  },
+  watch: {
+    functions: {
+      handler(val: any[]) {
+        this.funs = val;
+      },
+      deep: true,
+      immediate: true,
+    },
+    data: {
+      handler(val: any[]) {
+        if (val.length != 0) {
+          this.init();
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  created() {
+    this.domNum = Math.floor(Math.random() * 1000);
   },
   mounted() {
     this.initGraph();
-    // this.recordType = this.$route.query.recordType;
-    // this.id = this.$route.query.id;
-    if (this.id) {
-      this.init();
-    }
   },
   methods: {
     async init() {
-      this.graph.fromJSON(this.data);
+      this.graph.fromJSON(this.data[0].cells);
+      [, this.action] = this.data;
     },
     initGraph() {
       this.graph = new Graph({
@@ -87,7 +101,8 @@ const viFlow = defineComponent({
         snapline: true,
         // 节点缩放
         resizing: true,
-        container: document.getElementById('graph')!,
+        // height:document.getElementById('graph')!.clientHeight,
+        container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
         // 禁止出画布
         translating: {
@@ -157,9 +172,10 @@ const viFlow = defineComponent({
         target: this.graph,
         title: '组件',
         stencilGraphWidth: 280,
-        stencilGraphHeight: document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
+        stencilGraphHeight:
+          document.getElementsByClassName('vuiFlow')[0].clientHeight - 32,
       });
-      const stencilContainer = document.querySelector('#module');
+      const stencilContainer = document.querySelector(`#module${this.domNum}`);
       stencilContainer!.appendChild(this.stencil.container);
       this.stencil.load([
         fac.getRectRadius(),
@@ -193,13 +209,13 @@ const viFlow = defineComponent({
       });
       this.graph.on('node:dblclick', (arg: any) => {
         this.selectedObj = arg.node;
-        this.diaObj = { ...this.selectedObj.store };
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
         this.diaVisible = true;
       });
       this.graph.on('edge:click', (arg: any) => {
         this.selectedObj = arg.edge;
-        this.diaObj = { ...this.selectedObj.store };
-        const id = this.diaObj.data.source.cell;
+        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
+        const id = this.diaObj.source.cell;
         const node = this.graph.getCellById(id);
         const type = node.store.data.data.nodeType;
         if (type === 'SELECTOR' || type === 'SWITCH') {
@@ -225,11 +241,12 @@ const viFlow = defineComponent({
     },
 
     async setDiaVal(data: any) {
+      this.diaObj = {};
       const selected = this.selectedObj.store.data;
       selected.data = {
         nodeType: data.nodeType,
         ...selected.data,
-        ...data,
+        ...JSON.parse(JSON.stringify(data)),
       };
       if (selected.data.nodeType.indexOf('Line') >= 0) {
         this.selectedObj.setData({ info: data });
@@ -240,18 +257,11 @@ const viFlow = defineComponent({
           nodeCode: selected.id,
           rulesComponent: selected.data,
         };
-
-        // const res: any = await this.$axios.post(
-        //   '/fsmEdge/v1/componentGraph/toView',
-        //   param,
-        // );
-        // this.selectedObj.attr('label/text', res.data.viewStr?.substr(0, 6));
       }
-
       this.diaVisible = false;
     },
 
-    async save() {
+    save() {
       const cells = this.graph.toJSON();
       const nodes = cells.cells.filter((ele: any) => {
         return ele.shape !== 'edge';
@@ -302,16 +312,15 @@ const viFlow = defineComponent({
         });
         par.nodeList.push(resNode);
       });
-      return par
-      // const res: any = await this.$axios.post(
-      //   `/fsmEdge/v1/componentGraph/${this.id ? 'modify' : 'create'}`,
-      //   par,
-      // );
+      return par;
+    },
+    closeDrawer() {
+      this.diaObj = {};
     },
     renderDia() {
       let customComName = '';
-      if (this.diaObj.data) {
-        customComName = this.diaObj.data.data?.nodeType;
+      if (this.diaObj) {
+        customComName = this.diaObj.data?.nodeType;
       }
       const customCom = customComName
         ? coms[customComName]
@@ -323,15 +332,17 @@ const viFlow = defineComponent({
           placement='right'
           width='350px'
           v-model={[this.diaVisible, 'visible']}
+          onClose={this.closeDrawer}
         >
           <div>
-            {this.diaObj.data ? (
+            {this.diaObj ? (
               <customCom
                 com={this.diaObj}
-                funAll={this.functions}
+                funAll={this.funs}
                 rules={this.rules}
-                onRuleSearch={(val:string)=>{
-                  this.$emit('ruleSearch',val)
+                type={this.type}
+                onRuleSearch={(val: string) => {
+                  this.$emit('ruleSearch', val);
                 }}
                 onOk={(res: any) => {
                   this.setDiaVal(res);
@@ -349,10 +360,10 @@ const viFlow = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div id='module'></div>
-          <div id='graph'></div>
+          <div class='module' id={`module${this.domNum}`}></div>
+          <div class='graph' id={`graph${this.domNum}`}></div>
         </div>
-        
+
         {this.renderDia()}
       </div>
     );

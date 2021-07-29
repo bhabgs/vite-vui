@@ -22,3 +22,12 @@ button {
 .vite_ {
   font-size: 1.5rem;
 }
+
+.flex {
+  display: flex;
+}
+each(range(12), {
+    .flex@{value} {
+        flex: @value;
+    }
+});
