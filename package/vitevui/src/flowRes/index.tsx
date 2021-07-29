@@ -130,7 +130,7 @@ const viFlowRes = defineComponent({
         snapline: true,
         // 节点缩放
         resizing: true,
-        container: document.getElementById('graph')!,
+        container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
         // 禁止出画布
         translating: {
