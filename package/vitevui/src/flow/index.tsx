@@ -100,7 +100,7 @@ const viFlow = defineComponent({
         // 对齐线
         snapline: true,
         // 节点缩放
-        resizing: true,
+        resizing: { enabled: true, orthogonal: false },
         // height:document.getElementById('graph')!.clientHeight,
         container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
@@ -138,7 +138,6 @@ const viFlow = defineComponent({
         selecting: {
           enabled: true,
           className: 'x6-widget-selection-selected',
-          showNodeSelectionBox: true,
         },
         connecting: {
           snap: true,
@@ -206,6 +205,12 @@ const viFlow = defineComponent({
       });
       this.graph.bindKey('ctrl+y', (e: KeyboardEvent) => {
         this.graph.redo();
+      });
+      // 移动节点置顶
+      this.graph.on('node:move', (arg: any) => {
+        if (arg.node.attrs.label.text !== '组') {
+          arg.node.toFront();
+        }
       });
       this.graph.on('node:dblclick', (arg: any) => {
         this.selectedObj = arg.node;

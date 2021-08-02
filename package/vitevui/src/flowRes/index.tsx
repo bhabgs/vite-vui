@@ -129,7 +129,7 @@ const viFlowRes = defineComponent({
         // 对齐线
         snapline: true,
         // 节点缩放
-        resizing: true,
+        resizing: { enabled: true, orthogonal: false },
         container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
         // 禁止出画布
@@ -151,7 +151,6 @@ const viFlowRes = defineComponent({
         selecting: {
           enabled: true,
           className: 'x6-widget-selection-selected',
-          showNodeSelectionBox: true,
         },
         connecting: {
           snap: true,
