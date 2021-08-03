@@ -39,6 +39,8 @@ export default defineComponent({
       const obj = state.resData.selectorParamList[0];
       if (obj.leftOpDynamically || obj.leftValueDynamically) {
         obj.dynamically = true;
+      } else {
+        obj.dynamically = false;
       }
       context.emit('ok', state.resData);
     };

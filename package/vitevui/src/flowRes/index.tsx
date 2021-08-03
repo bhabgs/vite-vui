@@ -129,7 +129,7 @@ const viFlowRes = defineComponent({
         // 对齐线
         snapline: true,
         // 节点缩放
-        resizing: true,
+        resizing: { enabled: true, orthogonal: false },
         container: document.getElementById(`graph${this.domNum}`)!,
         background: { color: '#ffffff' },
         // 禁止出画布
@@ -151,33 +151,6 @@ const viFlowRes = defineComponent({
         selecting: {
           enabled: true,
           className: 'x6-widget-selection-selected',
-          showNodeSelectionBox: true,
-        },
-        connecting: {
-          snap: true,
-          allowBlank: false,
-          allowLoop: false,
-          highlight: true,
-          connector: 'normal',
-          connectionPoint: 'boundary',
-          router: 'manhattan',
-          createEdge(arg) {
-            return new Shape.Edge({
-              attrs: {
-                line: {
-                  // stroke: '#a0a0a0',
-                  strokeWidth: 1,
-                  targetMarker: {
-                    name: 'classic',
-                    size: 7,
-                  },
-                },
-              },
-            });
-          },
-          validateConnection(arg) {
-            return true;
-          },
         },
       });
       this.graph.on('node:click', (arg: any) => {
