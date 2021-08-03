@@ -152,32 +152,6 @@ const viFlowRes = defineComponent({
           enabled: true,
           className: 'x6-widget-selection-selected',
         },
-        connecting: {
-          snap: true,
-          allowBlank: false,
-          allowLoop: false,
-          highlight: true,
-          connector: 'normal',
-          connectionPoint: 'boundary',
-          router: 'manhattan',
-          createEdge(arg) {
-            return new Shape.Edge({
-              attrs: {
-                line: {
-                  // stroke: '#a0a0a0',
-                  strokeWidth: 1,
-                  targetMarker: {
-                    name: 'classic',
-                    size: 7,
-                  },
-                },
-              },
-            });
-          },
-          validateConnection(arg) {
-            return true;
-          },
-        },
       });
       this.graph.on('node:click', (arg: any) => {
         this.selectedObj = arg.node.store.data;
