@@ -56,8 +56,8 @@ const install = (app: App) => {
   for (const key in COMPS) {
     app.use(COMPS[key]);
   }
-  setupElement(app);
-  setupAntDesign(app);
+  // setupElement(app);
+  // setupAntDesign(app);
 };
 
 export {
