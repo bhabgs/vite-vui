@@ -24,7 +24,7 @@
   },
   "private": true,
   "devDependencies": {
-    "ant-design-vue": "2.1.2",
+    "ant-design-vue": "2.2.2",
     "patch-vue-directive-ssr": "^0.0.1",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vitejs/plugin-vue-jsx": "^1.1.3",

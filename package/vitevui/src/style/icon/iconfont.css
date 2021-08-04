@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "vite_"; /* Project id 2457247 */
-  src: url('iconfont.woff2?t=1625475175803') format('woff2'),
-       url('iconfont.woff?t=1625475175803') format('woff'),
-       url('iconfont.ttf?t=1625475175803') format('truetype');
+  font-family: 'vite_'; /* Project id 2457247 */
+  src: url('./iconfont.woff2?t=1625475175803') format('woff2'),
+    url('./iconfont.woff?t=1625475175803') format('woff'),
+    url('./iconfont.ttf?t=1625475175803') format('truetype');
 }
 
 .vite_ {
-  font-family: "vite_" !important;
+  font-family: 'vite_' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -14,338 +14,337 @@
 }
 
 .vite_vite-line:before {
-  content: "\e604";
+  content: '\e604';
 }
 
 .vite_vite-signal:before {
-  content: "\e605";
+  content: '\e605';
 }
 
 .vite_tongji:before {
-  content: "\e606";
+  content: '\e606';
 }
 
 .vite_shouye:before {
-  content: "\e607";
+  content: '\e607';
 }
 
 .vite_chouti:before {
-  content: "\e60c";
+  content: '\e60c';
 }
 
 .vite_fanhui:before {
-  content: "\e60d";
+  content: '\e60d';
 }
 
 .vite_dingyue:before {
-  content: "\e60e";
+  content: '\e60e';
 }
 
 .vite_guanbi:before {
-  content: "\e60f";
+  content: '\e60f';
 }
 
 .vite_gengduo:before {
-  content: "\e610";
+  content: '\e610';
 }
 
 .vite_gonggao:before {
-  content: "\e611";
+  content: '\e611';
 }
 
 .vite_ditu:before {
-  content: "\e612";
+  content: '\e612';
 }
 
 .vite_guanzhu:before {
-  content: "\e613";
+  content: '\e613';
 }
 
 .vite_jiaren:before {
-  content: "\e614";
+  content: '\e614';
 }
 
 .vite_ribao:before {
-  content: "\e615";
+  content: '\e615';
 }
 
 .vite_tianjia:before {
-  content: "\e616";
+  content: '\e616';
 }
 
 .vite_tianjiatupian:before {
-  content: "\e617";
+  content: '\e617';
 }
 
 .vite_shanchufujian:before {
-  content: "\e618";
+  content: '\e618';
 }
 
 .vite_xinjian:before {
-  content: "\e619";
+  content: '\e619';
 }
 
 .vite_sousuo1:before {
-  content: "\e61a";
+  content: '\e61a';
 }
 
 .vite_huiyi:before {
-  content: "\e61b";
+  content: '\e61b';
 }
 
 .vite_yuebao:before {
-  content: "\e61c";
+  content: '\e61c';
 }
 
 .vite_loading:before {
-  content: "\e61d";
+  content: '\e61d';
 }
 
 .vite_lajitong:before {
-  content: "\e61e";
+  content: '\e61e';
 }
 
 .vite_tianjiafujian:before {
-  content: "\e61f";
+  content: '\e61f';
 }
 
 .vite_tianjiaren:before {
-  content: "\e620";
+  content: '\e620';
 }
 
 .vite_tongzhi:before {
-  content: "\e621";
+  content: '\e621';
 }
 
 .vite_xiala1:before {
-  content: "\e622";
+  content: '\e622';
 }
 
 .vite_shangchuan:before {
-  content: "\e623";
+  content: '\e623';
 }
 
 .vite_zhoubao:before {
-  content: "\e624";
+  content: '\e624';
 }
 
 .vite_shizhong:before {
-  content: "\e625";
+  content: '\e625';
 }
 
 .vite_richeng:before {
-  content: "\e626";
+  content: '\e626';
 }
 
 .vite_xinjianwenjianjia:before {
-  content: "\e627";
+  content: '\e627';
 }
 
 .vite_zuji:before {
-  content: "\e628";
+  content: '\e628';
 }
 
 .vite_rotate-left:before {
-  content: "\e770";
+  content: '\e770';
 }
 
 .vite_rotate-right:before {
-  content: "\e771";
+  content: '\e771';
 }
 
 .vite_right:before {
-  content: "\e870";
+  content: '\e870';
 }
 
 .vite_left:before {
-  content: "\e860";
+  content: '\e860';
 }
 
 .vite_minus-circle:before {
-  content: "\e865";
+  content: '\e865';
 }
 
 .vite_plus-circle:before {
-  content: "\e86b";
+  content: '\e86b';
 }
 
 .vite_ziyuan:before {
-  content: "\e6f1";
+  content: '\e6f1';
 }
 
 .vite_xiazai-2:before {
-  content: "\e6f0";
+  content: '\e6f0';
 }
 
 .vite_xiala:before {
-  content: "\e6ef";
+  content: '\e6ef';
 }
 
 .vite_caidan:before {
-  content: "\e6e1";
+  content: '\e6e1';
 }
 
 .vite_caidanyou:before {
-  content: "\e6ee";
+  content: '\e6ee';
 }
 
 .vite_zantong:before {
-  content: "\e6ed";
+  content: '\e6ed';
 }
 
 .vite_buzantong:before {
-  content: "\e6ec";
+  content: '\e6ec';
 }
 
 .vite_sousuo:before {
-  content: "\e6eb";
+  content: '\e6eb';
 }
 
 .vite_icon:before {
-  content: "\e6ea";
+  content: '\e6ea';
 }
 
 .vite_fuxuankuang_xuanzhong:before {
-  content: "\e6e8";
+  content: '\e6e8';
 }
 
 .vite_fuxuankuang_banxuanzhong:before {
-  content: "\e6e9";
+  content: '\e6e9';
 }
 
 .vite_fuxuankuang_weixuanzhong:before {
-  content: "\e6e7";
+  content: '\e6e7';
 }
 
 .vite_shujiedianshouqi:before {
-  content: "\e6e5";
+  content: '\e6e5';
 }
 
 .vite_jiedianzhankai:before {
-  content: "\e6e6";
+  content: '\e6e6';
 }
 
 .vite_baojing:before {
-  content: "\e6e0";
+  content: '\e6e0';
 }
 
 .vite_baogao:before {
-  content: "\e6e2";
+  content: '\e6e2';
 }
 
 .vite_tiyan:before {
-  content: "\e6e3";
+  content: '\e6e3';
 }
 
 .vite_fenxi:before {
-  content: "\e6e4";
+  content: '\e6e4';
 }
 
 .vite_close:before {
-  content: "\e73e";
+  content: '\e73e';
 }
 
 .vite_AI:before {
-  content: "\e6c6";
+  content: '\e6c6';
 }
 
 .vite_ARM:before {
-  content: "\e6c7";
+  content: '\e6c7';
 }
 
 .vite_CSS:before {
-  content: "\e6c8";
+  content: '\e6c8';
 }
 
 .vite_icon-test:before {
-  content: "\e6c9";
+  content: '\e6c9';
 }
 
 .vite_EPS:before {
-  content: "\e6ca";
+  content: '\e6ca';
 }
 
 .vite_CAD:before {
-  content: "\e6cb";
+  content: '\e6cb';
 }
 
 .vite_yasuo:before {
-  content: "\e6cc";
+  content: '\e6cc';
 }
 
 .vite_JSON:before {
-  content: "\e6cd";
+  content: '\e6cd';
 }
 
 .vite_HTML:before {
-  content: "\e6ce";
+  content: '\e6ce';
 }
 
 .vite_JPG:before {
-  content: "\e6cf";
+  content: '\e6cf';
 }
 
 .vite_PPT:before {
-  content: "\e6d0";
+  content: '\e6d0';
 }
 
 .vite_TXT:before {
-  content: "\e6d1";
+  content: '\e6d1';
 }
 
 .vite_GIF:before {
-  content: "\e6d2";
+  content: '\e6d2';
 }
 
 .vite_WAV:before {
-  content: "\e6d3";
+  content: '\e6d3';
 }
 
 .vite_DOCX:before {
-  content: "\e6d4";
+  content: '\e6d4';
 }
 
 .vite_PDF:before {
-  content: "\e6d5";
+  content: '\e6d5';
 }
 
 .vite_PS:before {
-  content: "\e6d6";
+  content: '\e6d6';
 }
 
 .vite_MP3:before {
-  content: "\e6d7";
+  content: '\e6d7';
 }
 
 .vite_XML:before {
-  content: "\e6d8";
+  content: '\e6d8';
 }
 
 .vite_MP4:before {
-  content: "\e6d9";
+  content: '\e6d9';
 }
 
 .vite_XLS:before {
-  content: "\e6da";
+  content: '\e6da';
 }
 
 .vite_VID:before {
-  content: "\e6db";
+  content: '\e6db';
 }
 
 .vite_PNG:before {
-  content: "\e6dc";
+  content: '\e6dc';
 }
 
 .vite_JPGjiami:before {
-  content: "\e6dd";
+  content: '\e6dd';
 }
 
 .vite_wenjianjiami:before {
-  content: "\e6de";
+  content: '\e6de';
 }
 
 .vite_luxiangjiami:before {
-  content: "\e6df";
+  content: '\e6df';
 }
-
