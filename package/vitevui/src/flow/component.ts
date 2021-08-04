@@ -292,7 +292,7 @@ factory.getGroup = (x?: number, y?: number) => {
       items: getItems(),
     },
     data: {
-      nodeType: 'RULES',
+      nodeType: 'GROUP',
       embed: true,
       parent: true,
     },
