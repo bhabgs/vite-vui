@@ -13,8 +13,16 @@ import postcss from 'rollup-plugin-postcss';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import cssnano from 'cssnano';
+import url from '@rollup/plugin-url';
+import path from 'path';
+import copyDir from './createFile';
 
-const extensions = ['.ts', '.js', '.tsx'];
+const assets = path.join(__dirname, 'src/style/icon/');
+
+const extensions = ['.ts', '.js', '.tsx', '.json', '.ttf', '.woff', '.woff2'];
+
+// 创建iconfont 目录
+copyDir(assets, './lib');
 
 export default [
   typescript({
@@ -29,5 +37,9 @@ export default [
   postcss({
     plugins: [cssnano],
     extract: 'style.css', // 输出路径
+  }),
+  url({
+    include: [`${assets}logo.png`],
+    destDir: `./lib`,
   }),
 ];

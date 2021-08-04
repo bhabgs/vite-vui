@@ -5,7 +5,7 @@ on:
     branches: [deploy-vui]
 jobs:
   publish:
-    name: 发布util工作流
+    name: 发布 ui 工作流
     runs-on: ubuntu-latest
     strategy:
       matrix:
