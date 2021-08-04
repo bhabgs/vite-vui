@@ -22,6 +22,7 @@
   "dependencies": {
     "vue": "^3.0.11"
   },
+  "private": true,
   "devDependencies": {
     "ant-design-vue": "2.1.2",
     "patch-vue-directive-ssr": "^0.0.1",
