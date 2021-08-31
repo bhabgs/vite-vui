@@ -27,6 +27,7 @@ import upload from './upload';
 import viIcon from './icon';
 import viFlow from './flow';
 import viFlowRes from './flowRes';
+import viLoginBox from './loginBox';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
 import './style/icon/iconfont.less';
@@ -47,6 +48,7 @@ const COMPS: baseObject = {
   viFlow,
   viFlowRes,
   upload,
+  viLoginBox,
 };
 const VERSION: string = '0.0.2';
 
@@ -76,6 +78,7 @@ export {
   viFlow,
   viFlowRes,
   viIcon,
+  viLoginBox,
   getTabCurrentDetail,
   tabsPageHook,
 };
