@@ -219,12 +219,13 @@ const viFlow = defineComponent({
       });
       this.graph.on('edge:click', (arg: any) => {
         this.selectedObj = arg.edge;
-        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
-        const id = this.diaObj.source.cell;
+        const line = this.selectedObj.store.data;
+        const id = line.source.cell;
         const node = this.graph.getCellById(id);
         const type = node.store.data.data.nodeType;
         if (type === 'SELECTOR' || type === 'SWITCH') {
           this.selectedObj.setData({ nodeType: `${type}Line` });
+          this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
           this.diaVisible = true;
         }
       });
