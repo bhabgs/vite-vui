@@ -45,6 +45,9 @@ const viFlow = defineComponent({
       type: Array as any,
       default: [],
     },
+    getNodeText: {
+      type: Promise as any,
+    },
   },
 
   data() {
@@ -263,6 +266,10 @@ const viFlow = defineComponent({
           nodeCode: selected.id,
           rulesComponent: selected.data,
         };
+        const text: string = await this.getNodeText(param);
+        if (text) {
+          this.selectedObj.attr('label/text', text.substr(0, 6));
+        }
       }
       this.diaVisible = false;
     },
