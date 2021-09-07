@@ -268,7 +268,7 @@ const viFlow = defineComponent({
         };
         const text: string = await this.getNodeText(param);
         if (text) {
-          this.selectedObj.attr('label/text', text.substr(0, 6));
+          this.selectedObj.attr('label/text', text);
         }
       }
       this.diaVisible = false;

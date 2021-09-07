@@ -21,6 +21,7 @@ export default defineComponent({
         dynamically: false,
         paramList: [],
         funcName: '',
+        pattern: '',
         resField: '', // 函数返回字段
       },
     });
@@ -52,6 +53,7 @@ export default defineComponent({
         if (element.funcName === val) {
           state.resData.name = element.name;
           state.resData.funcName = element.funcName;
+          state.resData.pattern = element.pattern;
           state.resData.paramList = element.paramDefineList || [];
           state.resData.paramList.forEach((par: any) => {
             par.paramCode = par.defineCode;
