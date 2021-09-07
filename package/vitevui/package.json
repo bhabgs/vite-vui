@@ -1,6 +1,6 @@
 {
   "name": "vitevui",
-  "version": "1.0.0-beta.58",
+  "version": "1.0.0-beta.59",
   "description": "vue3.0 ui",
   "main": "lib/index.js",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/",
