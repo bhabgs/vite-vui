@@ -94,7 +94,22 @@ export default defineComponent({
               <div class='flex line'>
                 <div class='name'>{ele.name}：</div>
                 <div class='flex1'>
-                  <a-input v-model={[ele.value, 'value']} />
+                  {ele.type === 'select' ? (
+                    <a-select
+                      v-model={[ele.value, 'value']}
+                      style='width: 120px'
+                    >
+                      {ele.option.map((option: any) => {
+                        return (
+                          <a-select-option value={option.id}>
+                            {option.name}
+                          </a-select-option>
+                        );
+                      })}
+                    </a-select>
+                  ) : (
+                    <a-input v-model={[ele.value, 'value']} />
+                  )}
                 </div>
                 {props.type === 'template' ? (
                   <div class='option'>
