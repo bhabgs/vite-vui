@@ -36,7 +36,7 @@ export default defineComponent({
         <div>
           <div>
             显示内容：
-            <a-input v-model={[state.resData.value, 'value']} />
+            <a-input v-model={[state.resData.name, 'value']} />
           </div>
         </div>
       );
