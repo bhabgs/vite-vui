@@ -46,7 +46,7 @@ const viFlow = defineComponent({
       default: [],
     },
     getNodeText: {
-      type: Promise as any,
+      type: Function as any,
     },
   },
 

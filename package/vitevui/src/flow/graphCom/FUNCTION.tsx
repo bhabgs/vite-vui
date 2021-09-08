@@ -99,6 +99,7 @@ export default defineComponent({
                   {ele.type === 'select' ? (
                     <a-select
                       v-model={[ele.value, 'value']}
+                      allowClear={true}
                       style='width: 120px'
                     >
                       {ele.option.map((option: any) => {
