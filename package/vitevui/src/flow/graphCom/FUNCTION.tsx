@@ -92,6 +92,17 @@ export default defineComponent({
             })}
           </a-select>
           {state.resData.paramList.map((ele: any) => {
+            if (ele.type === 'select') {
+              const fun = props.funAll.find((func: any) => {
+                return func.funcName === state.resData.funcName;
+              });
+              const param = fun?.paramDefineList?.find((par: any) => {
+                return par.defineCode === ele.defineCode;
+              });
+              if (param) {
+                ele.option = param.option;
+              }
+            }
             return (
               <div class='flex line'>
                 <div class='name'>{ele.name}：</div>
