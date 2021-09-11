@@ -126,6 +126,7 @@ const viFlowRes = defineComponent({
     initGraph() {
       this.graph = new Graph({
         grid: true,
+        autoResize: true,
         // 对齐线
         snapline: true,
         // 节点缩放
