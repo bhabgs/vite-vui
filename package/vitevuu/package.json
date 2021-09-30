@@ -1,9 +1,9 @@
 {
   "name": "vitevuu",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "lib/index.js",
-  "types": "./lib/types/*",
+  "types": "./lib/types/index.d.ts",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/vuu/",
   "repository": "https://github.com/bhabgs/vite-vui",
   "scripts": {
