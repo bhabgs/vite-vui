@@ -7,8 +7,6 @@ on:
   # 当对分支main进行push操作的时候，这个工作流就被触发了
   push:
     branches: [push-docs]
-  pull_request:
-    branches: [push-docs]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,6 +36,10 @@ jobs:
 
       - name: 安装依赖
         run: yarn
+
+      - name: 打包ui
+        working-directory: 'package/vitevui'
+        run: yarn build
 
       - name: 打包文档
         run: yarn docs:build

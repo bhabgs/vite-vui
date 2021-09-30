@@ -20,12 +20,14 @@
   ],
   "useWorkspaces": true,
   "dependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.0.11"
   },
   "private": true,
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.4",
-    "@vitejs/plugin-vue-jsx": "^1.1.0",
+    "ant-design-vue": "2.2.2",
+    "patch-vue-directive-ssr": "^0.0.1",
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vitejs/plugin-vue-jsx": "^1.1.3",
     "@vue/compiler-sfc": "^3.0.5",
     "less": "^4.1.1",
     "typescript": "^4.1.3",

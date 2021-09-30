@@ -4,9 +4,11 @@
  * @Author: bhabgs
  * @Date: 2021-02-26 15:22:42
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-03 11:23:20
+ * @LastEditTime: 2021-04-08 13:27:07
  */
+
 module.exports = {
+  lang: 'en-US',
   head: [
     [
       'meta',
@@ -16,20 +18,13 @@ module.exports = {
           'width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
       },
     ],
-    ['meta', { name: 'keywords', content: '足生的个人博客' }],
+    ['meta', { name: 'keywords', content: 'vite vui' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    // 引入 Gitalk
-    [
-      'link',
-      { rel: 'stylesheet', href: 'https://unpkg.com/gitalk/dist/gitalk.css' },
-    ],
-    ['script', { src: 'https://unpkg.com/gitalk/dist/gitalk.min.js' }],
   ],
   title: 'Vite vui',
   base: '/vite-vui-docs/',
   themeConfig: {
-    search: true,
-    // 保存解析 Markdown 的元数据
+    repo: 'bhabgs/vite-vui',
     sidebar: {
       '/': [
         {
@@ -38,6 +33,11 @@ module.exports = {
             { text: '介绍', link: '/' },
             { text: '日志', link: '/components/log' },
             { text: 'Button', link: '/components/button/' },
+            { text: 'flow', link: '/components/flow/' },
+            { text: 'Layout', link: '/components/layout/' },
+            { text: 'contextmenu', link: '/components/contextmenu/' },
+            { text: 'menu', link: '/components/menu/' },
+            { text: 'tabsPage', link: '/components/tabsPage/' },
           ],
         },
         {

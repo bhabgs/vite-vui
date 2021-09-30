@@ -1,0 +1,62 @@
+// 折叠后
+&.vite_menu_collapsed {
+  z-index: 999;
+  &.vite_menu_collapsed_active {
+    ul {
+      * {
+        display: none;
+      }
+    }
+  }
+  .vite_menu_title {
+    justify-content: center;
+  }
+  &:hover {
+    overflow: visible;
+  }
+  li,
+  .vite_menu_group_title {
+    min-height: @itemHeight;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-left: 0;
+    > span {
+      flex-direction: column;
+    }
+  }
+  .vite_xiala {
+    display: none;
+  }
+  .vite_menu_group {
+    position: relative;
+    > .vite_menu_group {
+      border-radius: 0.3rem;
+      position: absolute;
+      left: 103%;
+      opacity: 0;
+      min-width: 120px;
+      top: -1rem;
+      .animate2();
+    }
+    &:hover {
+      .vite_menu_group {
+        display: block;
+        opacity: 1;
+      }
+    }
+  }
+
+  li {
+    flex-direction: column;
+
+    &.vite_menu_item_active,
+    &:hover {
+      position: relative;
+      background-color: @blue-4;
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+}

@@ -4,24 +4,31 @@
  * @Author: bhabgs
  * @Date: 2021-02-21 15:44:28
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-23 10:50:33
+ * @LastEditTime: 2021-04-20 15:37:39
  */
-import { App, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
+import { installComponent, getSlots } from '../util';
+
+const props = {
+  height: {
+    type: String,
+    default() {
+      return '64px';
+    },
+  },
+};
 
 const viLayoutHeader = defineComponent({
   name: 'viLayoutHeader',
-  render() {
-    const { $slots } = this;
-    const def = $slots.default;
-    return (
-      <section class='vite-layout-header'>
-        <def />
+  props,
+  setup(props, context) {
+    const slots = getSlots(context);
+    return () => (
+      <section class='vite-layout-header' style={{ height: props.height }}>
+        <slots.def />
       </section>
     );
   },
 });
 
-viLayoutHeader.install = (app: App) => {
-  app.component(viLayoutHeader.name, viLayoutHeader);
-};
-export default viLayoutHeader;
+export default installComponent(viLayoutHeader, 'viLayoutHeader');

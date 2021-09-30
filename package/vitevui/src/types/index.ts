@@ -4,19 +4,23 @@
  * @Author: bhabgs
  * @Date: 2021-01-05 14:17:25
  * @LastEditors: bhabgs
- * @LastEditTime: 2021-02-24 09:58:30
+ * @LastEditTime: 2021-04-07 14:01:27
  */
-interface baseObject<T = any> {
-  [key: string]: T;
-}
+
+type baseObject<T = any> = Record<string, T>;
 import { VNode } from 'vue';
+import { Emitter } from 'mitt';
 
 declare global {
   namespace JSX {
     interface Element extends VNode {}
-    interface IntrinsicElements {
-      [elem: string]: any;
-    }
+    interface IntrinsicElements {}
+  }
+}
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $mitt: Emitter;
   }
 }
 

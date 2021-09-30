@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "jsxFactory": "VueTsxSupport",
-    "target": "esnext",
+    "target": "ES6",
     "module": "esnext",
     "strict": true,
     "importHelpers": true,
@@ -19,7 +19,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "ES6"],
     "types": ["node"],
     "experimentalDecorators": true
   },
