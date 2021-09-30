@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DataModel, graph, List, deserializeCallBack } from 'ht';
 
-interface TPINIT {
+export interface TPINIT {
   callBack: deserializeCallBack | undefined;
   json: string;
   zoomable?: boolean;

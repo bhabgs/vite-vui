@@ -10,6 +10,8 @@ import axios, { instance } from './axios';
 import checkUser from './checkUser';
 import { getAllQuery, getQueryString } from './getQuery';
 import { deepCopy, decodeUnicode, encodeUnicode, guid, platForm } from './base';
+import tp from './tp';
+import tpu from './tp/ut';
 
 const _default = {
   axios,
@@ -22,6 +24,8 @@ const _default = {
   decodeUnicode,
   encodeUnicode,
   guid,
+  tp,
+  tpu,
 };
 
 export {
@@ -35,6 +39,8 @@ export {
   decodeUnicode,
   encodeUnicode,
   guid,
+  tp,
+  tpu,
 };
 
 export default _default;
