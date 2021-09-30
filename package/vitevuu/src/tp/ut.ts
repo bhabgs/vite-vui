@@ -90,3 +90,11 @@ export {
   getTcMcArr,
   getValByTcMc,
 };
+
+export default {
+  compunted,
+  computedTrue,
+  computedPercentage,
+  getTcMcArr,
+  getValByTcMc,
+};
