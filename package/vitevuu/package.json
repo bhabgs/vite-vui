@@ -3,7 +3,7 @@
   "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
-  "types": "./lib/types/index.d.ts",
+  "types": "./lib/types/*",
   "homepage": "https://bhabgs.github.io/vite-vui-docs/vuu/",
   "repository": "https://github.com/bhabgs/vite-vui",
   "scripts": {
@@ -15,8 +15,11 @@
   "author": "bhabgs",
   "license": "ISC",
   "devDependencies": {
+    "commitizen": "^4.2.3",
     "conventional-changelog-cli": "^2.1.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "commitizen": "^4.2.3"
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-typescript": "^8.2.5"
   }
 }
