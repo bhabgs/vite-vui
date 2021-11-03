@@ -9,6 +9,7 @@
 import axios, { instance } from './axios';
 import checkUser from './checkUser';
 import { getAllQuery, getQueryString } from './getQuery';
+import signature from './signature';
 import { deepCopy, decodeUnicode, encodeUnicode, guid, platForm } from './base';
 
 const _default = {
@@ -22,6 +23,7 @@ const _default = {
   decodeUnicode,
   encodeUnicode,
   guid,
+  signature,
 };
 
 export {
@@ -35,6 +37,7 @@ export {
   decodeUnicode,
   encodeUnicode,
   guid,
+  signature,
 };
 
 export default _default;
