@@ -1,12 +1,28 @@
-var fs = require('fs');
+import fs from 'fs';
+import path from 'path';
 
 function copyDir(src, dist, callback) {
-  fs.access(dist, function (err) {
-    if (err) {
-      fs.mkdirSync(dist);
-    }
+  //   fs.access(dist, function (err) {
+  //     if (err) {
+  //       fs.mkdirSync(dist);
+  //     }
+  //     _copy(null, src, dist);
+  //   });
+
+  if (mkdirsSync(dist)) {
     _copy(null, src, dist);
-  });
+  }
+
+  function mkdirsSync(dirname) {
+    if (fs.existsSync(dirname)) {
+      return true;
+    } else {
+      if (mkdirsSync(path.dirname(dirname))) {
+        fs.mkdirSync(dirname);
+        return true;
+      }
+    }
+  }
 
   function _copy(err, src, dist) {
     if (err) {

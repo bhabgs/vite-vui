@@ -8,7 +8,7 @@
  */
 import { defineComponent, withModifiers } from 'vue';
 import { setStyleClass } from '../util';
-import hook, { tabsProps } from './tabsFunHook';
+import hook from './tabsFunHook';
 export default defineComponent({
   props: {
     items: {

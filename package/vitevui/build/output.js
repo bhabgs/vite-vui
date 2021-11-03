@@ -9,6 +9,7 @@
 const isProduction = process.env.NODE_ENV === 'production'; // 生产环境
 const globals = {
   vue: 'Vue',
+  '@antv/x6': 'x6',
 };
 const path = 'lib';
 let output = [];
@@ -29,12 +30,14 @@ if (isProduction) {
         file: 'lib/' + item + '.js',
         format: item,
         name: 'viteui',
+        globals,
       });
     } else {
       output.push({
         dir: 'lib',
         format: 'es',
         name: 'viteui',
+        globals,
       });
     }
   });

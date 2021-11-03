@@ -7,8 +7,6 @@
  * @LastEditTime: 2021-04-21 14:33:01
  */
 import type { App } from 'vue';
-import { setupElement } from './setup/element';
-import { setupAntDesign } from './setup/antDesign';
 import mitt from './util/mitt';
 import directive from './directive';
 import type { baseObject } from './types';
@@ -29,7 +27,7 @@ import viFlow from './flow';
 import viFlowRes from './flowRes';
 import tabsPageHook, { getTabCurrentDetail } from './tabsPage/tabsFunHook';
 import './style/index.less';
-import './style/icon/iconfont.less';
+import './assets/iconfont.css';
 
 const COMPS: baseObject = {
   viLayout,
@@ -56,8 +54,6 @@ const install = (app: App) => {
   for (const key in COMPS) {
     app.use(COMPS[key]);
   }
-  // setupElement(app);
-  // setupAntDesign(app);
 };
 
 export {

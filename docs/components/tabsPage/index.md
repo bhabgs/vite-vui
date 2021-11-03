@@ -22,7 +22,7 @@ export default defineComponent({
   setup() {
     const { proxy } = getCurrentInstance()!;
     const mitt = proxy!.$mitt;
-    return () => <viteTabsPage />;
+    return () => <viTabsPage />;
   },
 });
 ```

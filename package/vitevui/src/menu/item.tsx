@@ -26,10 +26,15 @@ export default defineComponent({
     badgeCount: {
       type: [String, Number],
     },
+    collapsed: {
+      default: false,
+      type: Boolean,
+    },
+    shortname: {
+      type: String,
+    },
   },
   setup(props, context) {
-    const slots = context.slots;
-    const def = slots.default;
     const meun_active_item = inject<Ref>('meun_active_item');
 
     const classes = computed(() =>
@@ -49,7 +54,7 @@ export default defineComponent({
         <viBadge count={props.badgeCount}>
           <span>
             {props.icon ? <viIcon name={props.icon} /> : ''}
-            {props.title}
+            {props.collapsed ? props.shortname || props.title : props.title}
           </span>
         </viBadge>
       </li>

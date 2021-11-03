@@ -15,7 +15,7 @@ declare module '@vue/runtime-core' {
 import { createApp } from 'vue';
 import reg from './registered';
 
-import App from './lay';
+import App from './layout/lay';
 import './assets/style/index.less';
 import '../package/vitevui/src/style/index.less';
 

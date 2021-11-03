@@ -1,4 +1,4 @@
-import { Shape, Markup } from '@antv/x6';
+import { Shape } from '@antv/x6';
 
 const factory: any = {};
 function getPort(position: any) {

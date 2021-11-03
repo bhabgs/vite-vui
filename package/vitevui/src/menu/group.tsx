@@ -6,7 +6,7 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-05-06 09:29:30
  */
-import { computed, inject, defineComponent, ref, Ref } from 'vue';
+import { computed, inject, defineComponent, ref, Ref, PropType } from 'vue';
 import { setStyleClass, getSlots } from '../util';
 import { MenusItem } from '.';
 
@@ -37,13 +37,20 @@ export default defineComponent({
     },
     child: {
       default: [],
-      type: Array,
+      type: Array as PropType<Array<MenusItem>>,
+    },
+    collapsed: {
+      default: false,
+      type: Boolean,
+    },
+    shortname: {
+      type: String,
     },
   },
   setup(Prop, context) {
     const asd = getSlots(context);
 
-    const props = (Prop as unknown) as MenuItemProps;
+    const props = Prop;
     const meun_active_item = inject<Ref>('meun_active_item');
     const close = ref(false);
     const classesChild = setStyleClass(['menu_group']);
@@ -83,7 +90,7 @@ export default defineComponent({
           <viBadge count={props.badgeCount}>
             <span>
               {props.icon ? <viIcon name={props.icon} /> : ''}
-              {props.title}
+              {props.collapsed ? props.shortname || props.title : props.title}
             </span>
           </viBadge>
           <viIcon name={'vite_xiala'} />

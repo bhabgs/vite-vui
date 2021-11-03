@@ -1,12 +1,5 @@
-import {
-  createTextVNode,
-  createVNode,
-  defineComponent,
-  reactive,
-  ref,
-} from 'vue';
+import { defineComponent, nextTick } from 'vue';
 import { installComponent } from '../util';
-import { Graph, Shape, Addon } from '@antv/x6';
 
 import './action.less';
 
@@ -56,12 +49,14 @@ const viFlowRes = defineComponent({
     this.domNum = Math.floor(Math.random() * 1000);
   },
   mounted() {
-    this.initGraph();
-    if (this.type === 'template') {
-      this.dealTemData();
-    } else {
-      this.dealResData();
-    }
+    nextTick(() => {
+      this.initGraph();
+      if (this.type === 'template') {
+        this.dealTemData();
+      } else {
+        this.dealResData();
+      }
+    });
   },
   methods: {
     finishEdit(ele: any) {
@@ -123,7 +118,8 @@ const viFlowRes = defineComponent({
       });
       this.graph.fromJSON(this.cells);
     },
-    initGraph() {
+    async initGraph() {
+      const { Graph } = await import('@antv/x6');
       this.graph = new Graph({
         grid: true,
         // 对齐线

@@ -41,6 +41,9 @@ jobs:
         working-directory: 'package/vitevui'
         run: yarn build
 
+      - name: 添加vitepress vue自定义指令ssr支持
+        run: npm i
+
       - name: 打包文档
         run: yarn docs:build
 

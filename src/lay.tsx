@@ -372,10 +372,12 @@ export default defineComponent({
                 id: '1',
                 icon: 'vite_vehivles',
                 badgeCount: 1,
+                shortname: '折叠1',
               },
               {
                 title: '3333333',
                 id: '3',
+                shortname: '折叠2',
               },
             ]}
             collapsed={props.collapsed}

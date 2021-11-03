@@ -1,12 +1,3 @@
-<!--
- * @abstract: JianJie
- * @version: 0.0.1
- * @Author: bhabgs
- * @Date: 2021-03-01 10:05:45
- * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-22 16:14:48
--->
-
 # layout 容器布局
 
 > 用于布局的容器组件，方便快速搭建页面的基本结构：
@@ -27,9 +18,27 @@
   margin-bottom: 2rem;
   background:white;
 }
+.vite-layout-header{
+  background: #7dbcea;
+}
+.vite-layout-sider {
+ background: #3ba0e9;
+}
+.vite-layout-main{
+  background: #108ee9;
+}
+.vite-layout-footer{
+  background: #7dbcea;
+}
 </style>
 
 ## 基本用法
+
+<vi-layout class='default_vi'>
+  <vi-layout-header>header</vi-layout-header>
+  <vi-layout-main>main</vi-layout-main>
+  <vi-layout-footer>footer</vi-layout-footer>
+</vi-layout>
 
 <vi-layout class='default_vi'>
   <vi-layout-header>header</vi-layout-header>
@@ -37,12 +46,6 @@
   <vi-layout-sider>sider</vi-layout-sider>
   <vi-layout-main>main</vi-layout-main>
   </vi-layout>
-  <vi-layout-footer>footer</vi-layout-footer>
-</vi-layout>
-
-<vi-layout class='default_vi'>
-  <vi-layout-header>header</vi-layout-header>
-  <vi-layout-main>main</vi-layout-main>
   <vi-layout-footer>footer</vi-layout-footer>
 </vi-layout>
 
@@ -81,7 +84,8 @@ export default {
 > 侧边组件
 
 <vi-layout class='default_vi'>
-<vi-layout-sider>sider</vi-layout-sider>
+<!-- <vi-layout-sider>sider</vi-layout-sider> -->
+<vi-layout-main>main</vi-layout-main>
 </vi-layout>
 
 | 参数  | 说明                           | 类型   | 可选值 | 默认值 |
