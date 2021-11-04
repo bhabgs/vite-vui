@@ -21,6 +21,7 @@ export default defineComponent({
         dynamically: false,
         paramList: [],
         funcName: '',
+        pattern: '',
         resField: '', // 函数返回字段
       },
     });
@@ -52,6 +53,7 @@ export default defineComponent({
         if (element.funcName === val) {
           state.resData.name = element.name;
           state.resData.funcName = element.funcName;
+          state.resData.pattern = element.pattern;
           state.resData.paramList = element.paramDefineList || [];
           state.resData.paramList.forEach((par: any) => {
             par.paramCode = par.defineCode;
@@ -90,11 +92,38 @@ export default defineComponent({
             })}
           </a-select>
           {state.resData.paramList.map((ele: any) => {
+            if (ele.type === 'select') {
+              const fun = props.funAll.find((func: any) => {
+                return func.funcName === state.resData.funcName;
+              });
+              const param = fun?.paramDefineList?.find((par: any) => {
+                return par.defineCode === ele.defineCode;
+              });
+              if (param) {
+                ele.option = param.option;
+              }
+            }
             return (
               <div class='flex line'>
                 <div class='name'>{ele.name}：</div>
                 <div class='flex1'>
-                  <a-input v-model={[ele.value, 'value']} />
+                  {ele.type === 'select' ? (
+                    <a-select
+                      v-model={[ele.value, 'value']}
+                      allowClear={true}
+                      style='width: 120px'
+                    >
+                      {ele.option.map((option: any) => {
+                        return (
+                          <a-select-option value={option.id}>
+                            {option.name}
+                          </a-select-option>
+                        );
+                      })}
+                    </a-select>
+                  ) : (
+                    <a-input v-model={[ele.value, 'value']} />
+                  )}
                 </div>
                 {props.type === 'template' ? (
                   <div class='option'>

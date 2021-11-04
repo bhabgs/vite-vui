@@ -11,6 +11,8 @@ import checkUser from './checkUser';
 import { getAllQuery, getQueryString } from './getQuery';
 import signature from './signature';
 import { deepCopy, decodeUnicode, encodeUnicode, guid, platForm } from './base';
+import tp from './tp';
+import tpu from './tp/ut';
 
 const _default = {
   axios,
@@ -24,6 +26,8 @@ const _default = {
   encodeUnicode,
   guid,
   signature,
+  tp,
+  tpu,
 };
 
 export {
@@ -38,6 +42,8 @@ export {
   encodeUnicode,
   guid,
   signature,
+  tp,
+  tpu,
 };
 
 export default _default;

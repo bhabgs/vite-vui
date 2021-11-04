@@ -45,6 +45,9 @@ const viFlow = defineComponent({
       type: Array as any,
       default: [],
     },
+    getNodeText: {
+      type: Function as any,
+    },
   },
 
   data() {
@@ -100,6 +103,7 @@ const viFlow = defineComponent({
       const { Graph, Shape, Addon } = await import('@antv/x6');
       this.graph = new Graph({
         grid: true,
+        autoResize: true,
         // 对齐线
         snapline: true,
         // 节点缩放
@@ -222,13 +226,14 @@ const viFlow = defineComponent({
       });
       this.graph.on('edge:click', (arg: any) => {
         this.selectedObj = arg.edge;
-        this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
-        const id = this.diaObj.source.cell;
+        const line = this.selectedObj.store.data;
+        const id = line.source.cell;
         const node = this.graph.getCellById(id);
         const type = node.data.nodeType;
         debugger;
         if (type === 'SELECTOR' || type === 'SWITCH') {
           this.selectedObj.setData({ nodeType: `${type}Line` });
+          this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));
           this.diaVisible = true;
         }
       });
@@ -266,6 +271,10 @@ const viFlow = defineComponent({
           nodeCode: selected.id,
           rulesComponent: selected.data,
         };
+        const text: string = await this.getNodeText(param);
+        if (text) {
+          this.selectedObj.attr('label/text', text);
+        }
       }
       this.diaVisible = false;
     },
@@ -370,7 +379,11 @@ const viFlow = defineComponent({
       <div class='vuiFlow'>
         <div class='flex drag'>
           <div class='module' id={`module${this.domNum}`}></div>
-          <div class='graph' id={`graph${this.domNum}`}></div>
+          <div
+            class='graph'
+            id={`graph${this.domNum}`}
+            style={{ flex: 1 }}
+          ></div>
         </div>
 
         {this.renderDia()}

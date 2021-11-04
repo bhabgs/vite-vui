@@ -122,6 +122,7 @@ const viFlowRes = defineComponent({
       const { Graph } = await import('@antv/x6');
       this.graph = new Graph({
         grid: true,
+        autoResize: true,
         // 对齐线
         snapline: true,
         // 节点缩放
@@ -159,7 +160,11 @@ const viFlowRes = defineComponent({
     return (
       <div class='vuiFlow'>
         <div class='flex drag'>
-          <div class='graph' id={`graph${this.domNum}`}></div>
+          <div
+            class='graph'
+            id={`graph${this.domNum}`}
+            style={{ flex: 1 }}
+          ></div>
         </div>
       </div>
     );
