@@ -1,12 +1,3 @@
-<!--
- * @abstract: JianJie
- * @version: 0.0.1
- * @Author: bhabgs
- * @Date: 2021-03-22 15:59:08
- * @LastEditors: bhabgs
- * @LastEditTime: 2021-03-22 17:41:40
--->
-
 # contextmenu(右键)
 
 > 用户自定义右键 弹窗
@@ -16,6 +7,7 @@
   height: 500px;
 }
 </style>
+
 <rightMenu />
 
 ```vue

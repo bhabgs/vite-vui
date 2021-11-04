@@ -6,7 +6,7 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-04-20 15:39:58
  */
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { installComponent } from '../util';
 
 const props = {
@@ -25,15 +25,15 @@ const props = {
 const viLayoutSider = defineComponent({
   name: 'viLayoutSider',
   props,
-  render() {
-    const { $slots, $parent } = this;
-    const def = $slots.default;
-
-    if (($parent as any)?.hasSider) {
-      ($parent as any)?.hasSider();
-    }
-    return (
-      <aside class='vite-layout-sider' style={{ width: this.width }}>
+  setup(props, context) {
+    const def = context.slots.default || '';
+    context.expose({
+      viLayoutSider: true,
+    });
+    const provideSider = inject<Function>('sider')!;
+    provideSider();
+    return () => (
+      <aside class='vite-layout-sider' style={{ width: props.width }}>
         <def />
       </aside>
     );

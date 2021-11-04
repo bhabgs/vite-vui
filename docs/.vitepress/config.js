@@ -53,9 +53,17 @@ module.exports = {
     author: 'bhabgs',
     nav: [
       { text: '首页', link: '/' },
-      // { text: '归档', link: '/docs' },
       { text: '分类', link: '/tags' },
     ],
+  },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1024 * 50,
+      target: 'chrome58',
+    },
+    ssr: {
+      external: ['@antv/x6'],
+    },
   },
   dest: 'public',
 };

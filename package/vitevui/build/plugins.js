@@ -17,8 +17,7 @@ import url from '@rollup/plugin-url';
 import path from 'path';
 import copyDir from './createFile';
 
-const assets = path.join(__dirname, 'src/style/icon/');
-
+const assets = path.join(__dirname, 'src/assets/');
 const extensions = ['.ts', '.js', '.tsx', '.json', '.ttf', '.woff', '.woff2'];
 
 // 创建iconfont 目录

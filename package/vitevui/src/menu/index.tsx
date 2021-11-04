@@ -6,7 +6,7 @@
  * @LastEditors: bhabgs
  * @LastEditTime: 2021-04-20 15:43:18
  */
-import { defineComponent, provide, ref, readonly, computed } from 'vue';
+import { defineComponent, provide, ref, readonly, computed, inject } from 'vue';
 import { setStyleClass, installComponent } from '../util';
 import menusGroup, { MenuItemProps } from './group';
 import menusItem from './item';
@@ -17,6 +17,7 @@ export interface MenusItem {
   icon?: string;
   badgeCount: string | number;
   child: Array<MenusItem>;
+  shortname?: string;
 }
 
 export interface SiderProps {
@@ -27,6 +28,7 @@ export interface SiderProps {
   collapsed?: boolean;
   collapsedwidth?: string;
   menuTitle?: string;
+  isSider?: Boolean;
 }
 
 const side = defineComponent({
@@ -65,20 +67,28 @@ const side = defineComponent({
       type: String,
       default: '',
     },
+    isSider: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(Prop, Context) {
-    const props = (Prop as unknown) as SiderProps;
+    const props = Prop as unknown as SiderProps;
     const collapsed = ref(props.collapsed);
     const collapsedActiveIng = ref(false);
-    const siderBoxStyleClass = computed(() =>
-      setStyleClass([
+    const siderBoxStyleClass = computed(() => [
+      ...setStyleClass([
         'menu_box',
         `menu_${props.theme || 'light'}`,
         collapsedActiveIng.value ? 'menu_collapsed_active' : '',
         collapsed.value ? 'menu_collapsed' : 'menu_zhankai',
       ]),
-    );
-
+      props.isSider ? 'vite-layout-sider' : '',
+    ]);
+    if (props.isSider) {
+      const provideSider = inject<Function>('sider')!;
+      provideSider();
+    }
     // 当 provide 是为了告诉item是否选中
     const defaultActiveId = ref(props.defaultActiveId);
     provide('meun_active_item', readonly(defaultActiveId));
@@ -90,6 +100,7 @@ const side = defineComponent({
         return (
           <menusItem
             {...menuItem}
+            collapsed={collapsed.value}
             onCustomclick={(e: MenuItemProps) => {
               defaultActiveId.value = e.id;
               Context.emit('itemclick', e);
@@ -107,7 +118,11 @@ const side = defineComponent({
         badgeCount: item.badgeCount,
       };
       return (
-        <menusGroup {...groupProp} child={item.child}>
+        <menusGroup
+          {...groupProp}
+          child={item.child}
+          collapsed={collapsed.value}
+        >
           {renderItem(item.child)}
         </menusGroup>
       );
@@ -117,11 +132,11 @@ const side = defineComponent({
     const iconClass = computed(() =>
       collapsed.value ? 'vite_caidanyou' : 'vite_caidan',
     );
-    const style = computed(() =>
+    const style = computed(() => [
       collapsed.value
         ? { width: props.collapsedwidth }
         : { width: props.width },
-    );
+    ]);
 
     return () => (
       <ul class={siderBoxStyleClass.value} style={style.value}>

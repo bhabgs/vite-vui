@@ -15,6 +15,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   build: {
     outDir: './package/server/dist',
+    chunkSizeWarningLimit: 1024,
   },
   server: {
     proxy: {

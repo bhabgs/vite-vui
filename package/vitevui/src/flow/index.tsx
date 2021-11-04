@@ -1,5 +1,5 @@
-import { defineComponent, createTextVNode } from 'vue';
-import { Graph, Shape, Addon } from '@antv/x6';
+import { defineComponent, createTextVNode, nextTick } from 'vue';
+import type { Graph, Addon } from '@antv/x6';
 import { installComponent } from '../util';
 import fac from './component';
 import FUNCTION from './graphCom/FUNCTION';
@@ -53,7 +53,7 @@ const viFlow = defineComponent({
   data() {
     return {
       recordType: 1 as any, // 0规则 1决策
-      graph: undefined as any,
+      graph: {} as Graph,
       stencil: undefined as any,
       action: {
         name: '',
@@ -90,14 +90,17 @@ const viFlow = defineComponent({
     this.domNum = Math.floor(Math.random() * 1000);
   },
   mounted() {
-    this.initGraph();
+    nextTick(() => {
+      this.initGraph();
+    });
   },
   methods: {
     async init() {
       this.graph.fromJSON(this.data[0].cells);
       [, this.action] = this.data;
     },
-    initGraph() {
+    async initGraph() {
+      const { Graph, Shape, Addon } = await import('@antv/x6');
       this.graph = new Graph({
         grid: true,
         autoResize: true,
@@ -172,7 +175,7 @@ const viFlow = defineComponent({
       });
       this.graphEvent();
       this.stencil = new Addon.Stencil({
-        target: this.graph,
+        target: this.graph as Graph | Addon.Scroller | undefined,
         title: '组件',
         stencilGraphWidth: 280,
         stencilGraphHeight:
@@ -226,7 +229,8 @@ const viFlow = defineComponent({
         const line = this.selectedObj.store.data;
         const id = line.source.cell;
         const node = this.graph.getCellById(id);
-        const type = node.store.data.data.nodeType;
+        const type = node.data.nodeType;
+        debugger;
         if (type === 'SELECTOR' || type === 'SWITCH') {
           this.selectedObj.setData({ nodeType: `${type}Line` });
           this.diaObj = JSON.parse(JSON.stringify(this.selectedObj.store.data));

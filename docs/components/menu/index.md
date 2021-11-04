@@ -24,7 +24,7 @@ export default defineComponent({
       collapsed: false,
     });
     return (
-      <menuBox
+      <viMenuBox
         menuTitle={'润滑管理'}
         width={'14.29rem'}
         menus={[
@@ -32,6 +32,7 @@ export default defineComponent({
             title: '111111',
             id: '1',
             icon: 'vite_vehivles',
+            shortname: ‘’， // 折叠后简称
           },
           {
             title: '22222222',

@@ -10,15 +10,20 @@
 import DefaultTheme from 'vitepress/dist/client/theme-default';
 import asa from './component/contentmenu.vue';
 import ant from 'ant-design-vue';
-import vitevui from '../../../package/vitevui';
+// import vitevui from '../../../package/vitevui';
 import '../../../package/vitevui/src/style/index.less';
 import './style.less';
 
 export default {
   ...DefaultTheme,
-  enhanceApp({ app }) {
-    app.use(vitevui);
+  enhanceApp(opt) {
+    const { app } = opt;
+    // app.use(vitevui);
     app.use(ant);
     app.component('rightMenu', asa);
+    // setTimeout(async () => {
+    // const vitevui = await import('../../../package/vitevui');
+
+    // }, 500);
   },
 };

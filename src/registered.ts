@@ -11,7 +11,6 @@ import vui from '../package/vitevui/src/index';
 import '../package/vitevui/src/style/index.less';
 // import vui from '../package/vitevui';
 // import '../package/vitevui/lib/style.css';
-// import vitevuu from '../package/vitevuu';
 
 export default {
   async install(app: App, options: any) {
